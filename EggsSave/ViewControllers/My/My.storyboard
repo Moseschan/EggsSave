@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-380" y="360"/>
         </scene>
-        <!--My View Controller-->
+        <!--我的-->
         <scene sceneID="gl1-OJ-TeA">
             <objects>
                 <viewController id="C3i-Dw-gcp" customClass="MyViewController" sceneMemberID="viewController">
@@ -32,19 +32,17 @@
                     <view key="view" contentMode="scaleToFill" id="gan-XF-6Vd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="精彩稍后继续！哈哈哈哈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-E3-OhB">
+                                <rect key="frame" x="43" y="185" width="187" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6dG-Mg-IHw">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Qo4-Uu-yEq">
-                            <rect key="frame" x="93.5" y="6.5" width="133" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="快速任务"/>
-                                <segment title="分享任务"/>
-                            </segments>
-                        </segmentedControl>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="我的" id="6dG-Mg-IHw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3t2-Qq-Ftz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

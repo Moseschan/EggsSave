@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Task;
+
 @interface FTDetailViewController : UITableViewController
+
+- (void)setTask:(Task*)task;
 
 @end

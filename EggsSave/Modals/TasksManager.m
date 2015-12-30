@@ -55,6 +55,7 @@
     for (int i=0; i<[putArr count]; i++) {
         NSDictionary* tempDict = putArr[i];
         
+        long t_id = [tempDict[@"id"] longValue];
         NSString* t_title = tempDict[@"producttitle"];
         NSString* t_subtitle = tempDict[@"definedTitle"];
         NSString* t_starturl = tempDict[@"cpTaskStartUrl"];
@@ -63,16 +64,18 @@
         NSString* t_iconurl = tempDict[@"icon"];
         NSString* t_detailexplain = tempDict[@"detailTaskExplain"];
         NSString* t_fastplain = tempDict[@"fastTaskExplain"];
+        NSString* t_taskkeyword = tempDict[@"keyWord"];
         float     t_bonus = [tempDict[@"prizeMoney"] floatValue];
         
-        Task* t = TaskMake(t_title, t_subtitle, t_starturl, t_endurl, t_notifyurl, t_iconurl, t_detailexplain, t_fastplain, t_bonus);
+        Task* t = TaskMake([NSString stringWithFormat:@"%ld",t_id], t_title, t_subtitle, t_starturl, t_endurl, t_notifyurl, t_iconurl, t_detailexplain, t_fastplain, t_taskkeyword, t_bonus);
         
-        NSLog(@"t.title = %@, t.detail = %@", t.pTitle, t.pDetailTaskExplain);
+        NSLog(@"t.title = %@, t.detail = %@, t.pid = %@", t.pTitle, t.pDetailTaskExplain,t.pId);
         
         [taskarray addObject:t];
     }
     
     self.mTasks = taskarray;
+    
     
     NSLog(@"self.mTasks = %@", self.mTasks);
     

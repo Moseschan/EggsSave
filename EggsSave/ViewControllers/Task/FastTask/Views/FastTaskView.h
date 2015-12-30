@@ -11,7 +11,6 @@
 /*
  * Block delegates
  */
-
 typedef void(^FTDetailCellSelected)(NSInteger index);
 
 @interface FastTaskView : UIView<UITableViewDataSource,UITableViewDelegate>

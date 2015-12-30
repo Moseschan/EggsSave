@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^DoTaskDidClicked)(void);
+
 @interface FTDIntroCell : UITableViewCell
+
+@property(nonatomic, copy)DoTaskDidClicked doTaskDidClicked;
+@property (weak, nonatomic) IBOutlet UITextView *taskKeyWord;
+
 - (IBAction)startTask:(id)sender;
+
+- (void)setKeyWord:(NSString *)keyword;
 
 @end

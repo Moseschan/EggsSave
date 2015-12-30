@@ -115,6 +115,9 @@
                     <constraint firstItem="9Nx-J3-Tkh" firstAttribute="top" secondItem="nGY-KK-rln" secondAttribute="bottom" constant="3" id="zM3-4p-0OU"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="taskKeyWord" destination="QMw-CP-WX8" id="OfN-zx-nvo"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

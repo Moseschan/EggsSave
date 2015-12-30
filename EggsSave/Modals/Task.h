@@ -20,14 +20,16 @@
 @property(strong, nonatomic)NSString* pIconUrl;             //icon地址
 @property(strong, nonatomic)NSString* pDetailTaskExplain;   //详细任务说明
 @property(strong, nonatomic)NSString* pFastTaskExplain;     //快速任务说明
+@property(strong, nonatomic)NSString* pKeyWord;             //关键字
 
 
 @end
 
 
-static inline Task* TaskMake(NSString* title, NSString* subTitle, NSString* startURL, NSString* endURL, NSString* notifyURL, NSString* iconURL, NSString* detailTaskExplain, NSString* fastTaskExplain, float bonus)
+static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, NSString* startURL, NSString* endURL, NSString* notifyURL, NSString* iconURL, NSString* detailTaskExplain, NSString* fastTaskExplain, NSString* keyWord, float bonus)
 {
     Task* task = [[Task alloc] init];
+    task.pId = tid;
     task.pTitle = title;
     task.pSubTitle = subTitle;
     task.pStartURL = startURL;
@@ -36,6 +38,8 @@ static inline Task* TaskMake(NSString* title, NSString* subTitle, NSString* star
     task.pIconUrl = iconURL;
     task.pDetailTaskExplain = detailTaskExplain;
     task.pFastTaskExplain = fastTaskExplain;
+    task.pKeyWord = keyWord;
     task.pBonus = bonus;
     return task;
 }
+

@@ -20,7 +20,16 @@
     // Configure the view for the selected state
 }
 
+- (void)setKeyWord:(NSString *)keyword
+{
+    self.taskKeyWord.text = keyword;
+}
+
 - (IBAction)startTask:(id)sender {
+    
+    if (self.doTaskDidClicked) {
+        self.doTaskDidClicked();
+    }
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     
