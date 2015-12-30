@@ -15,4 +15,10 @@
 - (void)login;
 - (void)signUp;
 
+/**
+ *  做任务接口
+ */
+- (void)doTaskWithTaskId:(NSString *)taskId;
+
+
 @end

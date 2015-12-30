@@ -166,4 +166,71 @@
     }];
 }
 
+- (void)doTaskWithTaskId:(NSString *)taskId
+{
+    NSString* usid = [KeychainIDFA getUserId];
+    NSString* taid = taskId;
+    
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"http://123.57.85.254:8080/newwangluo/app/103.dsp"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
+    // 2.设置请求头
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary *t1 = @{@"userId":usid,@"taskId":taid} ;
+    
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\"}",@"userId",usid,@"taskId",taid];
+    const char *cuncal =[uncal UTF8String];
+    
+    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+    
+    // 3.设置请求体
+    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+    
+    NSLog(@"json = %@",json);
+    
+    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    
+    Byte *dataByte = (Byte *)[data1 bytes];
+    
+    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+    Byte* e1 = (Byte*)malloc([data1 length]);
+    memset(e1, 0, [data1 length] + 1);
+    memcpy(e1, encryptByte, [data1 length]);
+    free(encryptByte);
+    
+    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+    
+    request.HTTPBody = encryptData;
+    
+    free(e1);
+    
+    // 4.发送请求
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            
+            NSLog(@"未获取到数据");
+            
+            return ;
+        }
+        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
+        
+        NSLog(@"dict = %@",dict);
+        
+        free(decryptByte);
+        
+        NSLog(@"接受任务成功");
+        
+        
+        //在这里还要监测登陆成功或失败
+        
+    }];
+}
+
 @end

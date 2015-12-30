@@ -47,7 +47,6 @@
         
         //数据
         self.fastTasks = [[TasksManager getInstance]getTasks] ;
-        
         [self setupRefresh];
     }
     
@@ -63,7 +62,6 @@
         
         LoginManager* manager = [LoginManager getInstance];
         [manager login];
-        
     }];
     
 }
@@ -121,8 +119,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    Task* task = _fastTasks[indexPath.row] ;
     
     static NSString *cellIdentifier = @"fasttaskcell";
     

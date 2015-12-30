@@ -91,16 +91,12 @@
     _ftView.ftdCellSelected = ^(NSInteger index)
     {
         FTDetailViewController *ftdvc = [[FTDetailViewController alloc]init];
+        [ftdvc setTask:[[TasksManager getInstance] getTasks][index]];
         
         [weakSelf.navigationController pushViewController:ftdvc animated:YES];
     };
     
     [self initializationWithViews:@[_ftView, _stView]];
-   
-    self.didChangedPage = ^(NSInteger currentPageIndex){
-        // Do something
-        NSLog(@"index %ld", (long)currentPageIndex);
-    };
     
     [self setupPagingProcess];
 }

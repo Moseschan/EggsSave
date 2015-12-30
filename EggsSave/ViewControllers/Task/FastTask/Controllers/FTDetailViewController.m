@@ -9,8 +9,13 @@
 #import "FTDetailViewController.h"
 #import "FastTaskCell.h"
 #import "FTDHeadCell.h"
+#import "Task.h"
+#import "FTDIntroCell.h"
+#import "LoginManager.h"
 
 @interface FTDetailViewController ()
+
+@property (strong, nonatomic)Task* mTask;
 
 @end
 
@@ -29,6 +34,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setTask:(Task*)task
+{
+    self.mTask = task;
 }
 
 #pragma mark - Table view data source
@@ -78,6 +88,14 @@
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDIntroCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
+        
+        [((FTDIntroCell*)cell) setKeyWord:self.mTask.pKeyWord];
+        
+        ((FTDIntroCell*)cell).doTaskDidClicked = ^()
+        {
+            //请求做任务接口
+            [[LoginManager getInstance] doTaskWithTaskId:self.mTask.pId];
+        };
     }else
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDHeadCell" owner:self options:nil];
