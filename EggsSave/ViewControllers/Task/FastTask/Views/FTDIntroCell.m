@@ -8,6 +8,15 @@
 
 #import "FTDIntroCell.h"
 
+@interface FTDIntroCell()
+
+@property (weak, nonatomic) IBOutlet UIButton *startTaskButton;
+@property (weak, nonatomic) IBOutlet UIImageView *taskisgetImageView;
+
+
+
+@end
+
 @implementation FTDIntroCell
 
 - (void)awakeFromNib {
@@ -27,17 +36,39 @@
 
 - (IBAction)startTask:(id)sender {
     
-    if (self.doTaskDidClicked) {
-        self.doTaskDidClicked();
+    //先判断是否已经拷贝了关键字
+    
+    NSString* pasteStr = [UIPasteboard generalPasteboard].string;
+    
+    if (!pasteStr) {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请先拷贝关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }else
+    {
+        //先进行接任务请求
+        if (self.doTaskDidClicked) {
+            self.doTaskDidClicked();
+        }
     }
-    
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    
-    NSString *str = [NSString stringWithFormat:
-                     @"https://itunes.apple.com/WebObjects/MZStore.woa/wa/search?mt=8&submit=edit&term=%@#software",
-                     [pasteboard.string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-    NSLog(@"%@",pasteboard.string);
 }
+
+- (IBAction)commitVerify:(id)sender {
+    if (self.submitTaskClicked) {
+        self.submitTaskClicked();
+    }
+}
+
+- (void)setGetTaskSucceed
+{
+    _startTaskButton.hidden = YES;
+    _taskisgetImageView.hidden = NO;
+    _taskisgetLabel.hidden = NO;
+}
+
+- (void)doTaskFailed
+{
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"傻逼" message:@"请先去完成任务，好吧！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 @end

@@ -20,5 +20,9 @@
  */
 - (void)doTaskWithTaskId:(NSString *)taskId;
 
+/**
+ *  提交审核任务接口
+ */
+- (void)submitTaskWithTaskId:(NSString *)taskId;
 
 @end

@@ -21,12 +21,13 @@
 @property(strong, nonatomic)NSString* pDetailTaskExplain;   //详细任务说明
 @property(strong, nonatomic)NSString* pFastTaskExplain;     //快速任务说明
 @property(strong, nonatomic)NSString* pKeyWord;             //关键字
+@property(assign, nonatomic)long pState;                    //任务领取的状态 0,领取，未完成 1，完成 2，未领取
 
 
 @end
 
 
-static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, NSString* startURL, NSString* endURL, NSString* notifyURL, NSString* iconURL, NSString* detailTaskExplain, NSString* fastTaskExplain, NSString* keyWord, float bonus)
+static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, NSString* startURL, NSString* endURL, NSString* notifyURL, NSString* iconURL, NSString* detailTaskExplain, NSString* fastTaskExplain, NSString* keyWord, long state, float bonus)
 {
     Task* task = [[Task alloc] init];
     task.pId = tid;
@@ -39,6 +40,7 @@ static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, 
     task.pDetailTaskExplain = detailTaskExplain;
     task.pFastTaskExplain = fastTaskExplain;
     task.pKeyWord = keyWord;
+    task.pState = state;
     task.pBonus = bonus;
     return task;
 }

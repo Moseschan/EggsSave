@@ -9,14 +9,21 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^DoTaskDidClicked)(void);
+typedef void(^SubmitTaskClicked)(void);
 
 @interface FTDIntroCell : UITableViewCell
 
 @property(nonatomic, copy)DoTaskDidClicked doTaskDidClicked;
+@property(nonatomic, copy)SubmitTaskClicked submitTaskClicked;
 @property (weak, nonatomic) IBOutlet UITextView *taskKeyWord;
+@property (weak, nonatomic) IBOutlet UILabel *taskisgetLabel;
 
 - (IBAction)startTask:(id)sender;
+- (IBAction)commitVerify:(id)sender;
 
 - (void)setKeyWord:(NSString *)keyword;
+
+- (void)setGetTaskSucceed;
+- (void)doTaskFailed;
 
 @end

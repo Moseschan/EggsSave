@@ -24,6 +24,8 @@ NSString* const NSUserDidLoginedNotification = @"NSUserDidLoginedNotification" ;
 NSString* const NSUserSignUpNotification = @"NSUserSignUpNotification";
 NSString* const NSUserSignUpFailedNotification = @"NSUserSignUpFailedNotification";
 NSString* const NSUserLoginFailedNotification = @"NSUserLoginFailedNotification";
+NSString* const NSUserGetTaskSucceedNotification = @"NSUserGetTaskSucceedNotification";  //接任务成功
+NSString* const NSUserDoTaskFailedNotification = @"NSUserDoTaskFailedNotification";  //审核任务失败
 
 @implementation EggsHomeViewController
 
@@ -161,4 +163,8 @@ NSString* const NSUserLoginFailedNotification = @"NSUserLoginFailedNotification"
 }
 
 
+- (IBAction)goTask:(id)sender {
+    //跳转到任务界面
+    [self.tabBarController setSelectedIndex:2];
+}
 @end

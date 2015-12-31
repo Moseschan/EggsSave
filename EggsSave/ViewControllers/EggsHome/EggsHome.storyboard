@@ -257,6 +257,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n63-HI-pHs">
                                                     <rect key="frame" x="13" y="329" width="294" height="46"/>
                                                     <state key="normal" image="home_zhuanqian" backgroundImage="home_zhuanqian"/>
+                                                    <connections>
+                                                        <action selector="goTask:" destination="Qvs-uN-coN" eventType="touchUpInside" id="zwA-fV-1cw"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw6-Jw-EZ2">
                                                     <rect key="frame" x="0.0" y="390" width="320" height="160"/>

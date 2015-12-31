@@ -111,7 +111,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.ftdCellSelected) {
         self.ftdCellSelected(indexPath.row);
     }

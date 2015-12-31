@@ -12,10 +12,15 @@
 #import "Task.h"
 #import "FTDIntroCell.h"
 #import "LoginManager.h"
+#import "CommonDefine.h"
 
 @interface FTDetailViewController ()
 
 @property (strong, nonatomic)Task* mTask;
+@property (strong, nonatomic) id getTaskSucceedObserver;
+@property (strong, nonatomic) id doTaskFailedObserver;
+
+@property (strong, nonatomic)FTDIntroCell* ftdintroCell;
 
 @end
 
@@ -29,6 +34,49 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    //先移除剪贴板的值
+    [[UIPasteboard generalPasteboard] setString:@""];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    self.getTaskSucceedObserver = [center addObserverForName:NSUserGetTaskSucceedNotification object:nil
+                                                queue:mainQueue usingBlock:^(NSNotification *note) {
+                                                    
+                                                    [_ftdintroCell setGetTaskSucceed];
+                                                    
+                                                    NSLog(@"The user get task succeed!");
+                                                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                                                    
+                                                    NSString *str = [NSString stringWithFormat:
+                                                                     @"https://itunes.apple.com/WebObjects/MZStore.woa/wa/search?mt=8&submit=edit&term=%@#software",
+                                                                     [pasteboard.string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
+                                                    
+                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                                                    NSLog(@"%@",pasteboard.string);
+                                                    //相应的接任务接口变化
+                                                    
+                                                }];
+    
+    self.doTaskFailedObserver = [center addObserverForName:NSUserDoTaskFailedNotification object:nil
+                                                       queue:mainQueue usingBlock:^(NSNotification *note) {
+                                                           
+                                                           [_ftdintroCell doTaskFailed];
+                                                           
+                                                           NSLog(@"The user do task failed!");
+                                                           
+                                                           //相应的接任务接口变化
+                                                           
+                                                       }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.getTaskSucceedObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.doTaskFailedObserver];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,13 +137,37 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDIntroCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
         
-        [((FTDIntroCell*)cell) setKeyWord:self.mTask.pKeyWord];
+        _ftdintroCell = (FTDIntroCell*)cell ;
         
-        ((FTDIntroCell*)cell).doTaskDidClicked = ^()
+        [_ftdintroCell setKeyWord:self.mTask.pKeyWord];
+        
+        long state = self.mTask.pState;
+        if (state == 0) {
+            //领取了任务，未完成
+            [_ftdintroCell setGetTaskSucceed];
+        }else if(state == 1)
+        {
+            NSLog(@"任务已经完成");
+            [_ftdintroCell setGetTaskSucceed];
+            _ftdintroCell.taskisgetLabel.text = @"任务已完成";
+        }else if (state == 2)
+        {
+            NSLog(@"未领取任务");
+        }
+        
+        __weak __typeof(self)weakSelf = self;
+        
+        _ftdintroCell.doTaskDidClicked = ^()
         {
             //请求做任务接口
-            [[LoginManager getInstance] doTaskWithTaskId:self.mTask.pId];
+            [[LoginManager getInstance] doTaskWithTaskId:weakSelf.mTask.pId];
         };
+        
+        _ftdintroCell.submitTaskClicked = ^(){
+            //提交审核任务接口
+            [[LoginManager getInstance] submitTaskWithTaskId:weakSelf.mTask.pId];
+        };
+        
     }else
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDHeadCell" owner:self options:nil];

@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *homeCollection;
 
+- (IBAction)goTask:(id)sender;
+
 @end
