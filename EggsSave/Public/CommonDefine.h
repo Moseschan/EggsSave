@@ -27,4 +27,5 @@ extern NSString* const NSUserSignUpFailedNotification;
 extern NSString* const NSUserLoginFailedNotification;
 extern NSString* const NSUserGetTaskSucceedNotification ;  //接任务成功
 extern NSString* const NSUserDoTaskFailedNotification ;  //接任务成功
+extern NSString* const NSUserGetAuthCodeNotification ;
 #endif /* CommonDefine_h */

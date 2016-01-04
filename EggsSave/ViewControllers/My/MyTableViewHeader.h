@@ -1,5 +1,5 @@
 //
-//  MyViewController.h
+//  MyTableViewHeader.h
 //  EggsSave
 //
 //  Created by 郭洪军 on 12/31/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyViewController : UITableViewController
+@interface MyTableViewHeader : UIView
+
+- (IBAction)showMyMessages:(id)sender;
 
 @end

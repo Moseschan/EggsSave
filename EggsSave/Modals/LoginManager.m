@@ -315,4 +315,66 @@
     }];
 }
 
+- (void)getAuthCode
+{
+    NSString* usid = [KeychainIDFA getUserId];
+    
+    // 1.创建请求
+    NSURL *url = [NSURL URLWithString:@"http://123.57.85.254:8080/newwangluo/app/106.dsp"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
+    // 2.设置请求头
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary *t1 = @{@"userId":usid} ;
+    
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+    const char *cuncal =[uncal UTF8String];
+    
+    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+    
+    // 3.设置请求体
+    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+    
+    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    
+    Byte *dataByte = (Byte *)[data1 bytes];
+    
+    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+    Byte* e1 = (Byte*)malloc([data1 length]);
+    memset(e1, 0, [data1 length] + 1);
+    memcpy(e1, encryptByte, [data1 length]);
+    free(encryptByte);
+    
+    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+    
+    request.HTTPBody = encryptData;
+    
+    free(e1);
+    
+    // 4.发送请求
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            
+            NSLog(@"未获取到数据");
+            
+            return ;
+        }
+        
+        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
+        
+        NSLog(@"dict = %@",dict);
+        NSDictionary* responseDict = dict[@"response"];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserGetAuthCodeNotification object:nil userInfo:responseDict];
+
+        
+    }];
+}
+
 @end

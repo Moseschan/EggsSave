@@ -25,4 +25,9 @@
  */
 - (void)submitTaskWithTaskId:(NSString *)taskId;
 
+/**
+ * 获取验证吗
+ */
+- (void)getAuthCode;
+
 @end
