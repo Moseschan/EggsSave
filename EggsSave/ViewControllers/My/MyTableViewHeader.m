@@ -21,17 +21,37 @@
     if (frame.size.width != 0) {
         self.frame = frame;
     }
+   
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (IBAction)showMyMessages:(id)sender {
+    if (self.mthSetMessage) {
+        self.mthSetMessage();
+    }
 }
+
+- (IBAction)setMyMessage:(id)sender {
+    if (self.mthSetMessage) {
+        self.mthSetMessage();
+    }
+}
+
+- (void)showAvatar
+{
+    if (self.mthShowAvatar) {
+        self.mthShowAvatar();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 @end

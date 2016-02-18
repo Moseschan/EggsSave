@@ -10,9 +10,14 @@
 #import "MyTableViewHeader.h"
 #import "MyTableViewCell.h"
 #import "BindPhoneViewController.h"
+#import "PersonalMessageViewController.h"
 #import "CommonDefine.h"
+#import "changePassword/CHPViewController.h"
 
 @interface MyViewController ()
+{
+    MyTableViewHeader* mHeadView;
+}
 
 @end
 
@@ -21,14 +26,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    __weak __typeof(self)weakSelf = self;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    MyTableViewHeader* headView = [[MyTableViewHeader alloc]init];
+    mHeadView = [[MyTableViewHeader alloc]init];
+    mHeadView.mthSetMessage = ^(){
+        PersonalMessageViewController* pmvc = InstFirstVC(@"PersonalMessageViewController");
+        
+        UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+        
+        temporaryBarButtonItem.title=@"返回";
+        
+        weakSelf.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+        
+        [weakSelf.navigationController pushViewController:pmvc animated:YES];
+    };
     
-    self.tableView.tableHeaderView = headView;
+    __weak __typeof(mHeadView)weakHeadView = mHeadView;
+    
+    mHeadView.mthShowAvatar = ^(){
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"selfPhoto.jpg"];
+        UIImage *selfPhoto = [UIImage imageWithContentsOfFile:imageFilePath];//
+        weakHeadView.avatarImageView.image = selfPhoto;
+        [weakHeadView.avatarImageView.layer setCornerRadius:CGRectGetHeight([weakHeadView.avatarImageView bounds]) / 2];
+        weakHeadView.avatarImageView.layer.masksToBounds = YES;
+    };
+    
+    self.tableView.tableHeaderView = mHeadView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [mHeadView showAvatar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,10 +130,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 0;
+        return 1;
     }else
     {
-        return 0;
+        return 1;
     }
 }
 
@@ -121,8 +151,30 @@
             self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
             
             [self.navigationController pushViewController:bpvc animated:YES];
+        }else if (1 == indexPath.row)
+        {
+            //
+        }
+    }else if (1 == indexPath.section)
+    {
+        if (1 == indexPath.row) {
+            //退出账号
+        } else if (0 == indexPath.row)
+        {
+            //修改密码
+            CHPViewController* chpvc = [[CHPViewController alloc]init];
+            
+            UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+            
+            temporaryBarButtonItem.title=@"返回";
+            
+            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            
+            [self.navigationController pushViewController:chpvc animated:YES];
         }
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

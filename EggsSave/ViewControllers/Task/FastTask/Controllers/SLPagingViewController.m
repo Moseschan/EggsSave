@@ -112,14 +112,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"SLPagingViewController viewWillAppear:");
+    DLog(@"SLPagingViewController viewWillAppear:");
     //注册一个监听者，监听数据获取完毕
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
     self.loginedObserver = [center addObserverForName:NSUserDidLoginedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
                                                     
-                                                    NSLog(@"The user's did logined");
+                                                    DLog(@"The user's did logined");
                                                     
                                                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
                                                     
@@ -129,7 +129,7 @@
     self.loginFailedObserver = [center addObserverForName:NSUserLoginFailedNotification object:nil
                                                      queue:mainQueue usingBlock:^(NSNotification *note) {
                                                          
-                                                         NSLog(@"The user sign up failed");
+                                                         DLog(@"The user sign up failed");
                                                          
                                                          [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
                                                          //登录失败
@@ -140,7 +140,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"SLPagingViewController viewDidDisappear:");
+    DLog(@"SLPagingViewController viewDidDisappear:");
     [[NSNotificationCenter defaultCenter] removeObserver:self.loginedObserver];
     [[NSNotificationCenter defaultCenter] removeObserver:self.loginFailedObserver];
 }
@@ -212,7 +212,7 @@
     CGFloat xOffset              = scrollView.contentOffset.x;
     int currentIndex             = ((int) roundf(xOffset)) / (int)(SCREEN_SIZE.width)  ;
     
-    NSLog(@"currentIndex = %d", currentIndex);
+    DLog(@"currentIndex = %d", currentIndex);
     
     self.segmentControl.selectedSegmentIndex = currentIndex;
 }

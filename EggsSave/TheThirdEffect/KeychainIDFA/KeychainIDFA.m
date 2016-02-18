@@ -31,7 +31,7 @@
     //0.读取keychain的缓存
     NSString *deviceID = [KeychainIDFA getIdfaString];
     
-    NSLog(@"deviceID = %@",deviceID);
+    DLog(@"deviceID = %@",deviceID);
     
     if (kIsStringValid(deviceID))
     {

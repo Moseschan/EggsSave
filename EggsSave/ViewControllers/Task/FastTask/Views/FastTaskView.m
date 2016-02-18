@@ -14,6 +14,7 @@
 #import "MJRefresh.h"
 #import "LoginManager.h"
 #import "UIWindow+YzdHUD.h"
+#import "CommonDefine.h"
 
 @interface FastTaskView()
 
@@ -47,7 +48,9 @@
         
         //数据
         self.fastTasks = [[TasksManager getInstance]getTasks] ;
-        [self setupRefresh];
+        if (!NO_NETWORK) {
+            [self setupRefresh];
+        }
     }
     
     return self;

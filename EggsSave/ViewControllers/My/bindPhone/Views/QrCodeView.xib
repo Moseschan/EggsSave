@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QrCodeView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrimgbg" translatesAutoresizingMaskIntoConstraints="NO" id="WqT-jw-J4w">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcodebg" translatesAutoresizingMaskIntoConstraints="NO" id="L6L-od-I66">
+                    <rect key="frame" x="54" y="156" width="212" height="256"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="212" id="Lu4-Ze-vTh"/>
+                        <constraint firstAttribute="height" constant="256" id="hHz-TY-DRv"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hbo-N7-QGQ">
+                    <rect key="frame" x="85" y="209" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="EOi-83-CrC"/>
+                        <constraint firstAttribute="height" constant="150" id="e69-bu-3Te"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请ID: 32736639" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJf-cA-czI">
+                    <rect key="frame" x="90" y="180" width="141" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="VgJ-2i-tJ6"/>
+                        <constraint firstAttribute="width" constant="141" id="opv-AA-Fb6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.98431372549999996" green="0.0" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫一扫加入蛋蛋赚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yV-S4-n9j">
+                    <rect key="frame" x="101" y="367" width="118" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="118" id="LJQ-fA-2qP"/>
+                        <constraint firstAttribute="height" constant="21" id="Sc1-Lh-b3P"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rec-k9-7ei">
+                    <rect key="frame" x="237" y="161" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="aCm-N4-F3F"/>
+                        <constraint firstAttribute="width" constant="24" id="zJc-1u-g1R"/>
+                    </constraints>
+                    <state key="normal" image="qr_cancel"/>
+                    <connections>
+                        <action selector="cancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="6OM-tT-vQB"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MJf-cA-czI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1j9-EU-CXy"/>
+                <constraint firstItem="L6L-od-I66" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2hI-9I-taV"/>
+                <constraint firstItem="hbo-N7-QGQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4QN-GH-CK3"/>
+                <constraint firstItem="hbo-N7-QGQ" firstAttribute="top" secondItem="MJf-cA-czI" secondAttribute="bottom" constant="8" id="B3Q-dX-rP1"/>
+                <constraint firstItem="7yV-S4-n9j" firstAttribute="top" secondItem="hbo-N7-QGQ" secondAttribute="bottom" constant="8" id="J9k-XH-rxJ"/>
+                <constraint firstItem="7yV-S4-n9j" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KFI-iY-SM0"/>
+                <constraint firstAttribute="bottom" secondItem="WqT-jw-J4w" secondAttribute="bottom" id="QxT-dK-cRl"/>
+                <constraint firstItem="L6L-od-I66" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="d9U-gY-dN6"/>
+                <constraint firstItem="WqT-jw-J4w" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j2f-ne-ucm"/>
+                <constraint firstAttribute="trailing" secondItem="WqT-jw-J4w" secondAttribute="trailing" id="lJy-lM-2DA"/>
+                <constraint firstItem="hbo-N7-QGQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="n89-O0-BnB"/>
+                <constraint firstItem="Rec-k9-7ei" firstAttribute="trailing" secondItem="L6L-od-I66" secondAttribute="trailing" constant="-5" id="pch-ZT-PIW"/>
+                <constraint firstItem="Rec-k9-7ei" firstAttribute="top" secondItem="L6L-od-I66" secondAttribute="top" constant="5" id="whN-VQ-eYj"/>
+                <constraint firstItem="WqT-jw-J4w" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zpX-cU-g6d"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="qrcodeImageView" destination="hbo-N7-QGQ" id="T4G-3N-JoO"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="qr_cancel" width="44" height="44"/>
+        <image name="qrcodebg" width="226" height="256"/>
+        <image name="qrimgbg" width="320" height="568"/>
+    </resources>
+</document>

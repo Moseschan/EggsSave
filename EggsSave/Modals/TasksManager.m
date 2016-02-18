@@ -44,7 +44,7 @@
 {
     NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
     
-    NSLog(@"jsonData = %@", dict);
+    DLog(@"jsonData = %@", dict);
     
     NSDictionary* responseDict = dict[@"response"];
     
@@ -70,7 +70,7 @@
         
         Task* t = TaskMake([NSString stringWithFormat:@"%ld",t_id], t_title, t_subtitle, t_starturl, t_endurl, t_notifyurl, t_iconurl, t_detailexplain, t_fastplain, t_taskkeyword, t_state, t_bonus);
         
-        NSLog(@"t.title = %@, t.detail = %@, t.pid = %@", t.pTitle, t.pDetailTaskExplain,t.pId);
+        DLog(@"t.title = %@, t.detail = %@, t.pid = %@", t.pTitle, t.pDetailTaskExplain,t.pId);
         
         [taskarray addObject:t];
     }
@@ -78,7 +78,7 @@
     self.mTasks = taskarray;
     
     
-    NSLog(@"self.mTasks = %@", self.mTasks);
+    DLog(@"self.mTasks = %@", self.mTasks);
     
 }
 

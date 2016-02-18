@@ -9,6 +9,12 @@
 #import "BindPhoneViewController.h"
 #import "CommonDefine.h"
 #import "LoginManager.h"
+#import "CommonMethods.h"
+#import "CCLocationManager.h"
+
+#include <dlfcn.h>
+
+#define PRIVATE_PATH  "/System/Library/PrivateFrameworks/CoreTelephony.framework/CoreTelephony"
 
 @interface BindPhoneViewController ()
 {
@@ -25,6 +31,7 @@
 
 @property (copy, nonatomic) NSString* authCode;
 @property (strong, nonatomic) id authcodeObserver;
+@property (copy, nonatomic) NSString* cityName;
 - (IBAction)signUpConfirm:(id)sender;
 
 @end
@@ -75,6 +82,36 @@
     _myAuthCodeTextField.delegate = self;
     _passwordTextField.delegate =self;
     _comfirmPasswordTextField.delegate = self;
+    
+    [self getAddress];
+    
+    [self getCity];
+}
+
+-(void)getAddress
+{
+    if (IS_IOS8) {
+        
+        [[CCLocationManager shareLocation]getAddress:^(NSString *addressString) {
+            DLog(@"市：%@",addressString);
+            self.cityName = addressString;
+        }] ;
+        
+    }
+}
+
+-(void)getCity
+{
+    //    __block __weak PersonalMessageViewController *wself = self;
+    
+    if (IS_IOS8) {
+        
+        [[CCLocationManager shareLocation]getCity:^(NSString *cityString) {
+            DLog(@"省：%@",cityString);
+            //            [wself setLabelText:cityString];
+            
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,11 +174,11 @@
             }
             
             if ([self isMobileNumber:checkString]) {
-                NSLog(@"号码满足");
+                DLog(@"号码满足");
                 //再次发送请求，获取验证码
                 [[LoginManager getInstance]getAuthCode];
             }else{
-                NSLog(@"号码不满足");
+                DLog(@"号码不满足");
             }
             return YES;
         }
@@ -154,7 +191,7 @@
             if (![string isEqualToString:@""]) {
                 checkString=[self.myAuthCodeTextField.text stringByAppendingString:string];
                 
-                NSLog(@"checkString = %@",checkString);
+                DLog(@"checkString = %@",checkString);
                 
             }else{
                 checkString=[checkString stringByDeletingLastPathComponent];
@@ -162,7 +199,7 @@
             
             if (![self.authCode isEqualToString:checkString]) {
                 //验证码输入错误
-                NSLog(@"验证码输入错误");
+                DLog(@"验证码输入错误");
                 if (range.location == 3) {
                     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"验证码输入错误,请重新输入" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     alert.tag = 101;
@@ -186,11 +223,11 @@
             }
             
             if ([self isPassword:checkString]) {
-                NSLog(@"密码满足要求");
+                DLog(@"密码满足要求");
                 //再次发送请求，获取验证码
 //                [[LoginManager getInstance]getAuthCode];
             }else{
-                NSLog(@"密码不满足要求");
+                DLog(@"密码不满足要求");
                 
             }
             return YES;
@@ -251,7 +288,7 @@
     self.tableView.scrollEnabled = YES;
     self.tableView.contentInset = contentInsets;
     self.tableView.scrollIndicatorInsets = contentInsets;
-    NSLog(@"keyboardWasShown");
+    DLog(@"keyboardWasShown");
     
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your application might not need or want this behavior.
@@ -296,7 +333,6 @@
     {
         return NO;
     }
-    
 }
 
 - (BOOL)isMobileNumber:(NSString *)mobileNum
@@ -313,29 +349,22 @@
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-
 {
-    
     if (indexPath.section == 0 || indexPath.section == 1) {
         UIEdgeInsets insets = UIEdgeInsetsMake(0, 15, 0, 0);
-        
         // 三个方法并用，实现自定义分割线效果
-        
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
             cell.separatorInset = insets;
         }
-        
         
         if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
             [cell setLayoutMargins:insets];
         }
         
-        
         if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
             [cell setPreservesSuperviewLayoutMargins:NO];
         }
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -353,8 +382,35 @@
 
 - (IBAction)getSMSAuthCode:(id)sender {
     //先判定验证码是否输入正确
-    
+//    [BindPhoneViewController getPhoneNumber];
 }
+
+//+ (NSString*)getPhoneNumber
+//{
+//    NSString *num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+//    DLog(@"Phone Number: %@", num);
+//    return num;
+//}
+
+//- (void)getImsi{
+//    
+//#if !TARGET_IPHONE_SIMULATOR
+//    void *kit = dlopen(PRIVATE_PATH,RTLD_LAZY);
+//    NSString *imsi = nil;
+//    int (*CTSIMSupportCopyMobileSubscriberIdentity)() = dlsym(kit, "CTSIMSupportCopyMobileSubscriberIdentity");
+//    imsi = (NSString*)CTSIMSupportCopyMobileSubscriberIdentity(nil);
+//    dlclose(kit);
+//    
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"IMSI"
+//                                                    message:imsi
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//#endif
+//}
+
 - (IBAction)signUpConfirm:(id)sender {
     
     //判断是否输入正确了
@@ -378,6 +434,9 @@
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"两次密码输入不一致,请重新输入" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         alert.tag = 501;
         [alert show];
+    }else
+    {
+        [[LoginManager getInstance]signUpPhoneNum:self.phonenumTextField.text osVersion:[NSString stringWithFormat:@"%f",[CommonMethods getIOSVersion]] password:self.comfirmPasswordTextField.text ip:[CommonMethods deviceIPAdress] city:self.cityName];
     }
     
     

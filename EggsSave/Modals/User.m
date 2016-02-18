@@ -14,7 +14,7 @@
 {
     static User* sharedUser = nil;
     
-    dispatch_once_t once_token;
+    static dispatch_once_t once_token;
     dispatch_once(&once_token, ^{
         sharedUser = [[User alloc]init];
     });

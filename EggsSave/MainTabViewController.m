@@ -40,8 +40,7 @@
     
     [self setViewControllers:@[homeVC, cashVC, taskVC, shituVC, myVC]];
     
-    
-//    [self setSelectedIndex:4];
+    [self setSelectedIndex:3];
 }
 
 - (void)didReceiveMemoryWarning {

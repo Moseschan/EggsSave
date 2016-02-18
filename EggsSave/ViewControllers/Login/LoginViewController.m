@@ -43,7 +43,7 @@
     self.loginedObserver = [center addObserverForName:NSUserDidLoginedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
                                                     
-                                                    NSLog(@"The user's did logined");
+                                                    DLog(@"The user's did logined");
                                                     
                                                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
                                                     //注册成功
@@ -57,7 +57,7 @@
     self.signupObserver = [center addObserverForName:NSUserSignUpNotification object:nil
                                                queue:mainQueue usingBlock:^(NSNotification *note) {
                                                    
-                                                   NSLog(@"The user sign up succeed");
+                                                   DLog(@"The user sign up succeed");
                                                    
                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
                                                    //注册成功
@@ -71,7 +71,7 @@
     self.signupFailedObserver = [center addObserverForName:NSUserSignUpFailedNotification object:nil
                                                queue:mainQueue usingBlock:^(NSNotification *note) {
                                                    
-                                                   NSLog(@"The user sign up failed");
+                                                   DLog(@"The user sign up failed");
                                                    
                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
                                                    //注册失败
@@ -143,7 +143,7 @@
 
 - (IBAction)forgetPassword:(id)sender {
     
-    NSLog(@"忘记密码！！！");
+    DLog(@"忘记密码！！！");
 }
 
 - (IBAction)signUp:(id)sender {

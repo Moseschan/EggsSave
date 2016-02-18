@@ -48,7 +48,7 @@
                                                     
                                                     [_ftdintroCell setGetTaskSucceed];
                                                     
-                                                    NSLog(@"The user get task succeed!");
+                                                    DLog(@"The user get task succeed!");
                                                     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                                                     
                                                     NSString *str = [NSString stringWithFormat:
@@ -56,7 +56,7 @@
                                                                      [pasteboard.string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
                                                     
                                                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-                                                    NSLog(@"%@",pasteboard.string);
+                                                    DLog(@"%@",pasteboard.string);
                                                     //相应的接任务接口变化
                                                     
                                                 }];
@@ -66,7 +66,7 @@
                                                            
                                                            [_ftdintroCell doTaskFailed];
                                                            
-                                                           NSLog(@"The user do task failed!");
+                                                           DLog(@"The user do task failed!");
                                                            
                                                            //相应的接任务接口变化
                                                            
@@ -147,12 +147,12 @@
             [_ftdintroCell setGetTaskSucceed];
         }else if(state == 1)
         {
-            NSLog(@"任务已经完成");
+            DLog(@"任务已经完成");
             [_ftdintroCell setGetTaskSucceed];
             _ftdintroCell.taskisgetLabel.text = @"任务已完成";
         }else if (state == 2)
         {
-            NSLog(@"未领取任务");
+            DLog(@"未领取任务");
         }
         
         __weak __typeof(self)weakSelf = self;

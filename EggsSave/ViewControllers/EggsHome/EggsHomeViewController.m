@@ -32,13 +32,14 @@ NSString* const NSUserGetAuthCodeNotification = @"NSUserGetAuthCodeNotification"
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    DLog(@"viewWillAppear %@", @"123");
     //注册一个监听者，监听数据获取完毕
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
     self.loginedObserver = [center addObserverForName:NSUserDidLoginedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
                                                     
-                                                    NSLog(@"The user's did logined");
+                                                    DLog(@"The user's did logined");
                                                     
                                                     [self.homeCollection.header endRefreshing];
                                                     
@@ -57,7 +58,10 @@ NSString* const NSUserGetAuthCodeNotification = @"NSUserGetAuthCodeNotification"
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupRefresh];
+    if (!NO_NETWORK) {
+        [self setupRefresh];
+    }
+    
 }
 
 - (void)setupRefresh
@@ -115,7 +119,7 @@ NSString* const NSUserGetAuthCodeNotification = @"NSUserGetAuthCodeNotification"
 
 - (void)tapAd
 {
-    NSLog(@"taped ad!!!");
+    DLog(@"taped ad!!!");
 }
 
 //- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath

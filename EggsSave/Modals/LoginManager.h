@@ -30,4 +30,30 @@
  */
 - (void)getAuthCode;
 
+/**
+ * 注册手机号
+ */
+- (void)signUpPhoneNum:(NSString *)phoneNum osVersion:(NSString*)osver password:(NSString*)pass ip:(NSString*)ip city:(NSString*)city;
+
+/**
+ * 修改密码接口
+ */
+- (void)changeWithOldPass:(NSString*)oldPass newPass:(NSString*)newPass;
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

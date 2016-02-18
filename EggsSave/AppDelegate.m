@@ -25,6 +25,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
+    
 //    [KeychainIDFA deleteUSERID];
     NSString* userId = [KeychainIDFA getUserId];
     
@@ -37,6 +38,21 @@
     
     return YES;
 }
+
+//- (void)application:(UIApplication *)application
+//didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//
+//{
+//    
+//    NSLog(@"DeviceToken: {%@}",deviceToken);
+//    
+//    //这里进行的操作，是将Device Token发送到服务端
+//    
+//    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"DeviceToken:%@",deviceToken] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//    
+//    [alert show];
+//    
+//}
 
 - (void)showTabScreen:(BOOL)animated
 {

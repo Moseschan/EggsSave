@@ -16,6 +16,8 @@
 
 #define InstFirstVC(stID)   [[UIStoryboard storyboardWithName:(stID) bundle:nil] instantiateInitialViewController]
 
+#define DOMAIN_URL @"123.57.85.254:8080"
+
 /**
  * 随机色
  */
@@ -28,4 +30,7 @@ extern NSString* const NSUserLoginFailedNotification;
 extern NSString* const NSUserGetTaskSucceedNotification ;  //接任务成功
 extern NSString* const NSUserDoTaskFailedNotification ;  //接任务成功
 extern NSString* const NSUserGetAuthCodeNotification ;
+
+#define NO_NETWORK   0
+
 #endif /* CommonDefine_h */

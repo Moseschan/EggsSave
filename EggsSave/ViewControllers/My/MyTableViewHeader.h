@@ -8,8 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+/*
+ * Block delegates
+ */
+typedef void(^MyTableHeaderSetMessage)(void);
+typedef void (^MyTableHeaderShowAvatar)(void);
+
 @interface MyTableViewHeader : UIView
 
+@property (nonatomic, copy)MyTableHeaderSetMessage mthSetMessage;
+@property (nonatomic, copy)MyTableHeaderShowAvatar mthShowAvatar;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+
 - (IBAction)showMyMessages:(id)sender;
+- (IBAction)setMyMessage:(id)sender;
+
+- (void)showAvatar;
 
 @end

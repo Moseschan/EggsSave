@@ -46,7 +46,6 @@
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(未绑定)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGN-M7-Q9d">
                                             <rect key="frame" x="211" y="14" width="76" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="2Uc-2j-ynv"/>
                                                 <constraint firstAttribute="width" constant="76" id="cQI-c2-M5k"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
