@@ -23,8 +23,15 @@
  */
 #define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
+
+#define NAVIBARTITLECOLOR [UIColor colorWithRed:121.f/255 green:128.f/255 blue:151.f/255 alpha:1]
+#define NAVIBARTINTCOLOR  [UIColor colorWithRed:121.f/255 green:128.f/255 blue:151.f/255 alpha:1]
+
 extern NSString* const NSUserDidLoginedNotification;
+extern NSString* const NSUserSigninStateNotification;
+extern NSString* const NSUserSigninNotification;
 extern NSString* const NSUserSignUpNotification;
+extern NSString* const NSUserGetMyMoneyNotification;
 extern NSString* const NSUserSignUpFailedNotification;
 extern NSString* const NSUserLoginFailedNotification;
 extern NSString* const NSUserGetTaskSucceedNotification ;  //接任务成功

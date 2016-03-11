@@ -70,7 +70,7 @@
         
         Task* t = TaskMake([NSString stringWithFormat:@"%ld",t_id], t_title, t_subtitle, t_starturl, t_endurl, t_notifyurl, t_iconurl, t_detailexplain, t_fastplain, t_taskkeyword, t_state, t_bonus);
         
-        DLog(@"t.title = %@, t.detail = %@, t.pid = %@", t.pTitle, t.pDetailTaskExplain,t.pId);
+        DLog(@"t.pid = %@\n, t.title = %@\n, t.subtitle = %@\n, t.startusrl= %@\n, t.endurl = %@\n, t.notifyurl = %@\n, t.iconurl = %@\n, t.detail = %@\n, t.fastPlan = %@\n, t.keyword = %@\n, t.state = %ld\n, t.bonus = %f\n",t.pId, t.pTitle, t.pSubTitle,t.pStartURL, t.pEndURL, t.pNotifyURL, t.pIconUrl, t.pDetailTaskExplain, t.pFastTaskExplain, t.pKeyWord, t.pState, t.pBonus);
         
         [taskarray addObject:t];
     }

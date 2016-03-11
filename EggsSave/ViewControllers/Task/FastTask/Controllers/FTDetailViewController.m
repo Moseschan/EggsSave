@@ -13,8 +13,13 @@
 #import "FTDIntroCell.h"
 #import "LoginManager.h"
 #import "CommonDefine.h"
+#import "FTDetailCell.h"
 
 @interface FTDetailViewController ()
+{
+    FTDHeadModel* _model;
+    FTDIntroModel* _introModel;
+}
 
 @property (strong, nonatomic)Task* mTask;
 @property (strong, nonatomic) id getTaskSucceedObserver;
@@ -29,11 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.title = @"任务详情";
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blueColor], NSForegroundColorAttributeName, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -87,6 +90,23 @@
 - (void)setTask:(Task*)task
 {
     self.mTask = task;
+    
+    _model = [FTDHeadModel new];
+    _model.name = _mTask.pTitle;
+    _model.bodySize = @"17.9";
+    _model.iconImageName = _mTask.pIconUrl;
+    _model.price = [NSString stringWithFormat:@"%.2f", _mTask.pBonus/100];
+    _model.fastExplain = _mTask.pFastTaskExplain;
+    
+    FTDIntroModel* mo2 = [FTDIntroModel new];
+    
+    NSMutableString *tempStr = [NSMutableString stringWithString:_mTask.pDetailTaskExplain];
+    NSString *strUrl = [tempStr stringByReplacingOccurrencesOfString:@"。" withString:@"\n"];
+    
+
+    mo2.details = strUrl;
+    _introModel = mo2;
+    
 }
 
 #pragma mark - Table view data source
@@ -99,27 +119,31 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (0 == indexPath.section) {
-        return 78;
-    }else if (1 == indexPath.section)
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return 96;
+    }else if(indexPath.row == 1)
     {
-        return 288;
+        return 60;
     }else
     {
-        return 78;
+        return 200;
     }
-    return 78;
 }
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (1 == section) {
-        return @"任务说明";
+        return @"任务步骤";
     }else if (2 == section)
     {
-        return @"应用详情";
+        return nil;
     }
     
     return nil;
@@ -127,13 +151,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell* cell = nil;
+    static NSString *ID = @"test";
     
     if (indexPath.section == 0) {
+        FTDHeadCell* cell = nil;
+        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDHeadCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
+        
+        cell.model = _model;
+        
+        return cell;
+        
     }else if(1 == indexPath.section)
     {
+        
+        FTDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell) {
+            cell = [[FTDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.model = _introModel;
+        return cell;
+        
+    }else
+    {
+        UITableViewCell* cell = nil;
+        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDIntroCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
         
@@ -168,58 +211,10 @@
             [[LoginManager getInstance] submitTaskWithTaskId:weakSelf.mTask.pId];
         };
         
-    }else
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDHeadCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        return cell;
     }
-        
-    return cell;
+
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

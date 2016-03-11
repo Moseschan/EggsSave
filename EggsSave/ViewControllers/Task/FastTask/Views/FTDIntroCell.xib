@@ -8,143 +8,97 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ftdintrocellid" id="KGk-i7-Jjw" customClass="FTDIntroCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="288"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ftdintrocellid" rowHeight="201" id="KGk-i7-Jjw" customClass="FTDIntroCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="287.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="200.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.长按虚线框，拷贝关键词；" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29Y-sX-3Bs">
-                        <rect key="frame" x="15" y="17" width="280" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="68x-px-cFZ"/>
-                            <constraint firstAttribute="width" constant="280" id="NRj-10-5RN"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.点击“开始任务”，黏贴并搜索；" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGT-cs-AOY">
-                        <rect key="frame" x="15" y="41" width="280" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="280" id="5gn-x8-Anv"/>
-                            <constraint firstAttribute="height" constant="21" id="hhc-7h-8gU"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.找到【JJ斗地主】安装,大概在第3位左右；" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGY-KK-rln">
-                        <rect key="frame" x="15" y="65" width="297" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="2kb-fQ-e2J"/>
-                            <constraint firstAttribute="width" constant="297" id="het-eM-3w2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.打开游戏，玩2局斗地主,获取任务奖励。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Nx-J3-Tkh">
-                        <rect key="frame" x="15" y="89" width="297" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="ReN-Mi-byO"/>
-                            <constraint firstAttribute="width" constant="297" id="bcu-f6-3Zc"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kaobeikuang" translatesAutoresizingMaskIntoConstraints="NO" id="C19-Hw-Czh">
-                        <rect key="frame" x="97" y="118" width="125" height="40"/>
+                        <rect key="frame" x="97" y="8" width="125" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="125" id="HYh-id-RbC"/>
-                            <constraint firstAttribute="height" constant="40" id="jbp-6A-Jwe"/>
+                            <constraint firstAttribute="height" constant="40" id="XR3-Ur-WcZ"/>
+                            <constraint firstAttribute="width" constant="125" id="yGr-NL-Nqi"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长安拷贝,自动开始" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3V-1x-xKa">
-                        <rect key="frame" x="83.5" y="166" width="153" height="21"/>
+                        <rect key="frame" x="83" y="56" width="153" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="153" id="0i6-3p-Zoh"/>
-                            <constraint firstAttribute="height" constant="21" id="jYK-DL-rTd"/>
+                            <constraint firstAttribute="height" constant="21" id="1mo-Ql-bK6"/>
+                            <constraint firstAttribute="width" constant="153" id="NoB-hE-d1V"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cn-Hz-WdA">
-                        <rect key="frame" x="4" y="195" width="311" height="45"/>
+                        <rect key="frame" x="4" y="85" width="311" height="45"/>
                         <state key="normal" image="starttask"/>
                         <connections>
                             <action selector="startTask:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Rgb-y2-V8U"/>
                         </connections>
                     </button>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskisget" translatesAutoresizingMaskIntoConstraints="NO" id="Bmf-07-hcS">
-                        <rect key="frame" x="4" y="195" width="311" height="45"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="311" id="QpD-V1-vkj"/>
-                            <constraint firstAttribute="height" constant="45" id="kyO-nb-GKd"/>
-                        </constraints>
-                    </imageView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务抢到了，请在14分钟内完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jB7-l0-02i">
-                        <rect key="frame" x="4" y="195" width="311" height="45"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="45" id="Hl3-CQ-Kqe"/>
-                            <constraint firstAttribute="width" constant="311" id="qZ1-y9-dlk"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwU-7E-iiO">
-                        <rect key="frame" x="5" y="239" width="311" height="47"/>
+                        <rect key="frame" x="4" y="133" width="311" height="47"/>
                         <state key="normal" image="submit"/>
                         <connections>
                             <action selector="commitVerify:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kub-D1-e1D"/>
                         </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="棋牌" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QMw-CP-WX8">
-                        <rect key="frame" x="103" y="118" width="113" height="35"/>
+                        <rect key="frame" x="103.5" y="6" width="113" height="45"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="113" id="VAc-Sf-HVy"/>
-                            <constraint firstAttribute="height" constant="35" id="sTh-kh-V02"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="SkJ-Vi-52O"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="zj5-4V-RuU"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskisget" translatesAutoresizingMaskIntoConstraints="NO" id="DoS-iH-Vbp">
+                        <rect key="frame" x="4" y="85" width="311" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="Txg-Xi-RKr"/>
+                            <constraint firstAttribute="width" constant="311" id="V56-HJ-o4L"/>
+                        </constraints>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务抢到了，请尽快完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQx-Ui-H3G">
+                        <rect key="frame" x="4" y="85" width="311" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="311" id="4br-cJ-Pgk"/>
+                            <constraint firstAttribute="height" constant="45" id="m7y-rV-T9s"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.36078431372549019" green="0.69803921568627447" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QMw-CP-WX8" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="4Yp-nU-dIr"/>
-                    <constraint firstItem="Bmf-07-hcS" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="7xM-fN-tqh"/>
-                    <constraint firstItem="a3V-1x-xKa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AH5-zB-EIk"/>
-                    <constraint firstItem="C19-Hw-Czh" firstAttribute="top" secondItem="9Nx-J3-Tkh" secondAttribute="bottom" constant="8" id="DJ4-9u-Yb0"/>
-                    <constraint firstItem="nGY-KK-rln" firstAttribute="top" secondItem="sGT-cs-AOY" secondAttribute="bottom" constant="3" id="E6K-bz-YrT"/>
-                    <constraint firstItem="Bmf-07-hcS" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Fdq-bS-0R8"/>
-                    <constraint firstItem="iwU-7E-iiO" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="FgR-nd-X0z"/>
-                    <constraint firstItem="8cn-Hz-WdA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KPR-Ux-Ebs"/>
-                    <constraint firstItem="sGT-cs-AOY" firstAttribute="top" secondItem="29Y-sX-3Bs" secondAttribute="bottom" constant="3" id="N0I-Y4-IbK"/>
-                    <constraint firstItem="9Nx-J3-Tkh" firstAttribute="leading" secondItem="29Y-sX-3Bs" secondAttribute="leading" id="PNc-eX-FV1"/>
-                    <constraint firstItem="a3V-1x-xKa" firstAttribute="top" secondItem="C19-Hw-Czh" secondAttribute="bottom" constant="8" id="a7s-xN-Ew1"/>
-                    <constraint firstItem="jB7-l0-02i" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="bzf-54-1d9"/>
-                    <constraint firstItem="nGY-KK-rln" firstAttribute="leading" secondItem="29Y-sX-3Bs" secondAttribute="leading" id="dzd-d0-TWK"/>
-                    <constraint firstItem="29Y-sX-3Bs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="ey6-vW-rMY"/>
-                    <constraint firstItem="jB7-l0-02i" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="grJ-CJ-Aiq"/>
-                    <constraint firstItem="8cn-Hz-WdA" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="jcg-ae-eoI"/>
-                    <constraint firstItem="sGT-cs-AOY" firstAttribute="leading" secondItem="29Y-sX-3Bs" secondAttribute="leading" id="lJp-GW-ehx"/>
-                    <constraint firstItem="iwU-7E-iiO" firstAttribute="top" secondItem="8cn-Hz-WdA" secondAttribute="bottom" constant="-1" id="ngw-rR-lzI"/>
-                    <constraint firstItem="QMw-CP-WX8" firstAttribute="top" secondItem="9Nx-J3-Tkh" secondAttribute="bottom" constant="8" id="pJE-TI-9Vh"/>
-                    <constraint firstItem="29Y-sX-3Bs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="uSw-4E-Rnb"/>
-                    <constraint firstItem="C19-Hw-Czh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="wuG-jQ-c7A"/>
-                    <constraint firstItem="9Nx-J3-Tkh" firstAttribute="top" secondItem="nGY-KK-rln" secondAttribute="bottom" constant="3" id="zM3-4p-0OU"/>
+                    <constraint firstItem="DoS-iH-Vbp" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="00h-eE-SLF"/>
+                    <constraint firstItem="iwU-7E-iiO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="125" id="2FM-6d-vMc"/>
+                    <constraint firstItem="QMw-CP-WX8" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="2IC-1q-eKX"/>
+                    <constraint firstItem="C19-Hw-Czh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ATF-jm-AzJ"/>
+                    <constraint firstItem="pQx-Ui-H3G" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AgA-fI-Tx1"/>
+                    <constraint firstItem="8cn-Hz-WdA" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="Anz-B6-pr3"/>
+                    <constraint firstItem="pQx-Ui-H3G" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="HOT-Gj-bn2"/>
+                    <constraint firstItem="C19-Hw-Czh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="K1S-3Y-sqr"/>
+                    <constraint firstItem="QMw-CP-WX8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="M5B-aE-kkR"/>
+                    <constraint firstItem="DoS-iH-Vbp" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dMu-Be-lAL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="iwU-7E-iiO" secondAttribute="bottom" constant="12.5" id="mwG-ru-Pwz"/>
+                    <constraint firstItem="8cn-Hz-WdA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="odl-yB-paK"/>
+                    <constraint firstItem="iwU-7E-iiO" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sF4-h1-cPM"/>
+                    <constraint firstItem="a3V-1x-xKa" firstAttribute="top" secondItem="C19-Hw-Czh" secondAttribute="bottom" constant="8" id="vrv-Ba-q3J"/>
+                    <constraint firstItem="a3V-1x-xKa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="zdB-PF-DQc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="startTaskButton" destination="8cn-Hz-WdA" id="dQS-Ac-JFh"/>
                 <outlet property="taskKeyWord" destination="QMw-CP-WX8" id="OfN-zx-nvo"/>
-                <outlet property="taskisgetImageView" destination="Bmf-07-hcS" id="R1S-sS-DlW"/>
-                <outlet property="taskisgetLabel" destination="jB7-l0-02i" id="sOY-h3-QER"/>
+                <outlet property="taskisgetImageView" destination="DoS-iH-Vbp" id="Vfj-rV-vP7"/>
+                <outlet property="taskisgetLabel" destination="pQx-Ui-H3G" id="aQM-zs-T5e"/>
             </connections>
+            <point key="canvasLocation" x="194" y="125.5"/>
         </tableViewCell>
     </objects>
     <resources>

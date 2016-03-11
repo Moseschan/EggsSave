@@ -15,7 +15,7 @@ typedef void(^FTDetailCellSelected)(NSInteger index);
 
 @interface FastTaskView : UIView<UITableViewDataSource,UITableViewDelegate>
 
-@property(retain, nonatomic)UITableView* mTableView;
+@property(retain, nonatomic)UITableView* tableView;
 @property(nonatomic, copy)FTDetailCellSelected ftdCellSelected;
 
 /*

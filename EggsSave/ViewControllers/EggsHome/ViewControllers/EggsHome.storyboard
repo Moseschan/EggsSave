@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="A54-FK-6Mb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Eggs Home View Controller-->
+        <scene sceneID="fkd-O3-49A">
+            <objects>
+                <viewController id="Qvs-uN-coN" customClass="EggsHomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0r2-BR-lsX"/>
+                        <viewControllerLayoutGuide type="bottom" id="f81-jC-Ngs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8kz-Gw-SYd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QEt-CG-LcU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_navigation" translatesAutoresizingMaskIntoConstraints="NO" id="3nh-IV-yMP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="rTf-rg-Qjl"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pceggs_logo" translatesAutoresizingMaskIntoConstraints="NO" id="GW7-J1-Br4">
+                                <rect key="frame" x="98" y="28" width="124" height="21"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3nh-IV-yMP" firstAttribute="top" secondItem="8kz-Gw-SYd" secondAttribute="top" id="4Jt-yt-ysD"/>
+                            <constraint firstItem="3nh-IV-yMP" firstAttribute="leading" secondItem="8kz-Gw-SYd" secondAttribute="leading" id="5rf-sp-LCc"/>
+                            <constraint firstItem="QEt-CG-LcU" firstAttribute="leading" secondItem="8kz-Gw-SYd" secondAttribute="leading" id="Dkh-Vs-tbn"/>
+                            <constraint firstItem="QEt-CG-LcU" firstAttribute="top" secondItem="8kz-Gw-SYd" secondAttribute="top" id="Jf3-Sk-fOc"/>
+                            <constraint firstItem="GW7-J1-Br4" firstAttribute="top" secondItem="0r2-BR-lsX" secondAttribute="bottom" constant="8" id="LPM-bE-Gyz"/>
+                            <constraint firstItem="f81-jC-Ngs" firstAttribute="top" secondItem="QEt-CG-LcU" secondAttribute="bottom" id="dQs-Zy-bco"/>
+                            <constraint firstAttribute="trailing" secondItem="QEt-CG-LcU" secondAttribute="trailing" id="dx4-X3-aIM"/>
+                            <constraint firstAttribute="trailing" secondItem="3nh-IV-yMP" secondAttribute="trailing" id="icv-Qt-5hd"/>
+                            <constraint firstItem="GW7-J1-Br4" firstAttribute="centerX" secondItem="8kz-Gw-SYd" secondAttribute="centerX" id="jth-Cp-YLw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="SPf-Vb-tsJ"/>
+                    <connections>
+                        <outlet property="naviBarImageView" destination="3nh-IV-yMP" id="4Ft-TO-fpA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kWB-vK-Jlw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-230" y="137"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2qy-ip-bQD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="A54-FK-6Mb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f1A-aa-9Bw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Qvs-uN-coN" kind="relationship" relationship="rootViewController" id="xNa-i8-sNX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aYL-7e-EOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-703" y="137"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg_navigation" width="320" height="60"/>
+        <image name="pceggs_logo" width="124" height="21"/>
+    </resources>
+</document>
