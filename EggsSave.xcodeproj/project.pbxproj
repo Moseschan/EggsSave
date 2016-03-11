@@ -16,11 +16,17 @@
 		B900426D1C2BF7970017D263 /* YzdHUDIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042671C2BF7970017D263 /* YzdHUDIndicator.m */; };
 		B900426E1C2BF7970017D263 /* YzdHUDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042691C2BF7970017D263 /* YzdHUDLabel.m */; };
 		B90042741C2C01870017D263 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042731C2C01870017D263 /* LoginManager.m */; };
+		B90537671C8D29CE00553E64 /* ZDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90537661C8D29CE00553E64 /* ZDProgressView.m */; };
+		B905376A1C8D803600553E64 /* TixianMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B90537691C8D803600553E64 /* TixianMessageCell.m */; };
+		B905376D1C8E71A000553E64 /* TiXianMessage.plist in Resources */ = {isa = PBXBuildFile; fileRef = B905376C1C8E71A000553E64 /* TiXianMessage.plist */; };
+		B90537701C8EDB4700553E64 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B905376F1C8EDB4700553E64 /* DataManager.m */; };
+		B90537771C8FF42B00553E64 /* GetCash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90537731C8FF42B00553E64 /* GetCash.storyboard */; };
+		B90537781C8FF42B00553E64 /* GetCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90537751C8FF42B00553E64 /* GetCashViewController.m */; };
+		B905377B1C8FFA4000553E64 /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B905377A1C8FFA4000553E64 /* RechargeViewController.m */; };
 		B92A2FE71C35140400FB1E08 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92A2FE61C35140400FB1E08 /* MyViewController.m */; };
 		B92A2FEA1C35160400FB1E08 /* MyTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B92A2FE91C35160400FB1E08 /* MyTableViewHeader.m */; };
 		B92A2FEC1C35161C00FB1E08 /* MyTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B92A2FEB1C35161C00FB1E08 /* MyTableViewHeader.xib */; };
 		B92A2FEF1C3526E300FB1E08 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B92A2FEE1C3526E300FB1E08 /* MyTableViewCell.m */; };
-		B94C68931C22B499006ADE1E /* EggsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94C68921C22B499006ADE1E /* EggsHomeViewController.m */; };
 		B9755B811C5877D700F8B05F /* CommonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B9755B801C5877D700F8B05F /* CommonMethods.m */; };
 		B9850CC91C3CA4660013454B /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9850CC61C3CA4660013454B /* CCLocationManager.m */; };
 		B9850CCA1C3CA4660013454B /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B9850CC81C3CA4660013454B /* CLLocation+YCLocation.m */; };
@@ -34,8 +40,6 @@
 		B99049311C17FB0B00DE369D /* EggsSaveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B99049301C17FB0B00DE369D /* EggsSaveTests.m */; };
 		B990493C1C17FB0B00DE369D /* EggsSaveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B990493B1C17FB0B00DE369D /* EggsSaveUITests.m */; };
 		B99944CE1C72CA9B00A72605 /* ShiTuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99944CD1C72CA9B00A72605 /* ShiTuViewController.m */; };
-		B99944D11C7564F700A72605 /* GetCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99944D01C7564F700A72605 /* GetCashViewController.m */; };
-		B99CFFCF1C23C05C005C50F3 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99CFFCE1C23C05C005C50F3 /* HomeCell.m */; };
 		B9A18E761C2A4863002C9248 /* EncryptUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A18E731C2A4863002C9248 /* EncryptUtils.mm */; };
 		B9A18E771C2A4863002C9248 /* HashUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A18E751C2A4863002C9248 /* HashUtils.mm */; };
 		B9A18E7A1C2A489A002C9248 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A18E791C2A489A002C9248 /* User.m */; };
@@ -62,6 +66,10 @@
 		B9A18F0A1C2A6FAE002C9248 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A18EF51C2A6FAE002C9248 /* UIView+MJExtension.m */; };
 		B9A3A6961C280DCC00AA219C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A3A6951C280DCC00AA219C /* Login.storyboard */; };
 		B9A3A6991C2810B500AA219C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A3A6981C2810B500AA219C /* LoginViewController.m */; };
+		B9A9B5511C88377300181C87 /* FTDHeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5501C88377300181C87 /* FTDHeadModel.m */; };
+		B9A9B5541C8846D500181C87 /* FTDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5531C8846D500181C87 /* FTDetailCell.m */; };
+		B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A9B5571C8985D800181C87 /* EggsHome.storyboard */; };
+		B9A9B55C1C8985D800181C87 /* EggsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */; };
 		B9D31F961C3A1FF00051AC25 /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D31F951C3A1FF00051AC25 /* BindPhoneViewController.m */; };
 		B9D31F9A1C3A41680051AC25 /* BindPhoneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9D31F991C3A41680051AC25 /* BindPhoneViewController.storyboard */; };
 		B9D31F9D1C3A7F6A0051AC25 /* PersonalMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D31F9C1C3A7F6A0051AC25 /* PersonalMessageViewController.m */; };
@@ -87,8 +95,6 @@
 		B9D320171C3BCDCF0051AC25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D320161C3BCDCF0051AC25 /* CoreGraphics.framework */; };
 		B9D320191C3BD0570051AC25 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D320181C3BD0570051AC25 /* CoreMedia.framework */; };
 		B9E069EC1C19293400D7A1AC /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E069EB1C19293400D7A1AC /* MainTabViewController.m */; };
-		B9E069F31C19396A00D7A1AC /* EggsHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E069F21C19396A00D7A1AC /* EggsHome.storyboard */; };
-		B9E069F51C1939DE00D7A1AC /* GetCash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E069F41C1939DE00D7A1AC /* GetCash.storyboard */; };
 		B9E069FA1C1967F600D7A1AC /* Task.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E069F91C1967F600D7A1AC /* Task.storyboard */; };
 		B9E069FC1C19680700D7A1AC /* ShiTu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E069FB1C19680700D7A1AC /* ShiTu.storyboard */; };
 		B9E069FE1C19681600D7A1AC /* My.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E069FD1C19681600D7A1AC /* My.storyboard */; };
@@ -102,6 +108,10 @@
 		B9EAE3DC1C313DF90078A81D /* ShareTaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EAE3DB1C313DF90078A81D /* ShareTaskView.m */; };
 		B9EAE3E01C313E6E0078A81D /* FTDIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EAE3DE1C313E6E0078A81D /* FTDIntroCell.m */; };
 		B9EAE3E11C313E6E0078A81D /* FTDIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9EAE3DF1C313E6E0078A81D /* FTDIntroCell.xib */; };
+		B9EEA8541C8988C200C3B7B5 /* HomeIncomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA8531C8988C200C3B7B5 /* HomeIncomeCell.m */; };
+		B9EEA8571C8988F800C3B7B5 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA8561C8988F800C3B7B5 /* HomeModel.m */; };
+		B9EEA85A1C8AC8C200C3B7B5 /* TodayAttendanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA8591C8AC8C200C3B7B5 /* TodayAttendanceCell.m */; };
+		B9EEA85D1C8AE88500C3B7B5 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA85C1C8AE88500C3B7B5 /* HomeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +150,18 @@
 		B90042691C2BF7970017D263 /* YzdHUDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YzdHUDLabel.m; sourceTree = "<group>"; };
 		B90042721C2C01870017D263 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		B90042731C2C01870017D263 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		B90537651C8D29CE00553E64 /* ZDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDProgressView.h; sourceTree = "<group>"; };
+		B90537661C8D29CE00553E64 /* ZDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDProgressView.m; sourceTree = "<group>"; };
+		B90537681C8D803600553E64 /* TixianMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TixianMessageCell.h; sourceTree = "<group>"; };
+		B90537691C8D803600553E64 /* TixianMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TixianMessageCell.m; sourceTree = "<group>"; };
+		B905376C1C8E71A000553E64 /* TiXianMessage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TiXianMessage.plist; sourceTree = "<group>"; };
+		B905376E1C8EDB4700553E64 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		B905376F1C8EDB4700553E64 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		B90537731C8FF42B00553E64 /* GetCash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GetCash.storyboard; sourceTree = "<group>"; };
+		B90537741C8FF42B00553E64 /* GetCashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCashViewController.h; sourceTree = "<group>"; };
+		B90537751C8FF42B00553E64 /* GetCashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCashViewController.m; sourceTree = "<group>"; };
+		B90537791C8FFA4000553E64 /* RechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
+		B905377A1C8FFA4000553E64 /* RechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeViewController.m; sourceTree = "<group>"; };
 		B92A2FE51C35140400FB1E08 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		B92A2FE61C35140400FB1E08 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		B92A2FE81C35160400FB1E08 /* MyTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewHeader.h; sourceTree = "<group>"; };
@@ -147,8 +169,6 @@
 		B92A2FEB1C35161C00FB1E08 /* MyTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTableViewHeader.xib; sourceTree = "<group>"; };
 		B92A2FED1C3526E300FB1E08 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		B92A2FEE1C3526E300FB1E08 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
-		B94C68911C22B499006ADE1E /* EggsHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EggsHomeViewController.h; sourceTree = "<group>"; };
-		B94C68921C22B499006ADE1E /* EggsHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EggsHomeViewController.m; sourceTree = "<group>"; };
 		B9755B7F1C5877D700F8B05F /* CommonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMethods.h; sourceTree = "<group>"; };
 		B9755B801C5877D700F8B05F /* CommonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMethods.m; sourceTree = "<group>"; };
 		B9850CC51C3CA4660013454B /* CCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocationManager.h; sourceTree = "<group>"; };
@@ -174,10 +194,6 @@
 		B990493D1C17FB0B00DE369D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B99944CC1C72CA9B00A72605 /* ShiTuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiTuViewController.h; sourceTree = "<group>"; };
 		B99944CD1C72CA9B00A72605 /* ShiTuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiTuViewController.m; sourceTree = "<group>"; };
-		B99944CF1C7564F700A72605 /* GetCashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCashViewController.h; sourceTree = "<group>"; };
-		B99944D01C7564F700A72605 /* GetCashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCashViewController.m; sourceTree = "<group>"; };
-		B99CFFCD1C23C05C005C50F3 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
-		B99CFFCE1C23C05C005C50F3 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
 		B9A18E721C2A4863002C9248 /* EncryptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptUtils.h; sourceTree = "<group>"; };
 		B9A18E731C2A4863002C9248 /* EncryptUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EncryptUtils.mm; sourceTree = "<group>"; };
 		B9A18E741C2A4863002C9248 /* HashUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashUtils.h; sourceTree = "<group>"; };
@@ -229,6 +245,13 @@
 		B9A3A6951C280DCC00AA219C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		B9A3A6971C2810B500AA219C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B9A3A6981C2810B500AA219C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B9A9B54F1C88377300181C87 /* FTDHeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDHeadModel.h; sourceTree = "<group>"; };
+		B9A9B5501C88377300181C87 /* FTDHeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDHeadModel.m; sourceTree = "<group>"; };
+		B9A9B5521C8846D500181C87 /* FTDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDetailCell.h; sourceTree = "<group>"; };
+		B9A9B5531C8846D500181C87 /* FTDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDetailCell.m; sourceTree = "<group>"; };
+		B9A9B5571C8985D800181C87 /* EggsHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EggsHome.storyboard; sourceTree = "<group>"; };
+		B9A9B5581C8985D800181C87 /* EggsHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EggsHomeViewController.h; sourceTree = "<group>"; };
+		B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EggsHomeViewController.m; sourceTree = "<group>"; };
 		B9D31F941C3A1FF00051AC25 /* BindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneViewController.h; sourceTree = "<group>"; };
 		B9D31F951C3A1FF00051AC25 /* BindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
 		B9D31F991C3A41680051AC25 /* BindPhoneViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BindPhoneViewController.storyboard; sourceTree = "<group>"; };
@@ -289,8 +312,6 @@
 		B9E069EA1C19293400D7A1AC /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
 		B9E069EB1C19293400D7A1AC /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
 		B9E069EE1C1929D300D7A1AC /* CommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
-		B9E069F21C19396A00D7A1AC /* EggsHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EggsHome.storyboard; sourceTree = "<group>"; };
-		B9E069F41C1939DE00D7A1AC /* GetCash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GetCash.storyboard; sourceTree = "<group>"; };
 		B9E069F91C1967F600D7A1AC /* Task.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Task.storyboard; sourceTree = "<group>"; };
 		B9E069FB1C19680700D7A1AC /* ShiTu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShiTu.storyboard; sourceTree = "<group>"; };
 		B9E069FD1C19681600D7A1AC /* My.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = My.storyboard; sourceTree = "<group>"; };
@@ -311,6 +332,14 @@
 		B9EAE3DD1C313E6E0078A81D /* FTDIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDIntroCell.h; sourceTree = "<group>"; };
 		B9EAE3DE1C313E6E0078A81D /* FTDIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDIntroCell.m; sourceTree = "<group>"; };
 		B9EAE3DF1C313E6E0078A81D /* FTDIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTDIntroCell.xib; sourceTree = "<group>"; };
+		B9EEA8521C8988C200C3B7B5 /* HomeIncomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeIncomeCell.h; sourceTree = "<group>"; };
+		B9EEA8531C8988C200C3B7B5 /* HomeIncomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeIncomeCell.m; sourceTree = "<group>"; };
+		B9EEA8551C8988F800C3B7B5 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		B9EEA8561C8988F800C3B7B5 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		B9EEA8581C8AC8C100C3B7B5 /* TodayAttendanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayAttendanceCell.h; sourceTree = "<group>"; };
+		B9EEA8591C8AC8C200C3B7B5 /* TodayAttendanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayAttendanceCell.m; sourceTree = "<group>"; };
+		B9EEA85B1C8AE88500C3B7B5 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
+		B9EEA85C1C8AE88500C3B7B5 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
 		E76ECEB1D461B0359F42A6B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -369,6 +398,41 @@
 				B90042691C2BF7970017D263 /* YzdHUDLabel.m */,
 			);
 			path = YzdHUD;
+			sourceTree = "<group>";
+		};
+		B90537641C8D29CE00553E64 /* ZDProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				B90537651C8D29CE00553E64 /* ZDProgressView.h */,
+				B90537661C8D29CE00553E64 /* ZDProgressView.m */,
+			);
+			path = ZDProgressView;
+			sourceTree = "<group>";
+		};
+		B90537711C8FF42B00553E64 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B90537721C8FF42B00553E64 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B90537731C8FF42B00553E64 /* GetCash.storyboard */,
+				B90537741C8FF42B00553E64 /* GetCashViewController.h */,
+				B90537751C8FF42B00553E64 /* GetCashViewController.m */,
+				B90537791C8FFA4000553E64 /* RechargeViewController.h */,
+				B905377A1C8FFA4000553E64 /* RechargeViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B90537761C8FF42B00553E64 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B9850CC41C3CA4660013454B /* CCLocation */ = {
@@ -473,6 +537,8 @@
 				B900425D1C2BE09B0017D263 /* TasksManager.m */,
 				B90042721C2C01870017D263 /* LoginManager.h */,
 				B90042731C2C01870017D263 /* LoginManager.m */,
+				B905376E1C8EDB4700553E64 /* DataManager.h */,
+				B905376F1C8EDB4700553E64 /* DataManager.m */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -612,6 +678,42 @@
 				B9A3A6981C2810B500AA219C /* LoginViewController.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		B9A9B5551C8985D800181C87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B9EEA8551C8988F800C3B7B5 /* HomeModel.h */,
+				B9EEA8561C8988F800C3B7B5 /* HomeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B9A9B5561C8985D800181C87 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B9A9B5571C8985D800181C87 /* EggsHome.storyboard */,
+				B9A9B5581C8985D800181C87 /* EggsHomeViewController.h */,
+				B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B9A9B55A1C8985D800181C87 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B90537641C8D29CE00553E64 /* ZDProgressView */,
+				B9EEA8521C8988C200C3B7B5 /* HomeIncomeCell.h */,
+				B9EEA8531C8988C200C3B7B5 /* HomeIncomeCell.m */,
+				B9EEA8581C8AC8C100C3B7B5 /* TodayAttendanceCell.h */,
+				B9EEA8591C8AC8C200C3B7B5 /* TodayAttendanceCell.m */,
+				B9EEA85B1C8AE88500C3B7B5 /* HomeCell.h */,
+				B9EEA85C1C8AE88500C3B7B5 /* HomeCell.m */,
+				B90537681C8D803600553E64 /* TixianMessageCell.h */,
+				B90537691C8D803600553E64 /* TixianMessageCell.m */,
+				B905376C1C8E71A000553E64 /* TiXianMessage.plist */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B9D31F8E1C3A1F900051AC25 /* bindPhone */ = {
@@ -770,11 +872,9 @@
 		B9E069F01C19319E00D7A1AC /* EggsHome */ = {
 			isa = PBXGroup;
 			children = (
-				B9E069F21C19396A00D7A1AC /* EggsHome.storyboard */,
-				B94C68911C22B499006ADE1E /* EggsHomeViewController.h */,
-				B94C68921C22B499006ADE1E /* EggsHomeViewController.m */,
-				B99CFFCD1C23C05C005C50F3 /* HomeCell.h */,
-				B99CFFCE1C23C05C005C50F3 /* HomeCell.m */,
+				B9A9B5551C8985D800181C87 /* Model */,
+				B9A9B5561C8985D800181C87 /* ViewControllers */,
+				B9A9B55A1C8985D800181C87 /* Views */,
 			);
 			path = EggsHome;
 			sourceTree = "<group>";
@@ -782,9 +882,9 @@
 		B9E069F11C19319E00D7A1AC /* GetCash */ = {
 			isa = PBXGroup;
 			children = (
-				B9E069F41C1939DE00D7A1AC /* GetCash.storyboard */,
-				B99944CF1C7564F700A72605 /* GetCashViewController.h */,
-				B99944D01C7564F700A72605 /* GetCashViewController.m */,
+				B90537711C8FF42B00553E64 /* Models */,
+				B90537721C8FF42B00553E64 /* ViewControllers */,
+				B90537761C8FF42B00553E64 /* Views */,
 			);
 			path = GetCash;
 			sourceTree = "<group>";
@@ -850,6 +950,8 @@
 		B9EAE3C51C313DCC0078A81D /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				B9A9B54F1C88377300181C87 /* FTDHeadModel.h */,
+				B9A9B5501C88377300181C87 /* FTDHeadModel.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -862,6 +964,8 @@
 				B9EAE3C91C313DCC0078A81D /* FastTaskCell.xib */,
 				B9EAE3CA1C313DCC0078A81D /* FastTaskView.h */,
 				B9EAE3CB1C313DCC0078A81D /* FastTaskView.m */,
+				B9A9B5521C8846D500181C87 /* FTDetailCell.h */,
+				B9A9B5531C8846D500181C87 /* FTDetailCell.m */,
 				B9EAE3CC1C313DCC0078A81D /* FTDHeadCell.h */,
 				B9EAE3CD1C313DCC0078A81D /* FTDHeadCell.m */,
 				B9EAE3CE1C313DCC0078A81D /* FTDHeadCell.xib */,
@@ -1000,9 +1104,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9EAE3D81C313DCC0078A81D /* FTDHeadCell.xib in Resources */,
+				B90537771C8FF42B00553E64 /* GetCash.storyboard in Resources */,
 				B9D320051C3BC85F0051AC25 /* zbar-back.png in Resources */,
 				B9D320081C3BC85F0051AC25 /* zbar-samples.png in Resources */,
-				B9E069F51C1939DE00D7A1AC /* GetCash.storyboard in Resources */,
+				B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */,
 				B92A2FEC1C35161C00FB1E08 /* MyTableViewHeader.xib in Resources */,
 				B9E069FC1C19680700D7A1AC /* ShiTu.storyboard in Resources */,
 				B9E069FE1C19681600D7A1AC /* My.storyboard in Resources */,
@@ -1014,11 +1119,11 @@
 				B9D31F9F1C3A7F7A0051AC25 /* PersonalMessageViewController.storyboard in Resources */,
 				B9E069FA1C1967F600D7A1AC /* Task.storyboard in Resources */,
 				B99049261C17FB0A00DE369D /* LaunchScreen.storyboard in Resources */,
-				B9E069F31C19396A00D7A1AC /* EggsHome.storyboard in Resources */,
 				B9EAE3E11C313E6E0078A81D /* FTDIntroCell.xib in Resources */,
 				B99049231C17FB0A00DE369D /* Assets.xcassets in Resources */,
 				B99049211C17FB0A00DE369D /* Main.storyboard in Resources */,
 				B9A18F061C2A6FAE002C9248 /* MJRefresh.bundle in Resources */,
+				B905376D1C8E71A000553E64 /* TiXianMessage.plist in Resources */,
 				B9850CF61C3E396A0013454B /* CHPViewController.xib in Resources */,
 				B9A3A6961C280DCC00AA219C /* Login.storyboard in Resources */,
 			);
@@ -1105,6 +1210,7 @@
 				B9A18F091C2A6FAE002C9248 /* UIScrollView+MJRefresh.m in Sources */,
 				B900426A1C2BF7970017D263 /* UIWindow+YzdHUD.m in Sources */,
 				B9A18EF91C2A6FAE002C9248 /* MJRefreshBackFooter.m in Sources */,
+				B9EEA85D1C8AE88500C3B7B5 /* HomeCell.m in Sources */,
 				B9D31FA21C3B9BF90051AC25 /* ZHPickView.m in Sources */,
 				B900425E1C2BE09B0017D263 /* TasksManager.m in Sources */,
 				B9A18F031C2A6FAE002C9248 /* MJRefreshGifHeader.m in Sources */,
@@ -1120,44 +1226,52 @@
 				B9EAE3D31C313DCC0078A81D /* SLPagingViewController.m in Sources */,
 				B990491B1C17FB0A00DE369D /* AppDelegate.m in Sources */,
 				B9A18EFE1C2A6FAE002C9248 /* MJRefreshAutoNormalFooter.m in Sources */,
+				B90537671C8D29CE00553E64 /* ZDProgressView.m in Sources */,
 				B900426B1C2BF7970017D263 /* YzdHUDBackgroundView.m in Sources */,
 				B99944CE1C72CA9B00A72605 /* ShiTuViewController.m in Sources */,
 				B9D31FF41C3BC85F0051AC25 /* QRCodeGenerator.m in Sources */,
+				B9EEA85A1C8AC8C200C3B7B5 /* TodayAttendanceCell.m in Sources */,
 				B9D31FF91C3BC85F0051AC25 /* split.c in Sources */,
+				B9EEA8541C8988C200C3B7B5 /* HomeIncomeCell.m in Sources */,
 				B9EAE3D61C313DCC0078A81D /* FastTaskView.m in Sources */,
 				B9EAE3D21C313DCC0078A81D /* FTDetailViewController.m in Sources */,
 				B9A18EFA1C2A6FAE002C9248 /* MJRefreshComponent.m in Sources */,
 				B9A18E761C2A4863002C9248 /* EncryptUtils.mm in Sources */,
-				B94C68931C22B499006ADE1E /* EggsHomeViewController.m in Sources */,
 				B9D31FF61C3BC85F0051AC25 /* qrinput.c in Sources */,
 				B9A18F0A1C2A6FAE002C9248 /* UIView+MJExtension.m in Sources */,
 				B9A18E771C2A4863002C9248 /* HashUtils.mm in Sources */,
 				B9E069EC1C19293400D7A1AC /* MainTabViewController.m in Sources */,
+				B9A9B55C1C8985D800181C87 /* EggsHomeViewController.m in Sources */,
 				B9D31FF21C3BC85F0051AC25 /* bitstream.c in Sources */,
 				B9D31FF81C3BC85F0051AC25 /* rscode.c in Sources */,
 				B9A18F021C2A6FAE002C9248 /* MJRefreshBackStateFooter.m in Sources */,
-				B99944D11C7564F700A72605 /* GetCashViewController.m in Sources */,
 				B9A18EF71C2A6FAE002C9248 /* KeychainIDFA.m in Sources */,
 				B9A18EF61C2A6FAE002C9248 /* KeychainHelper.m in Sources */,
 				B9A18EFC1C2A6FAE002C9248 /* MJRefreshHeader.m in Sources */,
+				B9EEA8571C8988F800C3B7B5 /* HomeModel.m in Sources */,
 				B9A18F011C2A6FAE002C9248 /* MJRefreshBackNormalFooter.m in Sources */,
 				B92A2FEF1C3526E300FB1E08 /* MyTableViewCell.m in Sources */,
 				B9D31FF31C3BC85F0051AC25 /* mask.c in Sources */,
 				B900426E1C2BF7970017D263 /* YzdHUDLabel.m in Sources */,
+				B905377B1C8FFA4000553E64 /* RechargeViewController.m in Sources */,
 				B9EAE3E01C313E6E0078A81D /* FTDIntroCell.m in Sources */,
 				B9D31FF51C3BC85F0051AC25 /* qrencode.c in Sources */,
+				B90537701C8EDB4700553E64 /* DataManager.m in Sources */,
 				B9D31FA51C3BB3600051AC25 /* QrCodeView.m in Sources */,
 				B9A18F041C2A6FAE002C9248 /* MJRefreshNormalHeader.m in Sources */,
-				B99CFFCF1C23C05C005C50F3 /* HomeCell.m in Sources */,
 				B900426D1C2BF7970017D263 /* YzdHUDIndicator.m in Sources */,
 				B9A18EFF1C2A6FAE002C9248 /* MJRefreshAutoStateFooter.m in Sources */,
 				B92A2FE71C35140400FB1E08 /* MyViewController.m in Sources */,
 				B9D31F961C3A1FF00051AC25 /* BindPhoneViewController.m in Sources */,
+				B90537781C8FF42B00553E64 /* GetCashViewController.m in Sources */,
+				B905376A1C8D803600553E64 /* TixianMessageCell.m in Sources */,
 				B9EAE3DC1C313DF90078A81D /* ShareTaskView.m in Sources */,
 				B9A18EF81C2A6FAE002C9248 /* MJRefreshAutoFooter.m in Sources */,
 				B9EAE3D41C313DCC0078A81D /* FastTaskCell.m in Sources */,
 				B99049181C17FB0A00DE369D /* main.m in Sources */,
+				B9A9B5511C88377300181C87 /* FTDHeadModel.m in Sources */,
 				B9A18EFB1C2A6FAE002C9248 /* MJRefreshFooter.m in Sources */,
+				B9A9B5541C8846D500181C87 /* FTDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

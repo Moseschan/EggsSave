@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EggsHomeViewController : UIViewController
+@interface EggsHomeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *homeCollection;
+@property(strong, nonatomic)UITableView* tableView;
 
 - (IBAction)goTask:(id)sender;
 

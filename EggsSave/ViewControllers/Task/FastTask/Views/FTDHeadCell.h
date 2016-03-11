@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTDHeadModel.h"
 
 @interface FTDHeadCell : UITableViewCell
+
+@property (nonatomic, strong) FTDHeadModel *model;
 
 @end

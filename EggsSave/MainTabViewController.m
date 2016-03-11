@@ -38,14 +38,13 @@
     
 //    c1.tabBarItem.image=[UIImage imageNamed:@"tab_recent_nor"];
     
-    [self setViewControllers:@[homeVC, cashVC, taskVC, shituVC, myVC]];
+    [self setViewControllers:@[homeVC, cashVC, taskVC, myVC]];
     
-    [self setSelectedIndex:3];
+//    [self setSelectedIndex:1];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

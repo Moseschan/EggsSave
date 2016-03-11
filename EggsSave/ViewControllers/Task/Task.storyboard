@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-338.13333333333333" y="354.05333333333334"/>
         </scene>
-        <!--Paging View Controller-->
+        <!--快速任务-->
         <scene sceneID="1gH-2a-Z0N">
             <objects>
                 <viewController id="K7L-qP-7GZ" customClass="SLPagingViewController" sceneMemberID="viewController">
@@ -34,24 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Jug-DM-RwH">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="A3F-0r-0Sf">
-                            <rect key="frame" x="93.5" y="6.5" width="133" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="快速任务"/>
-                                <segment title="分享任务"/>
-                            </segments>
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="segmentAction:" destination="K7L-qP-7GZ" eventType="valueChanged" id="zxS-uh-GRD"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="segmentControl" destination="A3F-0r-0Sf" id="unW-6y-Akc"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="快速任务" id="Jug-DM-RwH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cdb-sT-Ecx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

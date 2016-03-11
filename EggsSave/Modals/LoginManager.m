@@ -13,6 +13,7 @@
 #import "CommonDefine.h"
 #import "KeychainIDFA.h"
 #import "User.h"
+#import "DataManager.h"
 
 #import "AFNetWorking.h"
 
@@ -36,7 +37,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+//    NSString* usid = [KeychainIDFA getUserId];
+    NSString* usid = @"290";
     
     // 1.创建请求
     NSString* urlString = [NSString stringWithFormat:@"http://%@/newwangluo/app/102.dsp", DOMAIN_URL];
@@ -95,6 +97,110 @@
         //在这里还要监测登陆成功或失败
                 
     }];
+    
+    
+//    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/json",@"application/json",@"text/javascript",@"text/html",nil];
+//    
+//    NSString* usid = @"290";
+//    
+//    // 1.创建请求
+//    NSString* urlString = [NSString stringWithFormat:@"http://%@/newwangluo/app/102.dsp", DOMAIN_URL];
+//    NSURL *url = [NSURL URLWithString:urlString];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    request.HTTPMethod = @"POST";
+//    
+//    // 2.设置请求头
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    NSDictionary *t1 = @{@"userId":usid} ;
+//    
+//    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+//    const char *cuncal =[uncal UTF8String];
+//    
+//    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+//    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+//    
+//    // 3.设置请求体
+//    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+//    
+//    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+//    
+//    Byte *dataByte = (Byte *)[data1 bytes];
+//    
+//    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+//    Byte* e1 = (Byte*)malloc([data1 length]);
+//    memset(e1, 0, [data1 length] + 1);
+//    memcpy(e1, encryptByte, [data1 length]);
+//    free(encryptByte);
+//    
+//    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+//    
+//    request.HTTPBody = encryptData;
+//    
+//    free(e1);
+//    
+//    // 4.发送请求
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+//        
+//        if (!data) {
+//            
+//            DLog(@"未获取到数据");
+//            
+//            return ;
+//        }
+//        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+//        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+//        
+//        [[TasksManager getInstance]parseLoginData:dataData];
+//        free(decryptByte);
+//        
+//        DLog(@"登录成功");
+//        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NSUserDidLoginedNotification object:nil];
+//        
+//        //在这里还要监测登陆成功或失败
+//        
+//    }];
+//    
+//    
+//    
+//    
+//    
+//    //传入的参数
+//    NSDictionary *parameters = @{@"requestKey":@"rightOnePage"};
+//    //你的接口地址
+//    NSString *url=urlString;
+//    //发送请求
+//    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        ZhuBoPage* zhubo = [[ZhuBoPage alloc]init];
+//        zhubo.allVirtualUsers = [[NSMutableArray alloc]init];
+//        zhubo.allPics = [[NSMutableArray alloc]init];
+//        
+//        NSDictionary* mainDic = responseObject;
+//        NSArray* pictures = mainDic[@"pictures"];
+//        
+//        for (int i=0; i<pictures.count; ++i) {
+//            NSDictionary* tDic = pictures[i];
+//            
+//            hpProp* hpr = [[hpProp alloc]init];
+//            hpr.name = tDic[@"name"];
+//            hpr.picUrl = tDic[@"requestUrl"];
+//            
+//            [zhubo.allPics addObject:hpr];
+//        }
+//        
+//        DataManager* dataManager = [DataManager sharedManager];
+//        dataManager.zhuboPage = zhubo;
+//        
+//        block(YES);
+//        
+//        //        NSLog(@"JSON: %@", mainDic);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        block(NO);
+//    }];
+    
 }
 
 - (void)signUp
@@ -540,5 +646,290 @@
     }];
 }
 
+- (void)signinQianDao
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+    NSString* usid = [KeychainIDFA getUserId];
+    
+    // 1.创建请求
+    NSString* urlString = [NSString stringWithFormat:@"http://%@/newwangluo/app/120.dsp" , DOMAIN_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
+    // 2.设置请求头
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary *t1 = @{@"userId":usid} ;
+    
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+    const char *cuncal =[uncal UTF8String];
+    
+    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+    
+    // 3.设置请求体
+    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+    
+    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    
+    Byte *dataByte = (Byte *)[data1 bytes];
+    
+    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+    Byte* e1 = (Byte*)malloc([data1 length]);
+    memset(e1, 0, [data1 length] + 1);
+    memcpy(e1, encryptByte, [data1 length]);
+    free(encryptByte);
+    
+    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+    
+    request.HTTPBody = encryptData;
+    
+    free(e1);
+    
+    // 4.发送请求
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            
+            DLog(@"未获取到数据");
+            
+            return ;
+        }
+        
+        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
+        
+        DLog(@"dict = %@",dict);
+        NSDictionary* responseDict = dict[@"response"];
+//
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserSigninNotification object:nil userInfo:responseDict];
+        
+    }];
+}
+
+- (void)requestSigninState
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+    NSString* usid = [KeychainIDFA getUserId];
+    
+    // 1.创建请求
+    NSString* urlString = [NSString stringWithFormat:@"http://%@/newwangluo/app/122.dsp" , DOMAIN_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
+    // 2.设置请求头
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary *t1 = @{@"userId":usid} ;
+    
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+    const char *cuncal =[uncal UTF8String];
+    
+    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+    
+    // 3.设置请求体
+    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+    
+    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    
+    Byte *dataByte = (Byte *)[data1 bytes];
+    
+    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+    Byte* e1 = (Byte*)malloc([data1 length]);
+    memset(e1, 0, [data1 length] + 1);
+    memcpy(e1, encryptByte, [data1 length]);
+    free(encryptByte);
+    
+    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+    
+    request.HTTPBody = encryptData;
+    
+    free(e1);
+    
+    // 4.发送请求
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            
+            DLog(@"未获取到数据");
+            
+            return ;
+        }
+        
+        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
+        
+        DLog(@"dict = %@",dict);
+        NSDictionary* responseDict = dict[@"response"];
+        
+        int status = [responseDict[@"status"] intValue];
+        if (status == 0) {
+            //是连续签到
+        }else if (status == 1)
+        {
+            //没有连续签到
+        }else if (status == 2)
+        {
+            //今天已经签到过
+        }else
+        {
+            //今天还没有签到
+        }
+        
+        [[DataManager getInstance] setSignStatus:status];
+        
+        int days = [responseDict[@"hadSignCount"] intValue];
+        [[DataManager getInstance] setSignDays:days];
+
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserSigninStateNotification object:nil userInfo:responseDict];
+        
+    }];
+}
+
+- (void)requestPricessSet
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+//    NSString* usid = [KeychainIDFA getUserId];
+    NSString* usid = @"290";
+    
+    // 1.创建请求
+    NSString* urlString = [NSString stringWithFormat:@"http://%@/newwangluo/app/119.dsp" , DOMAIN_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
+    // 2.设置请求头
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSDictionary *t1 = @{@"userId":usid} ;
+    
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+    const char *cuncal =[uncal UTF8String];
+    
+    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+    
+    // 3.设置请求体
+    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+    
+    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    
+    Byte *dataByte = (Byte *)[data1 bytes];
+    
+    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+    Byte* e1 = (Byte*)malloc([data1 length]);
+    memset(e1, 0, [data1 length] + 1);
+    memcpy(e1, encryptByte, [data1 length]);
+    free(encryptByte);
+    
+    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+    
+    request.HTTPBody = encryptData;
+    
+    free(e1);
+    
+    // 4.发送请求
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            
+            DLog(@"未获取到数据");
+            
+            return ;
+        }
+        
+        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
+        
+        DLog(@"dict = %@",dict);
+        NSDictionary* responseDict = dict[@"response"];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserGetMyMoneyNotification object:nil userInfo:responseDict];
+        
+    }];
+}
+
+- (void)requestTiXianWithAccount:(NSString*)zhiAccount UserName:(NSString*)name Price:(NSString*)price
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+//    NSString* usid = [KeychainIDFA getUserId];
+    NSString* usid = @"290";
+    
+    // 1.创建请求
+    NSString* urlString = [NSString stringWithFormat:@"http://%@/newwangluo/app/117.dsp", DOMAIN_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
+    NSDictionary *t1 = @{@"userId":usid,@"zhiFuBaoZhangHao":zhiAccount,@"zhiFuName":name,@"price":price} ;
+    
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"price",price,@"userId",usid,@"zhiFuBaoZhangHao",zhiAccount,@"zhiFuName",name];
+    const char *cuncal =[uncal UTF8String];
+    
+    int caledKey = [HashUtils calculateHashKey:(unsigned char*)cuncal];
+    NSString* keyStr = [NSString stringWithFormat:@"%d",caledKey];
+    
+    // 3.设置请求体
+    NSDictionary *json = @{@"data":t1,@"KEY":keyStr};
+    
+    DLog(@"json = %@", json);
+    
+    NSData *data1 = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+    
+    Byte *dataByte = (Byte *)[data1 bytes];
+    
+    Byte* encryptByte = [EncryptUtils xorString:dataByte len:(int)[data1 length]];
+    Byte* e1 = (Byte*)malloc([data1 length]);
+    memset(e1, 0, [data1 length] + 1);
+    memcpy(e1, encryptByte, [data1 length]);
+    free(encryptByte);
+    
+    NSData *encryptData = [[NSData alloc] initWithBytes:e1 length:(int)[data1 length]];
+    
+    request.HTTPBody = encryptData;
+    
+    free(e1);
+    
+    // 4.发送请求
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            
+            DLog(@"未获取到数据");
+            
+            return ;
+        }
+        
+        DLog(@"data = %@", data);
+        
+        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
+        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
+        
+        DLog(@"dict = %@",dict);
+        
+        free(decryptByte);
+        
+    }];
+}
 
 @end

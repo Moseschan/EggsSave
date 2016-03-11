@@ -82,7 +82,7 @@
 
 - (void)loadView {
     [super loadView];
-    
+   
     self.ftView = [[FastTaskView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
     self.stView = [[ShareTaskView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
     
@@ -93,6 +93,13 @@
         FTDetailViewController *ftdvc = [[FTDetailViewController alloc]init];
         [ftdvc setTask:[[TasksManager getInstance] getTasks][index]];
         
+        UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+        
+        temporaryBarButtonItem.title=@"返回";
+        
+        weakSelf.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+        
+//        ftdvc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:ftdvc animated:YES];
     };
     
@@ -103,6 +110,10 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:NAVIBARTITLECOLOR};
+    
+    self.navigationController.navigationBar.tintColor = NAVIBARTINTCOLOR;
     
     self.fastTasks = [[TasksManager getInstance]getTasks] ;
     
@@ -171,8 +182,9 @@
     // Make our ScrollView
     CGRect frame                                   = CGRectMake(0, 0, SCREEN_SIZE.width, self.view.frame.size.height);
     self.scrollView                                = [[UIScrollView alloc] initWithFrame:frame];
-    self.scrollView.backgroundColor                = [UIColor clearColor];
-    self.scrollView.pagingEnabled                  = YES;
+    self.scrollView.backgroundColor                = [UIColor colorWithRed:238.f/255 green:238.f/255 blue:238.f/255 alpha:238.f/255];
+    self.scrollView.pagingEnabled                  = NO;
+    self.scrollView.scrollEnabled                  = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator   = NO;
     self.scrollView.delegate                       = self;

@@ -26,22 +26,42 @@
 - (void)submitTaskWithTaskId:(NSString *)taskId;
 
 /**
- * 获取验证吗
+ *  获取验证吗
  */
 - (void)getAuthCode;
 
 /**
- * 注册手机号
+ *  注册手机号
  */
 - (void)signUpPhoneNum:(NSString *)phoneNum osVersion:(NSString*)osver password:(NSString*)pass ip:(NSString*)ip city:(NSString*)city;
 
 /**
- * 修改密码接口
+ *  修改密码接口
  */
 - (void)changeWithOldPass:(NSString*)oldPass newPass:(NSString*)newPass;
 
+/**
+ *  签到接口
+ */
+- (void)signinQianDao;
+
+/**
+ *  请求签到状态接口
+ */
+- (void)requestSigninState;
+
+/**
+ *  获取当前用户余额，以及限制价格集合
+ */
+- (void)requestPricessSet;
+
+/**
+ * 请求减去用户提现金额
+ */
+- (void)requestTiXianWithAccount:(NSString*)zhiAccount UserName:(NSString*)name Price:(NSString*)price;
 
 @end
+
 
 
 

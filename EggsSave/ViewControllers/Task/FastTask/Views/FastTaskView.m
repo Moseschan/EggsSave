@@ -28,23 +28,28 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        self.mTableView = [[UITableView alloc]initWithFrame:frame];
+        self.tableView = [[UITableView alloc]initWithFrame:frame];
         
-        _mTableView.dataSource = self;
-        _mTableView.delegate =self;
+        _tableView.dataSource = self;
+        _tableView.delegate =self;
         
         //手动添加约束
-        _mTableView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:self.mTableView];
+        _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.tableView];
         
-        [_mTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.bottom.equalTo(self);
         }];
         
-        _mTableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundColor = [UIColor clearColor];
         
+        // 设置tableHeader
+        UIView* headView = [self setUpTableHeader];
+        self.tableView.tableHeaderView = headView;
+        
+        // 可以隐藏tableviewcell之间的分割线
         UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
-        [_mTableView setTableFooterView:v];
+        [_tableView setTableFooterView:v];
         
         //数据
         self.fastTasks = [[TasksManager getInstance]getTasks] ;
@@ -56,10 +61,31 @@
     return self;
 }
 
+- (UIView *)setUpTableHeader
+{
+    UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62)];
+    
+    UILabel* introLabel = [[UILabel alloc]init];
+    introLabel.numberOfLines = 0;
+    introLabel.text = @"\t选择任意快速任务，下载、安装玩游戏，就能每天轻松赚入零花钱。玩越多赚越多，现在就开始吧！";
+    introLabel.textColor = [UIColor grayColor];
+    introLabel.font = [UIFont systemFontOfSize:14];
+    [v addSubview:introLabel];
+    v.backgroundColor = [UIColor colorWithRed:242.f/255 green:242.f/255 blue:242.f/255 alpha:1];
+    
+    [introLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(v);
+        make.left.equalTo(v).with.offset(10);
+        make.right.equalTo(v).with.offset(-10);
+    }];
+    
+    return v;
+}
+
 - (void)setupRefresh
 {
     // 下拉刷新
-    self.mTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //进行登录操作
         [self.window showHUDWithText:@"刷新中" Type:ShowLoading Enabled:YES];
         
@@ -71,9 +97,9 @@
 
 - (void)refreshData
 {
-    [self.mTableView reloadData];
+    [self.tableView reloadData];
     
-    [self.mTableView.header endRefreshing];
+    [self.tableView.header endRefreshing];
 }
 
 #pragma mark - UITableViewDelegate and datasource.
@@ -100,16 +126,13 @@
         cell.separatorInset = insets;
     }
     
-    
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:insets];
     }
     
-    
     if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
         [cell setPreservesSuperviewLayoutMargins:NO];
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +141,6 @@
     if (self.ftdCellSelected) {
         self.ftdCellSelected(indexPath.row);
     }
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,7 +157,7 @@
     Task* task = _fastTasks[indexPath.row] ;
     
     cell.titleLabel.text = task.pTitle;
-    cell.detailLabel.text = task.pDetailTaskExplain;
+    cell.detailLabel.text = task.pSubTitle;
     float bonus = task.pBonus;
     cell.priceLabel.text = [NSString stringWithFormat:@"+%.2f元",bonus/100];
     [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:task.pIconUrl]];
@@ -143,13 +165,5 @@
     return cell;
     
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end
