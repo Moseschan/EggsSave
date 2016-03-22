@@ -11,9 +11,8 @@
 #import "ZHPickView.h"
 #import "QrCodeView.h"
 #import "CCLocationManager.h"
-
-#include <ifaddrs.h>
-#include <arpa/inet.h>
+#import "LoginManager.h"
+#import "CommonMethods.h"
 
 @interface PersonalMessageViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nickNameTextField;
@@ -22,9 +21,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *workLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 
+- (IBAction)changeUserDetails:(id)sender;
+
+
 @end
 
 @implementation PersonalMessageViewController
+{
+    NSString*       _city;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,9 +39,6 @@
     
     self.title = @"我的资料";
     self.nickNameTextField.delegate = self;
-
-    //获取ip地址
-    [self deviceIPAdress];
     
     //头像
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -68,6 +70,9 @@
         
         [[CCLocationManager shareLocation]getAddress:^(NSString *addressString) {
             DLog(@"市：%@",addressString);
+            
+            _city = addressString;
+            
         }] ;
         
     }
@@ -85,36 +90,6 @@
             
         }];
     }
-}
-
-- (NSString *)deviceIPAdress {
-    NSString *address = @"an error occurred when obtaining ip address";
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    int success = 0;
-    
-    success = getifaddrs(&interfaces);
-    
-    if (success == 0) { // 0 表示获取成功
-        
-        temp_addr = interfaces;
-        while (temp_addr != NULL) {
-            if( temp_addr->ifa_addr->sa_family == AF_INET) {
-                // Check if interface is en0 which is the wifi connection on the iPhone
-                if ([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-                    // Get NSString from C String
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-                }
-            }
-            
-            temp_addr = temp_addr->ifa_next;
-        }
-    }
-    
-    freeifaddrs(interfaces);
-    
-    DLog(@"手机的IP是：%@", address);
-    return address;
 }
 
 //从相册获取图片
@@ -347,4 +322,9 @@
 }
 
 
+- (IBAction)changeUserDetails:(id)sender {
+    
+    [[LoginManager getInstance] requestWithOsVersion:[NSString stringWithFormat:@"%f",[CommonMethods getIOSVersion]] IpAddress:[CommonMethods deviceIPAdress] CityName:_city NickName:_nickNameTextField.text Sex:_sexLabel.text BirthDay:_birthdayLabel.text Work:_workLabel.text];
+    
+}
 @end

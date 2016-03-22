@@ -23,9 +23,13 @@
  */
 #define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
+#define TABLEHEADER_COLOR       [UIColor colorWithRed:239.0/255 green:239.0/255 blue:239.0/255 alpha:1]
+#define TABLECELL_LINE_COLOR    [UIColor colorWithRed:209.0/255 green:209.0/255 blue:209.0/255 alpha:1]
 
 #define NAVIBARTITLECOLOR [UIColor colorWithRed:121.f/255 green:128.f/255 blue:151.f/255 alpha:1]
 #define NAVIBARTINTCOLOR  [UIColor colorWithRed:121.f/255 green:128.f/255 blue:151.f/255 alpha:1]
+
+#define TABLE_TEXT_COLOR  [UIColor colorWithRed:29.f/255 green:29.f/255 blue:29.f/255 alpha:1]
 
 extern NSString* const NSUserDidLoginedNotification;
 extern NSString* const NSUserSigninStateNotification;

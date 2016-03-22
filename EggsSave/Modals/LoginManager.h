@@ -60,6 +60,16 @@
  */
 - (void)requestTiXianWithAccount:(NSString*)zhiAccount UserName:(NSString*)name Price:(NSString*)price;
 
+/**
+ *  用户详细信息
+ */
+- (void)requestWithOsVersion:(NSString*)osVersion IpAddress:(NSString*)ip CityName:(NSString*)city NickName:(NSString*)nick Sex:(NSString*)sex BirthDay:(NSString*)birth Work:(NSString*)work;
+
+/**
+ *  获取用户详细信息
+ */
+- (void)requestUserDetailMessages;
+
 @end
 
 

@@ -13,6 +13,11 @@
 #import "PersonalMessageViewController.h"
 #import "CommonDefine.h"
 #import "changePassword/CHPViewController.h"
+#import "TaskHistoryViewController.h"
+#import "TiXianHistoryViewController.h"
+#import "AboutViewController.h"
+#import "QuestionViewController.h"
+#import "FeedBackViewController.h"
 
 @interface MyViewController ()
 {
@@ -82,7 +87,7 @@
         return 4;
     }else
     {
-        return 2;
+        return 3;
     }
 }
 
@@ -109,7 +114,7 @@
             cell.titleLabel.text = @"任务记录";
         }else if (indexPath.row == 2)
         {
-            cell.titleLabel.text = @"兑换记录";
+            cell.titleLabel.text = @"提现记录";
         }else if (indexPath.row == 3)
         {
             cell.titleLabel.text = @"常见问题";
@@ -120,7 +125,10 @@
             cell.titleLabel.text = @"修改密码";
         }else if (indexPath.row == 1)
         {
-            cell.titleLabel.text = @"退出账号";
+            cell.titleLabel.text = @"问题反馈";
+        }else
+        {
+            cell.titleLabel.text = @"关于我们";
         }
     }
     
@@ -159,13 +167,39 @@
             [self.navigationController pushViewController:bpvc animated:YES];
         }else if (1 == indexPath.row)
         {
-            //
+            //任务记录
+            TaskHistoryViewController* thvc = [[TaskHistoryViewController alloc]init];
+            UIBarButtonItem* temporaryBarButtonItem = [[UIBarButtonItem alloc]init];
+            
+            temporaryBarButtonItem.title = @"返回";
+            
+            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            
+            [self.navigationController pushViewController:thvc animated:YES];
+        }else if (2 == indexPath.row)
+        {
+            //提现记录
+            TiXianHistoryViewController* txvc = [[TiXianHistoryViewController alloc]init];
+            UIBarButtonItem* temporaryBarButtonItem = [[UIBarButtonItem alloc]init];
+            
+            temporaryBarButtonItem.title = @"返回";
+            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            
+            [self.navigationController pushViewController:txvc animated:YES];
+        }else if (3 == indexPath.row)
+        {
+            //常见问题
+            QuestionViewController* qvc = [[QuestionViewController alloc]init];
+            UIBarButtonItem* temporaryBarButtonItem = [[UIBarButtonItem alloc]init];
+            
+            temporaryBarButtonItem.title = @"返回";
+            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            
+            [self.navigationController pushViewController:qvc animated:YES];
         }
     }else if (1 == indexPath.section)
     {
-        if (1 == indexPath.row) {
-            //退出账号
-        } else if (0 == indexPath.row)
+        if (0 == indexPath.row)
         {
             //修改密码
             CHPViewController* chpvc = [[CHPViewController alloc]init];
@@ -178,6 +212,30 @@
             
 //            chpvc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:chpvc animated:YES];
+        }else if (1 == indexPath.row)
+        {
+            //问题反馈
+            FeedBackViewController* fbvc = [[FeedBackViewController alloc]init];
+            UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+            
+            temporaryBarButtonItem.title=@"返回";
+            
+            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            
+            //            chpvc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:fbvc animated:YES];
+            
+        }else if(2 == indexPath.row)
+        {
+            AboutViewController* avc = [[AboutViewController alloc]init];
+            
+            UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+            
+            temporaryBarButtonItem.title=@"返回";
+            
+            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            
+            [self.navigationController pushViewController:avc animated:YES];
         }
     }
     

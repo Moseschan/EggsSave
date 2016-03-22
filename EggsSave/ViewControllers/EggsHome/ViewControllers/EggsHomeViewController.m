@@ -16,11 +16,13 @@
 #import "TodayAttendanceCell.h"
 #import "HomeCell.h"
 #import "TixianMessageCell.h"
+#import "CommonMethods.h"
 
 @interface EggsHomeViewController ()
 
 @property (strong, nonatomic) id loginedObserver;
 @property (strong, nonatomic) id qiandaoStateObserver;
+@property (strong, nonatomic) id priceSetObserver;
 @property (weak, nonatomic) IBOutlet UIImageView *naviBarImageView;
 
 @end
@@ -38,8 +40,9 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
 
 @implementation EggsHomeViewController
 {
-    NSMutableArray* _models;
-    NSMutableArray* _messages;
+    NSMutableArray*  _models;
+    NSMutableArray*  _messages;
+    HomeIncomeModel* _incomeModel;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,12 +69,36 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
                                                          
                                                      }];
     
+    self.priceSetObserver = [center addObserverForName:NSUserGetMyMoneyNotification object:nil
+                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
+                                                     
+                                                     NSDictionary* dict = note.userInfo;
+                                                     
+                                                     float price = [dict[@"price"] floatValue];
+                                                     
+                                                     if (!_incomeModel) {
+                                                         _incomeModel = [HomeIncomeModel new];
+                                                     }
+                                                     
+                                                     _incomeModel.myLeftMoney = [NSString stringWithFormat:@"%.2f", price];
+                                                     _incomeModel.todayStudents = @"0";
+                                                     _incomeModel.todayIncome = @"0.00";
+                                                     
+                                                     [self.tableView.header endRefreshing];
+                                                     
+                                                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                     
+                                                     [self.tableView reloadData];
+                                                     
+                                                 }];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self.loginedObserver];
     [[NSNotificationCenter defaultCenter] removeObserver:self.qiandaoStateObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.priceSetObserver];
 }
 
 - (void)viewDidLoad {
@@ -121,7 +148,7 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
     //读取plist
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"TiXianMessage" ofType:@"plist"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSLog(@"data = %@", data);//直接打印数据。
+    DLog(@"data = %@", data);//直接打印数据。
     
     NSArray* messages = data[@"messages"];
     
@@ -208,6 +235,8 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
         [manager login];
         
         [manager requestSigninState];  //请求签到状态
+        
+        [manager requestPricessSet];
     }];
     
     [self.tableView.header beginRefreshing];
@@ -227,20 +256,6 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
         return 0;
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (0 == indexPath.section) {
-//        return 80.f;
-//    }else if (2 == indexPath.section)
-//    {
-//        return 62.f;
-//    }
-//    else
-//    {
-//        return 44.f;
-//    }
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -298,6 +313,8 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
             cell = [[HomeIncomeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:incomeCell];
         }
         
+        cell.model = _incomeModel;
+        
         return cell;
         
     }else if (1 == indexPath.section)
@@ -309,7 +326,7 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
         }
         
         cell.qiandaoAction = ^(){
-            [[LoginManager getInstance]signinQianDao];
+            [[LoginManager getInstance] signinQianDao];
         };
         
         [cell setStatus];
@@ -324,9 +341,7 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
         }
         
         cell.model = [_models objectAtIndex:indexPath.row];
-        
-//        cell.textLabel.text = @"Just Tesst tableViewCell!!!";
-        
+                
         return cell;
     }else
     {

@@ -140,9 +140,6 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roO-cK-3b1">
                     <rect key="frame" x="161" y="79" width="159" height="61"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <action selector="showMyMessages:" destination="iN0-l3-epB" eventType="touchUpInside" id="1xb-w2-Vsm"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -175,7 +172,7 @@
     </objects>
     <resources>
         <image name="Tables_Arrow" width="9" height="13"/>
-        <image name="home_ad" width="320" height="130"/>
+        <image name="home_ad" width="320" height="95"/>
         <image name="ppc_qr" width="22" height="22"/>
     </resources>
 </document>

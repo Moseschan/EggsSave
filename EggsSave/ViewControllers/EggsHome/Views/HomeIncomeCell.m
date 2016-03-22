@@ -95,7 +95,6 @@
         make.left.equalTo(_coinIconView).with.offset(5);
         make.top.equalTo(_coinIconView.mas_bottom).with.offset(8);
         
-        make.bottom.equalTo(self.contentView).offset(-5);
     }];
     
     [_todayTotalIncomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -116,6 +115,8 @@
     [_todayStudentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_todayIncomeLable);
         make.top.equalTo(_todayIncomeLable.mas_bottom).offset(8);
+        
+        make.bottom.equalTo(self.contentView).offset(-5);
     }];
     
 }

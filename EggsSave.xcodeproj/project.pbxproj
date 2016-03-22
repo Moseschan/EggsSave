@@ -28,6 +28,7 @@
 		B92A2FEC1C35161C00FB1E08 /* MyTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B92A2FEB1C35161C00FB1E08 /* MyTableViewHeader.xib */; };
 		B92A2FEF1C3526E300FB1E08 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B92A2FEE1C3526E300FB1E08 /* MyTableViewCell.m */; };
 		B9755B811C5877D700F8B05F /* CommonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B9755B801C5877D700F8B05F /* CommonMethods.m */; };
+		B979BED21C9A880C00946DDB /* TaskHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B979BED11C9A880C00946DDB /* TaskHistoryViewController.m */; };
 		B9850CC91C3CA4660013454B /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9850CC61C3CA4660013454B /* CCLocationManager.m */; };
 		B9850CCA1C3CA4660013454B /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B9850CC81C3CA4660013454B /* CLLocation+YCLocation.m */; };
 		B9850CF51C3E396A0013454B /* CHPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9850CF31C3E396A0013454B /* CHPViewController.m */; };
@@ -70,6 +71,19 @@
 		B9A9B5541C8846D500181C87 /* FTDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5531C8846D500181C87 /* FTDetailCell.m */; };
 		B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A9B5571C8985D800181C87 /* EggsHome.storyboard */; };
 		B9A9B55C1C8985D800181C87 /* EggsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */; };
+		B9BCB4E51C9FB34B00D50702 /* TaskListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4E41C9FB34B00D50702 /* TaskListCell.m */; };
+		B9BCB4E81C9FC8C600D50702 /* TiXianHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4E71C9FC8C600D50702 /* TiXianHistoryViewController.m */; };
+		B9BCB4EB1C9FC90900D50702 /* TiXianListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4EA1C9FC90900D50702 /* TiXianListCell.m */; };
+		B9BCB4EE1C9FD46B00D50702 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4ED1C9FD46B00D50702 /* AboutViewController.m */; };
+		B9BCB4F01C9FDD1800D50702 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = B9BCB4EF1C9FDD1800D50702 /* about.html */; };
+		B9BCB5081C9FF44100D50702 /* expandableImage.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BCB5001C9FF44100D50702 /* expandableImage.png */; };
+		B9BCB5091C9FF44100D50702 /* expandableImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BCB5011C9FF44100D50702 /* expandableImage@2x.png */; };
+		B9BCB50A1C9FF44100D50702 /* SKSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB5031C9FF44100D50702 /* SKSTableView.m */; };
+		B9BCB50B1C9FF44100D50702 /* SKSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB5051C9FF44100D50702 /* SKSTableViewCell.m */; };
+		B9BCB50C1C9FF44100D50702 /* SKSTableViewCellIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB5071C9FF44100D50702 /* SKSTableViewCellIndicator.m */; };
+		B9BCB50F1C9FF4EF00D50702 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB50E1C9FF4EF00D50702 /* QuestionViewController.m */; };
+		B9BCB5121CA00DFA00D50702 /* SKSSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB5111CA00DFA00D50702 /* SKSSubTableViewCell.m */; };
+		B9BCB5151CA011E400D50702 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB5141CA011E400D50702 /* FeedBackViewController.m */; };
 		B9D31F961C3A1FF00051AC25 /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D31F951C3A1FF00051AC25 /* BindPhoneViewController.m */; };
 		B9D31F9A1C3A41680051AC25 /* BindPhoneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9D31F991C3A41680051AC25 /* BindPhoneViewController.storyboard */; };
 		B9D31F9D1C3A7F6A0051AC25 /* PersonalMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D31F9C1C3A7F6A0051AC25 /* PersonalMessageViewController.m */; };
@@ -171,6 +185,8 @@
 		B92A2FEE1C3526E300FB1E08 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		B9755B7F1C5877D700F8B05F /* CommonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMethods.h; sourceTree = "<group>"; };
 		B9755B801C5877D700F8B05F /* CommonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonMethods.m; sourceTree = "<group>"; };
+		B979BED01C9A880C00946DDB /* TaskHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskHistoryViewController.h; sourceTree = "<group>"; };
+		B979BED11C9A880C00946DDB /* TaskHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskHistoryViewController.m; sourceTree = "<group>"; };
 		B9850CC51C3CA4660013454B /* CCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocationManager.h; sourceTree = "<group>"; };
 		B9850CC61C3CA4660013454B /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
 		B9850CC71C3CA4660013454B /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
@@ -252,6 +268,29 @@
 		B9A9B5571C8985D800181C87 /* EggsHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EggsHome.storyboard; sourceTree = "<group>"; };
 		B9A9B5581C8985D800181C87 /* EggsHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EggsHomeViewController.h; sourceTree = "<group>"; };
 		B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EggsHomeViewController.m; sourceTree = "<group>"; };
+		B9BCB4E31C9FB34B00D50702 /* TaskListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListCell.h; sourceTree = "<group>"; };
+		B9BCB4E41C9FB34B00D50702 /* TaskListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListCell.m; sourceTree = "<group>"; };
+		B9BCB4E61C9FC8C600D50702 /* TiXianHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiXianHistoryViewController.h; sourceTree = "<group>"; };
+		B9BCB4E71C9FC8C600D50702 /* TiXianHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiXianHistoryViewController.m; sourceTree = "<group>"; };
+		B9BCB4E91C9FC90900D50702 /* TiXianListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiXianListCell.h; sourceTree = "<group>"; };
+		B9BCB4EA1C9FC90900D50702 /* TiXianListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiXianListCell.m; sourceTree = "<group>"; };
+		B9BCB4EC1C9FD46B00D50702 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		B9BCB4ED1C9FD46B00D50702 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		B9BCB4EF1C9FDD1800D50702 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		B9BCB5001C9FF44100D50702 /* expandableImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expandableImage.png; sourceTree = "<group>"; };
+		B9BCB5011C9FF44100D50702 /* expandableImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expandableImage@2x.png"; sourceTree = "<group>"; };
+		B9BCB5021C9FF44100D50702 /* SKSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableView.h; sourceTree = "<group>"; };
+		B9BCB5031C9FF44100D50702 /* SKSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableView.m; sourceTree = "<group>"; };
+		B9BCB5041C9FF44100D50702 /* SKSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableViewCell.h; sourceTree = "<group>"; };
+		B9BCB5051C9FF44100D50702 /* SKSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableViewCell.m; sourceTree = "<group>"; };
+		B9BCB5061C9FF44100D50702 /* SKSTableViewCellIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableViewCellIndicator.h; sourceTree = "<group>"; };
+		B9BCB5071C9FF44100D50702 /* SKSTableViewCellIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableViewCellIndicator.m; sourceTree = "<group>"; };
+		B9BCB50D1C9FF4EF00D50702 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		B9BCB50E1C9FF4EF00D50702 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
+		B9BCB5101CA00DFA00D50702 /* SKSSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSSubTableViewCell.h; sourceTree = "<group>"; };
+		B9BCB5111CA00DFA00D50702 /* SKSSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSSubTableViewCell.m; sourceTree = "<group>"; };
+		B9BCB5131CA011E400D50702 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		B9BCB5141CA011E400D50702 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		B9D31F941C3A1FF00051AC25 /* BindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneViewController.h; sourceTree = "<group>"; };
 		B9D31F951C3A1FF00051AC25 /* BindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
 		B9D31F991C3A41680051AC25 /* BindPhoneViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BindPhoneViewController.storyboard; sourceTree = "<group>"; };
@@ -486,6 +525,7 @@
 				B9A18E671C294730002C9248 /* Modals */,
 				B9E069ED1C1929A600D7A1AC /* Public */,
 				B9E069E31C19223700D7A1AC /* ViewControllers */,
+				B9BCB4EF1C9FDD1800D50702 /* about.html */,
 				B99049191C17FB0A00DE369D /* AppDelegate.h */,
 				B990491A1C17FB0A00DE369D /* AppDelegate.m */,
 				B990491F1C17FB0A00DE369D /* Main.storyboard */,
@@ -716,9 +756,34 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B9BCB4FF1C9FF44100D50702 /* SKSTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B9BCB5001C9FF44100D50702 /* expandableImage.png */,
+				B9BCB5011C9FF44100D50702 /* expandableImage@2x.png */,
+				B9BCB5021C9FF44100D50702 /* SKSTableView.h */,
+				B9BCB5031C9FF44100D50702 /* SKSTableView.m */,
+				B9BCB5041C9FF44100D50702 /* SKSTableViewCell.h */,
+				B9BCB5051C9FF44100D50702 /* SKSTableViewCell.m */,
+				B9BCB5101CA00DFA00D50702 /* SKSSubTableViewCell.h */,
+				B9BCB5111CA00DFA00D50702 /* SKSSubTableViewCell.m */,
+				B9BCB5061C9FF44100D50702 /* SKSTableViewCellIndicator.h */,
+				B9BCB5071C9FF44100D50702 /* SKSTableViewCellIndicator.m */,
+			);
+			path = SKSTableView;
+			sourceTree = "<group>";
+		};
+		B9BCB5161CA11FAA00D50702 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B9D31F8E1C3A1F900051AC25 /* bindPhone */ = {
 			isa = PBXGroup;
 			children = (
+				B9BCB5161CA11FAA00D50702 /* Models */,
 				B9D31F8F1C3A1F900051AC25 /* Controllers */,
 				B9D31F901C3A1F900051AC25 /* Views */,
 			);
@@ -734,6 +799,16 @@
 				B9D31F9B1C3A7F6A0051AC25 /* PersonalMessageViewController.h */,
 				B9D31F9C1C3A7F6A0051AC25 /* PersonalMessageViewController.m */,
 				B9D31F9E1C3A7F7A0051AC25 /* PersonalMessageViewController.storyboard */,
+				B979BED01C9A880C00946DDB /* TaskHistoryViewController.h */,
+				B979BED11C9A880C00946DDB /* TaskHistoryViewController.m */,
+				B9BCB4E61C9FC8C600D50702 /* TiXianHistoryViewController.h */,
+				B9BCB4E71C9FC8C600D50702 /* TiXianHistoryViewController.m */,
+				B9BCB50D1C9FF4EF00D50702 /* QuestionViewController.h */,
+				B9BCB50E1C9FF4EF00D50702 /* QuestionViewController.m */,
+				B9BCB5131CA011E400D50702 /* FeedBackViewController.h */,
+				B9BCB5141CA011E400D50702 /* FeedBackViewController.m */,
+				B9BCB4EC1C9FD46B00D50702 /* AboutViewController.h */,
+				B9BCB4ED1C9FD46B00D50702 /* AboutViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -746,6 +821,10 @@
 				B9D31FA31C3BB3600051AC25 /* QrCodeView.h */,
 				B9D31FA41C3BB3600051AC25 /* QrCodeView.m */,
 				B9D31FA61C3BB37A0051AC25 /* QrCodeView.xib */,
+				B9BCB4E31C9FB34B00D50702 /* TaskListCell.h */,
+				B9BCB4E41C9FB34B00D50702 /* TaskListCell.m */,
+				B9BCB4E91C9FC90900D50702 /* TiXianListCell.h */,
+				B9BCB4EA1C9FC90900D50702 /* TiXianListCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -892,6 +971,7 @@
 		B9E069F61C1967EA00D7A1AC /* My */ = {
 			isa = PBXGroup;
 			children = (
+				B9BCB4FF1C9FF44100D50702 /* SKSTableView */,
 				B9850CEC1C3E365F0013454B /* changePassword */,
 				B9D31F8E1C3A1F900051AC25 /* bindPhone */,
 				B9E069FD1C19681600D7A1AC /* My.storyboard */,
@@ -1103,12 +1183,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9BCB4F01C9FDD1800D50702 /* about.html in Resources */,
 				B9EAE3D81C313DCC0078A81D /* FTDHeadCell.xib in Resources */,
 				B90537771C8FF42B00553E64 /* GetCash.storyboard in Resources */,
 				B9D320051C3BC85F0051AC25 /* zbar-back.png in Resources */,
 				B9D320081C3BC85F0051AC25 /* zbar-samples.png in Resources */,
+				B9BCB5081C9FF44100D50702 /* expandableImage.png in Resources */,
 				B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */,
 				B92A2FEC1C35161C00FB1E08 /* MyTableViewHeader.xib in Resources */,
+				B9BCB5091C9FF44100D50702 /* expandableImage@2x.png in Resources */,
 				B9E069FC1C19680700D7A1AC /* ShiTu.storyboard in Resources */,
 				B9E069FE1C19681600D7A1AC /* My.storyboard in Resources */,
 				B9D31FA71C3BB37A0051AC25 /* QrCodeView.xib in Resources */,
@@ -1216,9 +1299,11 @@
 				B9A18F031C2A6FAE002C9248 /* MJRefreshGifHeader.m in Sources */,
 				B9EAE3D71C313DCC0078A81D /* FTDHeadCell.m in Sources */,
 				B9A18F001C2A6FAE002C9248 /* MJRefreshBackGifFooter.m in Sources */,
+				B9BCB5121CA00DFA00D50702 /* SKSSubTableViewCell.m in Sources */,
 				B9A18F051C2A6FAE002C9248 /* MJRefreshStateHeader.m in Sources */,
 				B90042741C2C01870017D263 /* LoginManager.m in Sources */,
 				B9D31FF71C3BC85F0051AC25 /* qrspec.c in Sources */,
+				B9BCB50F1C9FF4EF00D50702 /* QuestionViewController.m in Sources */,
 				B9A3A6991C2810B500AA219C /* LoginViewController.m in Sources */,
 				B9850CCA1C3CA4660013454B /* CLLocation+YCLocation.m in Sources */,
 				B900426C1C2BF7970017D263 /* YzdHUDImageView.m in Sources */,
@@ -1230,15 +1315,19 @@
 				B900426B1C2BF7970017D263 /* YzdHUDBackgroundView.m in Sources */,
 				B99944CE1C72CA9B00A72605 /* ShiTuViewController.m in Sources */,
 				B9D31FF41C3BC85F0051AC25 /* QRCodeGenerator.m in Sources */,
+				B9BCB4EB1C9FC90900D50702 /* TiXianListCell.m in Sources */,
+				B9BCB50C1C9FF44100D50702 /* SKSTableViewCellIndicator.m in Sources */,
 				B9EEA85A1C8AC8C200C3B7B5 /* TodayAttendanceCell.m in Sources */,
 				B9D31FF91C3BC85F0051AC25 /* split.c in Sources */,
 				B9EEA8541C8988C200C3B7B5 /* HomeIncomeCell.m in Sources */,
 				B9EAE3D61C313DCC0078A81D /* FastTaskView.m in Sources */,
+				B979BED21C9A880C00946DDB /* TaskHistoryViewController.m in Sources */,
 				B9EAE3D21C313DCC0078A81D /* FTDetailViewController.m in Sources */,
 				B9A18EFA1C2A6FAE002C9248 /* MJRefreshComponent.m in Sources */,
 				B9A18E761C2A4863002C9248 /* EncryptUtils.mm in Sources */,
 				B9D31FF61C3BC85F0051AC25 /* qrinput.c in Sources */,
 				B9A18F0A1C2A6FAE002C9248 /* UIView+MJExtension.m in Sources */,
+				B9BCB5151CA011E400D50702 /* FeedBackViewController.m in Sources */,
 				B9A18E771C2A4863002C9248 /* HashUtils.mm in Sources */,
 				B9E069EC1C19293400D7A1AC /* MainTabViewController.m in Sources */,
 				B9A9B55C1C8985D800181C87 /* EggsHomeViewController.m in Sources */,
@@ -1253,16 +1342,21 @@
 				B92A2FEF1C3526E300FB1E08 /* MyTableViewCell.m in Sources */,
 				B9D31FF31C3BC85F0051AC25 /* mask.c in Sources */,
 				B900426E1C2BF7970017D263 /* YzdHUDLabel.m in Sources */,
+				B9BCB4E51C9FB34B00D50702 /* TaskListCell.m in Sources */,
 				B905377B1C8FFA4000553E64 /* RechargeViewController.m in Sources */,
 				B9EAE3E01C313E6E0078A81D /* FTDIntroCell.m in Sources */,
 				B9D31FF51C3BC85F0051AC25 /* qrencode.c in Sources */,
+				B9BCB50A1C9FF44100D50702 /* SKSTableView.m in Sources */,
 				B90537701C8EDB4700553E64 /* DataManager.m in Sources */,
 				B9D31FA51C3BB3600051AC25 /* QrCodeView.m in Sources */,
 				B9A18F041C2A6FAE002C9248 /* MJRefreshNormalHeader.m in Sources */,
+				B9BCB4EE1C9FD46B00D50702 /* AboutViewController.m in Sources */,
 				B900426D1C2BF7970017D263 /* YzdHUDIndicator.m in Sources */,
 				B9A18EFF1C2A6FAE002C9248 /* MJRefreshAutoStateFooter.m in Sources */,
 				B92A2FE71C35140400FB1E08 /* MyViewController.m in Sources */,
+				B9BCB4E81C9FC8C600D50702 /* TiXianHistoryViewController.m in Sources */,
 				B9D31F961C3A1FF00051AC25 /* BindPhoneViewController.m in Sources */,
+				B9BCB50B1C9FF44100D50702 /* SKSTableViewCell.m in Sources */,
 				B90537781C8FF42B00553E64 /* GetCashViewController.m in Sources */,
 				B905376A1C8D803600553E64 /* TixianMessageCell.m in Sources */,
 				B9EAE3DC1C313DF90078A81D /* ShareTaskView.m in Sources */,
