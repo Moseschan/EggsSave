@@ -1,4 +1,4 @@
-//
+ //
 //  QuestionViewController.m
 //  EggsSave
 //
@@ -7,14 +7,17 @@
 //
 
 #import "QuestionViewController.h"
-#import "SKSTableViewCell.h"
 #import "Masonry.h"
-#import "SKSSubTableViewCell.h"
+#import "GroupCell.h"
+#import "QuestionGroup.h"
+#import "Answer.h"
 
 @interface QuestionViewController ()
 
 @property(nonatomic, strong)NSArray* contents;
 @property(nonatomic, strong)NSArray* secContents;
+
+@property(nonatomic, strong)NSMutableDictionary* sections;
 
 @end
 
@@ -32,6 +35,50 @@
                          ];
     }
     return _secContents;
+}
+
+- (NSMutableDictionary *)sections
+{
+    if (!_sections) {
+        _sections = [[NSMutableDictionary alloc]init];
+        
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"plist"];
+        NSDictionary* dic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
+        
+        for (NSInteger j=0; j<_secContents.count; ++j) {
+            NSString* title = _secContents[j];
+            
+            NSDictionary* dic1 = [dic objectForKey:title];
+            
+            NSArray* a1 = [dic1 allKeys];
+            
+            NSMutableArray* tempArray = [[NSMutableArray alloc]init];
+            
+            for (NSInteger k=0; k<a1.count; ++k) {
+                
+                QuestionGroup* t_qg = [QuestionGroup new];
+                t_qg.groupName = a1[k];
+                
+                NSMutableArray* groupA = [NSMutableArray array];
+                
+                NSArray* arr = [dic1 objectForKey:a1[k]];
+                for (NSInteger i=0; i<arr.count; ++i) {
+                    Answer* t_a = [Answer new];
+                    t_a.details = arr[i];
+                    
+                    [groupA addObject:t_a];
+                }
+                t_qg.answersArray = groupA;
+                
+                [tempArray addObject:t_qg];
+            }
+            
+            [_sections setObject:tempArray forKey:title];
+        }
+        
+    }
+    
+    return _sections;
 }
 
 - (NSArray *)contents
@@ -95,6 +142,10 @@
     [super viewDidLoad];
     self.title = @"常见问题";
     
+    [self secContents];
+    [self contents];
+    [self sections];
+    
     self.tableView = [[UITableView alloc]init];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -136,33 +187,124 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.contents[section] count];
+    NSMutableArray* tarry = [self.sections objectForKey:_secContents[section]] ;
+    
+    return tarry.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"UITableViewCell";
+    static NSString *CellIdentifier = @"cell";
     
-    SKSSubTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    GroupCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell)
     {
-        cell = [[SKSSubTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[GroupCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    cell.block = ^(){
+    NSMutableArray* tarry = [self.sections objectForKey:_secContents[indexPath.section]] ;
+    
+    id object = tarry[indexPath.row];
+    
+    if ([object isKindOfClass:[QuestionGroup class]]) {
+        QuestionGroup* temp_qg = object;
+        [cell setInfoWithQuestionGroup:temp_qg];
         
-    };
-    
-    QuestionModel* model = [[QuestionModel alloc]init];
-    model.q_title = [NSString stringWithFormat:@"%@", self.contents[indexPath.section][indexPath.row][0]];
-    model.q_details = [NSString stringWithFormat:@"%@", self.contents[indexPath.section][indexPath.row][1]];
-    
-    cell.model = model;
-    
+        if (temp_qg.isOpen) {
+            cell.accessoryView.transform = CGAffineTransformMakeRotation(M_PI);
+        }else
+        {
+            cell.accessoryView.transform = CGAffineTransformMakeRotation(0);
+        }
+        
+    }else if ([object isKindOfClass:[Answer class]])
+    {
+        Answer* temp_a = object;
+        [cell setInfoWithAnswer:temp_a];
+    }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray* arr1 = [self.sections objectForKey:[_secContents objectAtIndex:indexPath.section]];
+    
+    id object = [arr1 objectAtIndex:indexPath.row];
+    
+    GroupCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([object isKindOfClass:[QuestionGroup class]] /*需要打开列表*/) {
+        
+        QuestionGroup* temp_qg = object;
+        temp_qg.isOpen = !temp_qg.isOpen;
+        NSArray* arr2 = temp_qg.answersArray;
+        
+        if (temp_qg.isOpen) {
+            //插入几行
+            NSInteger local = indexPath.row;
+            NSInteger length = arr2.count;
+            NSRange range = {local+1, length} ;
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+            
+            NSMutableArray* subRows = [NSMutableArray array];
+            
+            for (NSInteger i=0; i<arr2.count; ++i) {
+                [subRows addObject:arr2[i]];
+            }
+            
+            NSMutableArray* tarry = [self.sections objectForKey:_secContents[indexPath.section]] ;
+            [tarry insertObjects:subRows atIndexes:indexSet];
+            
+            NSMutableArray* insertPaths = [NSMutableArray array] ;
+            
+            id object = [tarry objectAtIndex:indexPath.row];
+            NSInteger insertItemIndex = [tarry indexOfObject:object];
+            
+            for (int i= 0;i<length;i++)
+            {
+                NSIndexPath *indexPth = [NSIndexPath indexPathForRow:++insertItemIndex inSection:indexPath.section];
+                [insertPaths addObject:indexPth];
+            }
+            [self.tableView insertRowsAtIndexPaths:insertPaths withRowAnimation:UITableViewRowAnimationTop];
+            
+            [UIView animateWithDuration:0.2 animations:^{
+                    cell.accessoryView.transform = CGAffineTransformMakeRotation(M_PI);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }else
+        {
+            NSInteger local = indexPath.row;
+            NSInteger lenth = arr2.count;
+            NSRange range = {local+1,lenth};
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+            NSMutableArray* tarry = [self.sections objectForKey:_secContents[indexPath.section]] ;
+            [tarry removeObjectsAtIndexes:indexSet];
+            NSMutableArray *insertPaths = [NSMutableArray array];
+            NSInteger deleteItemIndex = [tarry indexOfObject:object];
+            for (int i= 0;i<lenth;i++)
+            {
+                NSIndexPath *indexPth = [NSIndexPath indexPathForRow:++deleteItemIndex inSection:indexPath.section];
+                [insertPaths addObject:indexPth];
+            }
+            [self.tableView deleteRowsAtIndexPaths:insertPaths withRowAnimation:UITableViewRowAnimationTop];
+            
+            [UIView animateWithDuration:0.2 animations:^{
+                cell.accessoryView.transform = CGAffineTransformMakeRotation(0);
+             } completion:^(BOOL finished) {
+                 
+             }];
+        }
+        
+        
+    }else
+    {
+        //是answer行，不需要进行操作
+    }
+    
 }
 
 

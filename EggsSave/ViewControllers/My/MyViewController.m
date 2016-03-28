@@ -216,14 +216,18 @@
         {
             //问题反馈
             FeedBackViewController* fbvc = [[FeedBackViewController alloc]init];
-            UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+//            UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+//            
+//            temporaryBarButtonItem.title=@"返回";
+//            
+//            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
             
-            temporaryBarButtonItem.title=@"返回";
-            
-            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+            [self presentViewController:fbvc animated:YES completion:^{
+                
+            }];
             
             //            chpvc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:fbvc animated:YES];
+//            [self.navigationController pushViewController:fbvc animated:YES];
             
         }else if(2 == indexPath.row)
         {
