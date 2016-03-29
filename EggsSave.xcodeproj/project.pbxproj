@@ -1510,7 +1510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = /Users/guohongjun/Desktop/EggsSave/EggsSave/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/EggsSave/PrefixHeader.pch";
 				INFOPLIST_FILE = EggsSave/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1541,7 +1541,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = /Users/guohongjun/Desktop/EggsSave/EggsSave/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/EggsSave/PrefixHeader.pch";
 				INFOPLIST_FILE = EggsSave/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
