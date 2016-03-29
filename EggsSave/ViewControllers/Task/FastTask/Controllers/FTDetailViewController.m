@@ -182,7 +182,12 @@
         if (!cell) {
             cell = [[FTDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
+        
+        cell.block = ^() {
+            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        };
         cell.model = _introModel;
+        
         return cell;
         
     }else
