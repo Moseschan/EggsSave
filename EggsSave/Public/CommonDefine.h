@@ -41,6 +41,7 @@ extern NSString* const NSUserLoginFailedNotification;
 extern NSString* const NSUserGetTaskSucceedNotification ;  //接任务成功
 extern NSString* const NSUserDoTaskFailedNotification ;  //接任务成功
 extern NSString* const NSUserGetAuthCodeNotification ;
+extern NSString* const NSUserFeedCommitedNotification ;
 
 #define NO_NETWORK   0
 

@@ -15,6 +15,6 @@
 - (void)setTasks:(NSArray *)tasks;
 - (NSArray*)getTasks;
 
-- (void)parseLoginData:(NSData *)data;
+- (void)parseLoginData:(NSDictionary *)data;
 
 @end

@@ -70,6 +70,11 @@
  */
 - (void)requestUserDetailMessages;
 
+/**
+ *  用户反馈接口
+ */
+- (void)requestCommitQuestions:(NSString*)questions;
+
 @end
 
 

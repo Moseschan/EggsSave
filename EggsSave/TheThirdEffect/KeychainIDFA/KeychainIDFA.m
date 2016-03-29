@@ -91,6 +91,8 @@
 
 + (NSString*)getUserId
 {
+    return @"290";
+    
     NSString *useridStr = [KeychainHelper load:USERID_STRING];
     if (kIsStringValid(useridStr))
     {

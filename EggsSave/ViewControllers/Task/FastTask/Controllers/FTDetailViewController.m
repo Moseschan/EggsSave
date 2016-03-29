@@ -49,9 +49,21 @@
     self.getTaskSucceedObserver = [center addObserverForName:NSUserGetTaskSucceedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
                                                     
-                                                    [_ftdintroCell setGetTaskSucceed];
+                                                    NSDictionary* dict = note.userInfo;
                                                     
-                                                    DLog(@"The user get task succeed!");
+                                                    NSDictionary* responseDict = dict[@"response"];
+                                                    
+                                                    int result = [responseDict[@"result"] intValue];
+                                                    NSString* message = responseDict[@"message"];
+                                                    
+                                                    if (result == 0) {
+                                                        DLog(@"接受任务成功");
+                                                        [_ftdintroCell setGetTaskSucceed];
+                                                    }else
+                                                    {
+                                                        DLog(@"接受任务失败，失败原因 : %@", message);
+                                                    }
+                                                    
                                                     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                                                     
                                                     NSString *str = [NSString stringWithFormat:

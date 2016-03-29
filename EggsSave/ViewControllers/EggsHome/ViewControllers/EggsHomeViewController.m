@@ -17,6 +17,7 @@
 #import "HomeCell.h"
 #import "TixianMessageCell.h"
 #import "CommonMethods.h"
+#import "TasksManager.h"
 
 @interface EggsHomeViewController ()
 
@@ -37,6 +38,7 @@ NSString* const NSUserLoginFailedNotification      = @"NSUserLoginFailedNotifica
 NSString* const NSUserGetTaskSucceedNotification   = @"NSUserGetTaskSucceedNotification";  //接任务成功
 NSString* const NSUserDoTaskFailedNotification     = @"NSUserDoTaskFailedNotification";  //审核任务失败
 NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
+NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
 
 @implementation EggsHomeViewController
 {
@@ -47,14 +49,26 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    DLog(@"viewWillAppear %@", @"123");
-    //注册一个监听者，监听数据获取完毕
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
     self.loginedObserver = [center addObserverForName:NSUserDidLoginedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
                                                     
-                                                    DLog(@"The user's did logined");
+                                                    NSDictionary* dict = note.userInfo;
+                                                    
+                                                    [[TasksManager getInstance] parseLoginData:dict];
+                                                    
+                                                    NSDictionary* response = dict[@"response"];
+                                                    int result = [response[@"result"] intValue];
+                                                    
+                                                    if (result == 1) {
+                                                        //登录成功
+                                                        DLog(@"登录成功");
+                                                    }else
+                                                    {
+                                                        //登录失败
+                                                        DLog(@"登录失败");
+                                                    }
                                                     
                                                     [self.tableView.header endRefreshing];
                                                     
@@ -265,7 +279,7 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (2 == indexPath.section) {
-        if (0 == indexPath.row) {
+        if (2 == indexPath.row) {
             [self.tabBarController setSelectedIndex:1];
         }else if (3 == indexPath.row)
         {
@@ -295,7 +309,7 @@ NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotifica
         return 4;
     }else
     {
-        return 8;
+        return _messages.count;
     }
 }
 

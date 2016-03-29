@@ -40,11 +40,9 @@
     return _mTasks;
 }
 
-- (void)parseLoginData:(NSData *)data
+- (void)parseLoginData:(NSDictionary *)data
 {
-    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-    
-    DLog(@"jsonData = %@", dict);
+    NSDictionary* dict = data;
     
     NSDictionary* responseDict = dict[@"response"];
     

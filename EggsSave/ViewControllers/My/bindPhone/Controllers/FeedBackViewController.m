@@ -9,9 +9,13 @@
 #import "FeedBackViewController.h"
 #import "Masonry.h"
 #import "CommonDefine.h"
+#import "LoginManager.h"
+#import "UIWindow+YzdHUD.h"
 
 
 @interface FeedBackViewController ()
+
+@property (strong, nonatomic) id feedCommitedObserver;
 
 @end
 
@@ -20,12 +24,39 @@
     UIView*     _headView;
     UITextView* _fankuiView;
     UILabel*    _detailLabel;
+    UIButton*   _sendButton;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithRed:67.f/255 green:67.f/255 blue:67.f/255 alpha:1];
+    
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue* mainQueue = [NSOperationQueue mainQueue];
+    self.feedCommitedObserver = [center addObserverForName:NSUserFeedCommitedNotification object:nil
+                                                queue:mainQueue usingBlock:^(NSNotification *note) {
+                                                    
+                                                    NSDictionary* dict = note.userInfo;
+                                                    
+                                                    int result = [dict[@"result"] intValue];
+                                                    
+                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                    
+                                                    if (0 == result)
+                                                    {
+                                                        //提交成功
+                                                        [self dismissViewControllerAnimated:YES completion:^{
+                                                            
+                                                        }];
+                                                    }else
+                                                    {
+                                                        //提交失败
+                                                        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提交失败" message:@"由于网络原因，问题反馈提交失败，请稍后再试" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+                                                        [alert show];
+                                                    }
+                                                    
+                                                }];
     
     //增加监听，当键盘出现或改变时收出消息
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -71,6 +102,7 @@
     [_fankuiView resignFirstResponder];
     
     [[NSNotificationCenter defaultCenter] removeObserver:UIKeyboardWillShowNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.feedCommitedObserver];
 }
 
 - (void)setUpTextView
@@ -79,6 +111,7 @@
     tv.layer.cornerRadius = 5 ;
     [self.view addSubview:tv];
     _fankuiView = tv;
+    _fankuiView.delegate = self;
     
     UILabel* introLabel = [[UILabel alloc]init];
     introLabel.text = @"为了更好为您服务，我们会将您的提供的反馈发给客户支持部门。";
@@ -89,6 +122,19 @@
     
     _detailLabel = introLabel;
     
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    NSString* checkString = _fankuiView.text;
+    
+    if (![checkString isEqualToString:@""]) {
+        [_sendButton setEnabled:YES];
+        [_sendButton setTitleColor:[UIColor colorWithRed:40.0/255 green:108.f/255 blue:199.0/255 alpha:1] forState:UIControlStateNormal];
+    }else{
+        [_sendButton setEnabled:NO];
+        [_sendButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    }
 }
 
 - (void)setUpHeader
@@ -117,10 +163,11 @@
     
     UIButton* rightBtn = [[UIButton alloc]init];
     [rightBtn setTitle:@"发送" forState:UIControlStateNormal];
-    rightBtn.titleLabel.textColor = [UIColor colorWithRed:40.0/255 green:108.f/255 blue:199.0/255 alpha:1];
+    [rightBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
     [rightBtn setEnabled:NO];
     [bView addSubview:rightBtn];
+    _sendButton = rightBtn;
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(bView);
@@ -143,7 +190,10 @@
 
 - (void)sendAction
 {
+    DLog(@"sendAction");
+    [[LoginManager getInstance]requestCommitQuestions:_fankuiView.text];
     
+    [self.view.window showHUDWithText:@"提交中" Type:ShowDismiss Enabled:YES];
 }
 
 - (void)cancelAction
