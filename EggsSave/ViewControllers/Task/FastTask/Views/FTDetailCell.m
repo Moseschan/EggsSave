@@ -8,51 +8,51 @@
 
 #import "FTDetailCell.h"
 #import "Masonry.h"
+#import "UIImageView+WebCache.h"
 
 @implementation FTDetailCell
 {
     UILabel* _detailView;
+    UIImageView *_imageView;
 }
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
     }
     return self;
 }
 
-- (void)setup
-{
-    UILabel *view1 = [UILabel new];
-    view1.textColor = [UIColor lightGrayColor];
-    view1.font = [UIFont systemFontOfSize:16];
-    view1.numberOfLines = 0;
-    _detailView = view1;
-    
-    [self.contentView addSubview:_detailView];
-    
+- (void)setup {
+    UILabel *detailView = [UILabel new];
+    detailView.textColor = [UIColor lightGrayColor];
+    detailView.font = [UIFont systemFontOfSize:16];
+    detailView.numberOfLines = 0;
+    [self.contentView addSubview:_detailView = detailView];
     [_detailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(10);
-        make.right.bottom.mas_equalTo(-10);
+        make.right.mas_equalTo(-10);
+    }];
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:_imageView = imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_detailView.mas_bottom).offset(-15);
+        make.left.mas_equalTo(25);
+        make.bottom.mas_equalTo(-10);
     }];
 }
 
-- (void)setModel:(FTDIntroModel *)model
-{
+- (void)setModel:(FTDIntroModel *)model {
     _model = model;
     
-    _detailView.text = model.details;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    NSArray *array = [model.details componentsSeparatedByString:@"img:"];
+    _detailView.text = array[0];
+    NSURL *url = [NSURL URLWithString:[array[1] substringToIndex:[array[1] length]-1]];
+    
+    [_imageView sd_setImageWithURL:url placeholderImage:[[UIImage alloc] init] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.block();
+    }];
 }
 
 @end
