@@ -13,6 +13,7 @@
 #import "CCLocationManager.h"
 #import "LoginManager.h"
 #import "CommonMethods.h"
+#import "User.h"
 
 @interface PersonalMessageViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nickNameTextField;
@@ -49,6 +50,29 @@
     self.avatarImageView.image = selfPhoto;
     [self.avatarImageView.layer setCornerRadius:CGRectGetHeight([self.avatarImageView bounds]) / 2];
     self.avatarImageView.layer.masksToBounds = YES;
+    
+    [self setUpUserInfo];
+}
+
+- (void)setUpUserInfo
+{
+    User* u = [User getInstance];
+    
+    if (u.nickName) {
+        _nickNameTextField.text = u.nickName;
+    }
+    
+    if (u.sex) {
+        _sexLabel.text = u.sex;
+    }
+    
+    if (u.birthDay) {
+        _birthdayLabel.text = u.birthDay;
+    }
+    
+    if (u.carrier) {
+        _workLabel.text = u.carrier;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

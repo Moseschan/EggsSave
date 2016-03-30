@@ -167,6 +167,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="avatarImageView" destination="8Gj-6H-p4m" id="pMt-gQ-lj0"/>
+                <outlet property="idLabel" destination="IYP-uL-sR5" id="3xW-H8-EEW"/>
+                <outlet property="moneyLabel" destination="YJi-dW-YCI" id="S0M-2k-Xm7"/>
+                <outlet property="nickLabel" destination="VR0-88-W1q" id="LAT-V4-dxh"/>
             </connections>
         </view>
     </objects>

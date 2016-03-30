@@ -248,6 +248,8 @@ NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotific
         
         [manager login];
         
+        [manager requestUserDetailMessages];
+        
         [manager requestSigninState];  //请求签到状态
         
         [manager requestPricessSet];

@@ -8,6 +8,20 @@
 
 #import "MyTableViewHeader.h"
 
+@implementation MyTableViewHeaderModel
+
+
+@end
+
+@interface MyTableViewHeader ()
+
+@property (weak, nonatomic) IBOutlet UILabel *idLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nickLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+
+
+@end
+
 @implementation MyTableViewHeader
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -23,6 +37,24 @@
     }
    
     return self;
+}
+
+- (void)setModel:(MyTableViewHeaderModel *)model
+{
+    _model = model;
+    
+    if (_model.userID) {
+        _idLabel.text = [NSString stringWithFormat:@"ID %@", _model.userID];
+    }
+    
+    if (_model.userMoney) {
+        _moneyLabel.text = [NSString stringWithFormat:@"%@元", _model.userMoney];
+    }
+    
+    if (_model.userNick) {
+        _nickLabel.text = _model.userNick;
+    }
+    
 }
 
 - (IBAction)showMyMessages:(id)sender {

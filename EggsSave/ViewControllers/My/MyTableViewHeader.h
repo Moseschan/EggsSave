@@ -14,11 +14,22 @@
 typedef void(^MyTableHeaderSetMessage)(void);
 typedef void (^MyTableHeaderShowAvatar)(void);
 
+
+@interface MyTableViewHeaderModel : NSObject
+
+@property(copy, nonatomic)NSString* userID;
+@property(copy, nonatomic)NSString* userNick;
+@property(copy, nonatomic)NSString* userMoney;
+
+@end
+
+
 @interface MyTableViewHeader : UIView
 
 @property (nonatomic, copy)MyTableHeaderSetMessage mthSetMessage;
 @property (nonatomic, copy)MyTableHeaderShowAvatar mthShowAvatar;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (strong, nonatomic)MyTableViewHeaderModel* model;
 
 - (IBAction)showMyMessages:(id)sender;
 - (IBAction)setMyMessage:(id)sender;

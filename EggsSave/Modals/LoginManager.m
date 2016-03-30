@@ -480,9 +480,21 @@
             DLog(@"未获取到数据");
             return ;
         }
+        
+        User* u = [User getInstance];
         NSDictionary *dict = [self getDataFromEncryptData:data];
         NSDictionary* responseDict = dict[@"response"];
-        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserGetMyMoneyNotification object:nil userInfo:responseDict];
+        u.todayPrice = [responseDict[@"todayPrice"] floatValue];
+        NSDictionary* userInfo = responseDict[@"userInfo"];
+        u.userID        = userInfo[@"userId"];
+        u.userIDFA      = userInfo[@"idfa"];
+        u.birthDay      = userInfo[@"birthDay"];
+        u.carrier       = userInfo[@"carrier"];
+        u.money         = [userInfo[@"price"] floatValue];
+        u.sex           = userInfo[@"sex"];
+        u.studentsPrice = [userInfo[@"studentPrice"] floatValue];
+        u.nickName      = userInfo[@"userName"];
+        
     }];
 }
 

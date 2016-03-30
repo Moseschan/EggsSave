@@ -18,6 +18,7 @@
 #import "AboutViewController.h"
 #import "QuestionViewController.h"
 #import "FeedBackViewController.h"
+#import "User.h"
 
 @interface MyViewController ()
 {
@@ -62,6 +63,23 @@
         [weakHeadView.avatarImageView.layer setCornerRadius:CGRectGetHeight([weakHeadView.avatarImageView bounds]) / 2];
         weakHeadView.avatarImageView.layer.masksToBounds = YES;
     };
+    
+    MyTableViewHeaderModel* model = [[MyTableViewHeaderModel alloc]init];
+    User* u = [User getInstance];
+    
+    if (u.userID) {
+        model.userID = u.userID;
+    }
+    
+    if (u.nickName) {
+        model.userNick = u.nickName;
+    }
+    
+    if (u.money > 0) {
+        model.userMoney = [NSString stringWithFormat:@"%.2f", u.money];
+    }
+    
+    [mHeadView setModel:model];
     
     self.tableView.tableHeaderView = mHeadView;
 }
