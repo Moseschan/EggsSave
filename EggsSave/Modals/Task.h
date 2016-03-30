@@ -18,16 +18,16 @@
 @property(strong, nonatomic)NSString* pEndURL;              //cp任务完成URL
 @property(strong, nonatomic)NSString* pNotifyURL;           //平台任务达成回调URL
 @property(strong, nonatomic)NSString* pIconUrl;             //icon地址
-@property(strong, nonatomic)NSString* pDetailTaskExplain;   //详细任务说明
+@property(strong, nonatomic)NSArray* pDetailTaskExplain;   //详细任务说明
 @property(strong, nonatomic)NSString* pFastTaskExplain;     //快速任务说明
 @property(strong, nonatomic)NSString* pKeyWord;             //关键字
 @property(assign, nonatomic)long pState;                    //任务领取的状态 0,领取，未完成 1，完成 2，未领取
-
+@property(strong, nonatomic)NSArray *returnDetailArray; //详细任务说明
 
 @end
 
 
-static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, NSString* startURL, NSString* endURL, NSString* notifyURL, NSString* iconURL, NSString* detailTaskExplain, NSString* fastTaskExplain, NSString* keyWord, long state, float bonus)
+static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, NSString* startURL, NSString* endURL, NSString* notifyURL, NSString* iconURL, NSArray* detailTaskExplain, NSString* fastTaskExplain, NSString* keyWord, long state, float bonus, NSArray *returnDetailArray)
 {
     Task* task = [[Task alloc] init];
     task.pId = tid;
@@ -42,6 +42,7 @@ static inline Task* TaskMake(NSString*tid, NSString* title, NSString* subTitle, 
     task.pKeyWord = keyWord;
     task.pState = state;
     task.pBonus = bonus;
+    task.returnDetailArray = returnDetailArray;
     return task;
 }
 

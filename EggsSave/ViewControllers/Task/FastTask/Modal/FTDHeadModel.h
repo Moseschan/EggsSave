@@ -22,6 +22,6 @@
 
 @interface FTDIntroModel : NSObject
 
-@property (nonatomic, copy) NSString *details;
+@property (nonatomic, strong) NSArray *details;
 
 @end
