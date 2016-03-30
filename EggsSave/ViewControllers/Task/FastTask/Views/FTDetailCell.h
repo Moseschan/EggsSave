@@ -12,6 +12,6 @@
 @interface FTDetailCell : UITableViewCell
 
 @property (strong, nonatomic) FTDIntroModel* model;
-@property (nonatomic, copy) void(^block)();
+@property (copy, nonatomic) void(^reloadCellBlock)();
 
 @end

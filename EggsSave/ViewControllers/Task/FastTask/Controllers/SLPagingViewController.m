@@ -90,7 +90,7 @@
     
     _ftView.ftdCellSelected = ^(NSInteger index)
     {
-        FTDetailViewController *ftdvc = [[FTDetailViewController alloc]init];
+        FTDetailViewController *ftdvc = [[FTDetailViewController alloc]initWithStyle:UITableViewStyleGrouped];
         [ftdvc setTask:[[TasksManager getInstance] getTasks][index]];
         
         UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];

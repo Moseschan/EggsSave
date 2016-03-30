@@ -14,6 +14,7 @@
 #import "LoginManager.h"
 #import "CommonDefine.h"
 #import "FTDetailCell.h"
+#import "Masonry.h"
 
 @interface FTDetailViewController ()
 {
@@ -21,7 +22,7 @@
     FTDIntroModel* _introModel;
 }
 
-@property (strong, nonatomic)Task* mTask;
+@property (strong, nonatomic) Task* mTask;
 @property (strong, nonatomic) id getTaskSucceedObserver;
 @property (strong, nonatomic) id doTaskFailedObserver;
 
@@ -35,6 +36,8 @@
     [super viewDidLoad];
     
     self.title = @"任务详情";
+    
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
 //    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blueColor], NSForegroundColorAttributeName, nil];
 }
@@ -112,11 +115,10 @@
     
     FTDIntroModel* mo2 = [FTDIntroModel new];
     
-    NSMutableString *tempStr = [NSMutableString stringWithString:_mTask.pDetailTaskExplain];
-    NSString *strUrl = [tempStr stringByReplacingOccurrencesOfString:@"。" withString:@"\n"];
     
-
-    mo2.details = strUrl;
+    NSArray *tempArray = [NSArray arrayWithArray:_mTask.returnDetailArray];
+    mo2.details = tempArray;
+    
     _introModel = mo2;
     
 }
@@ -131,39 +133,33 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return 96;
-    }else if(indexPath.row == 1)
-    {
-        return 60;
-    }else
-    {
-        return 200;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        return 30;
     }
+    return CGFLOAT_MIN;
 }
 
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (1 == section) {
-        return @"任务步骤";
-    }else if (2 == section)
-    {
-        return nil;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+        return 200;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        label.text = @"任务步骤";
+        return label;
     }
     
     return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *ID = @"test";
     
     if (indexPath.section == 0) {
         FTDHeadCell* cell = nil;
@@ -174,24 +170,21 @@
         cell.model = _model;
         
         return cell;
-        
-    }else if(1 == indexPath.section)
-    {
-        
-        FTDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        if (!cell) {
-            cell = [[FTDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+       
+    } else if (indexPath.section == 1) {
+        FTDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FTDetailCell"];
+        if (cell == nil) {
+            cell = [[FTDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FTDetailCell"];
         }
         
-        cell.block = ^() {
-            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-        };
         cell.model = _introModel;
+        __weak typeof(self)weakSelf = self;
+        cell.reloadCellBlock = ^{
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        };
         
         return cell;
-        
-    }else
-    {
+    } else {
         UITableViewCell* cell = nil;
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FTDIntroCell" owner:self options:nil];
@@ -230,8 +223,6 @@
         
         return cell;
     }
-
 }
-
 
 @end

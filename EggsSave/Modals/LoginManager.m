@@ -101,9 +101,7 @@
         
         NSDictionary* dict = [self getDataFromEncryptData:data];
         [[NSNotificationCenter defaultCenter] postNotificationName:NSUserDidLoginedNotification object:nil userInfo:dict];
-                        
     }];
-    
 }
 
 - (void)signUp
