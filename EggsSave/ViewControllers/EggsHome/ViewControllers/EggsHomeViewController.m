@@ -18,12 +18,13 @@
 #import "TixianMessageCell.h"
 #import "CommonMethods.h"
 #import "TasksManager.h"
+#import "User.h"
 
 @interface EggsHomeViewController ()
 
 @property (strong, nonatomic) id loginedObserver;
 @property (strong, nonatomic) id qiandaoStateObserver;
-@property (strong, nonatomic) id priceSetObserver;
+@property (strong, nonatomic) id userDetailInfoObserver;
 @property (weak, nonatomic) IBOutlet UIImageView *naviBarImageView;
 
 @end
@@ -39,6 +40,9 @@ NSString* const NSUserGetTaskSucceedNotification   = @"NSUserGetTaskSucceedNotif
 NSString* const NSUserDoTaskFailedNotification     = @"NSUserDoTaskFailedNotification";  //审核任务失败
 NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
 NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
+NSString* const NSUserGetDetailInfoNotification    = @"NSUserGetDetailInfoNotification"; //获取用户详细信息
+NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotification";//提现记录几口
+NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotification"; //任务记录
 
 @implementation EggsHomeViewController
 {
@@ -83,28 +87,27 @@ NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotific
                                                          
                                                      }];
     
-    self.priceSetObserver = [center addObserverForName:NSUserGetMyMoneyNotification object:nil
-                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
-                                                     
-                                                     NSDictionary* dict = note.userInfo;
-                                                     
-                                                     float price = [dict[@"price"] floatValue];
-                                                     
-                                                     if (!_incomeModel) {
-                                                         _incomeModel = [HomeIncomeModel new];
-                                                     }
-                                                     
-                                                     _incomeModel.myLeftMoney = [NSString stringWithFormat:@"%.2f", price];
-                                                     _incomeModel.todayStudents = @"0";
-                                                     _incomeModel.todayIncome = @"0.00";
-                                                     
-                                                     [self.tableView.header endRefreshing];
-                                                     
-                                                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
-                                                     
-                                                     [self.tableView reloadData];
-                                                     
-                                                 }];
+    self.userDetailInfoObserver = [center addObserverForName:NSUserGetDetailInfoNotification object:nil queue:mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        
+        User* u = [User getInstance];
+        
+        float price = u.money;
+        float todayPrice = u.todayPrice;
+        
+        if (!_incomeModel) {
+            _incomeModel = [HomeIncomeModel new];
+        }
+        
+        _incomeModel.myLeftMoney = [NSString stringWithFormat:@"%.2f", price];
+        _incomeModel.todayStudents = @"0";
+        _incomeModel.todayIncome = [NSString stringWithFormat:@"%.2f", todayPrice];
+        
+        [self.tableView.header endRefreshing];
+        
+        [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+        
+        [self.tableView reloadData];
+    }];
     
 }
 
@@ -112,7 +115,6 @@ NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotific
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self.loginedObserver];
     [[NSNotificationCenter defaultCenter] removeObserver:self.qiandaoStateObserver];
-    [[NSNotificationCenter defaultCenter] removeObserver:self.priceSetObserver];
 }
 
 - (void)viewDidLoad {
@@ -162,7 +164,6 @@ NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotific
     //读取plist
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"TiXianMessage" ofType:@"plist"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    DLog(@"data = %@", data);//直接打印数据。
     
     NSArray* messages = data[@"messages"];
     
@@ -252,7 +253,6 @@ NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotific
         
         [manager requestSigninState];  //请求签到状态
         
-        [manager requestPricessSet];
     }];
     
     [self.tableView.header beginRefreshing];

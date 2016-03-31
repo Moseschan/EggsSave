@@ -108,7 +108,7 @@
     
     _model = [FTDHeadModel new];
     _model.name = _mTask.pTitle;
-    _model.bodySize = @"17.9";
+    _model.bodySize = _mTask.pPackagesize;
     _model.iconImageName = _mTask.pIconUrl;
     _model.price = [NSString stringWithFormat:@"%.2f", _mTask.pBonus/100];
     _model.fastExplain = _mTask.pFastTaskExplain;

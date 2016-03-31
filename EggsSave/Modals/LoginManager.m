@@ -100,6 +100,7 @@
         }
         
         NSDictionary* dict = [self getDataFromEncryptData:data];
+                
         [[NSNotificationCenter defaultCenter] postNotificationName:NSUserDidLoginedNotification object:nil userInfo:dict];
     }];
 }
@@ -493,6 +494,8 @@
         u.studentsPrice = [userInfo[@"studentPrice"] floatValue];
         u.nickName      = userInfo[@"userName"];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSUserGetDetailInfoNotification object:nil];
+        
     }];
 }
 
@@ -516,6 +519,60 @@
         NSDictionary* dict = [self getDataFromEncryptData:data];
         NSDictionary* responseDict = dict[@"response"];
         [[NSNotificationCenter defaultCenter]postNotificationName:NSUserFeedCommitedNotification object:responseDict];
+    }];
+}
+
+- (void)requestTixianRecord
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+    NSString* usid = [KeychainIDFA getUserId];
+    NSDictionary *t1 = @{@"userId":usid} ;
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+    
+    NSURLRequest* request = [self requestWithInterface:@"127" Data:t1 UncalData:uncal];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            DLog(@"未获取到数据");
+            return ;
+        }
+        
+        NSDictionary *dict = [self getDataFromEncryptData:data];
+        NSDictionary* responseDict = dict[@"response"];
+        NSLog(@"tixianRecord Dict = %@", dict);
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSUserTiXianRecordNotification object:nil userInfo:responseDict];
+    }];
+}
+
+- (void)requestTaskRecord
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+    NSString* usid = [KeychainIDFA getUserId];
+    NSDictionary *t1 = @{@"userId":usid} ;
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
+    
+    NSURLRequest* request = [self requestWithInterface:@"127" Data:t1 UncalData:uncal];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        
+        if (!data) {
+            DLog(@"未获取到数据");
+            return ;
+        }
+        
+        NSDictionary *dict = [self getDataFromEncryptData:data];
+        NSDictionary* responseDict = dict[@"response"];
+        NSLog(@"tixianRecord Dict = %@", dict);
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSUserTaskRecordNotification object:nil userInfo:responseDict];
     }];
 }
 

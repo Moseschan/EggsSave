@@ -142,7 +142,6 @@
             imagePicker.delegate = self;
             imagePicker.allowsEditing = YES;
             imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            //            [self presentModalViewController:imagePicker animated:YES];
             
             [self presentViewController:imagePicker animated:YES completion:nil];
         }
@@ -154,7 +153,6 @@
             imagePicker.delegate = self;
             imagePicker.allowsEditing = YES;
             imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            //            [self presentModalViewController:imagePicker animated:YES];
             
             [self presentViewController:imagePicker animated:YES completion:nil];
         }
@@ -305,6 +303,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [_nickNameTextField resignFirstResponder];
     if (indexPath.section == 1) {
         if (indexPath.row == 2) {
             ZHPickView *pickView = [[ZHPickView alloc] init];

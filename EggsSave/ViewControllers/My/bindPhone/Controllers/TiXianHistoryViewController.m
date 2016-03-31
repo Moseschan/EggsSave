@@ -10,12 +10,78 @@
 #import "CommonDefine.h"
 #import "Masonry.h"
 #import "TiXianListCell.h"
+#import "MJRefresh.h"
+#import "UIWindow+YzdHUD.h"
+#import "LoginManager.h"
 
 @interface TiXianHistoryViewController ()
+
+@property(strong, nonatomic)id tixianRecordObserver;
+@property(strong, nonatomic)NSMutableArray* records;
 
 @end
 
 @implementation TiXianHistoryViewController
+
+- (NSMutableArray*)records
+{
+    if (!_records){
+        _records = [NSMutableArray array];
+    }
+    return _records;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue* mainQueue = [NSOperationQueue mainQueue];
+    
+    self.tixianRecordObserver = [center addObserverForName:NSUserTiXianRecordNotification object:nil queue:mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        
+        NSDictionary* dict = note.userInfo;
+        
+        NSArray* arr = dict[@"getMoneyDetailList"];
+        
+        if (self.records.count > 0) {
+            [_records removeAllObjects];
+        }
+        
+        for (NSInteger i = 0; i < arr.count; ++i) {
+            NSDictionary* dic1 = arr[i];
+            
+            TiXianListCellModel* model = [[TiXianListCellModel alloc]init];
+            model.tiAccount = dic1[@"zhiFuBaoZhangHao"];
+            model.tiPrice = [NSString stringWithFormat:@"%@元",dic1[@"money"]];
+            
+            NSDate* confromTimeSp = [NSDate dateWithTimeIntervalSince1970:[dic1[@"createDate"]longValue] / 1000];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MM-dd HH:mm:ss"];
+            NSString* selectedStr = [formatter stringFromDate:confromTimeSp];
+            
+            model.tiTime = selectedStr;
+            int cheng = [dic1[@"isZhuanZhang"] intValue];
+            if (cheng == 0) {
+                model.tiState = @"未转账";
+            }else
+            {
+                model.tiState = @"已转账";
+            }
+            
+            [self.records addObject:model];
+        }
+        
+        [self.tableView reloadData];
+        
+        [self.tableView.header endRefreshing];
+        
+        [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+    }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.tixianRecordObserver];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +100,26 @@
     
     UIView* tableHeader = [self createTableHeader];
     self.tableView.tableHeaderView = tableHeader;
+    
+    if (!NO_NETWORK) {
+        [self setupRefresh];
+    }
+}
+
+- (void)setupRefresh
+{
+    // 下拉刷新
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        //进行登录操作
+        
+        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
+        
+        LoginManager* manager = [LoginManager getInstance];
+        
+        [manager requestTixianRecord];
+    }];
+    
+    [self.tableView.header beginRefreshing];
 }
 
 - (UIView*)createTableHeader
@@ -103,7 +189,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.records.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,6 +202,8 @@
         cell = [[TiXianListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reusedCellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    cell.model = self.records[indexPath.row];
     
     return cell;
 }

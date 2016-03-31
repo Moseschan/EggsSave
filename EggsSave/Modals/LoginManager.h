@@ -12,7 +12,14 @@
 
 + (id)getInstance;
 
+/**
+ *  登录接口
+ */
 - (void)login;
+
+/**
+ *  注册接口
+ */
 - (void)signUp;
 
 /**
@@ -74,6 +81,16 @@
  *  用户反馈接口
  */
 - (void)requestCommitQuestions:(NSString*)questions;
+
+/**
+ *  提现记录接口
+ */
+- (void)requestTixianRecord;
+
+/**
+ *  任务记录接口
+ */
+- (void)requestTaskRecord;
 
 @end
 

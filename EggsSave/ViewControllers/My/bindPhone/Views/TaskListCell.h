@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@interface TaskListCellModel : NSObject
+
+@property (copy, nonatomic)NSString* taskType;
+@property (copy, nonatomic)NSString* finishTime;
+@property (copy, nonatomic)NSString* income;
+
+@end
+
 @interface TaskListCell : UITableViewCell
+
+@property(strong, nonatomic)TaskListCellModel* model;
 
 @end

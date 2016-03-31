@@ -9,7 +9,16 @@
 #import "TiXianListCell.h"
 #import "CommonDefine.h"
 
+@implementation TiXianListCellModel
+@end
+
 @implementation TiXianListCell
+{
+    UILabel*      _accountLabel;
+    UILabel*      _priceLabel;
+    UILabel*      _timeLabel;
+    UILabel*      _stateLabel;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,6 +29,16 @@
     }
     
     return self;
+}
+
+- (void)setModel:(TiXianListCellModel *)model
+{
+    _model = model;
+    
+    _accountLabel.text = _model.tiAccount;
+    _priceLabel.text = _model.tiPrice;
+    _timeLabel.text = _model.tiTime;
+    _stateLabel.text = _model.tiState;
 }
 
 - (void)setup
@@ -52,32 +71,42 @@
     l1.textColor = TABLE_TEXT_COLOR;
     l1.adjustsFontSizeToFitWidth = YES;
     l1.textAlignment = NSTextAlignmentCenter;
+    l1.font = [UIFont systemFontOfSize:15];
+    l1.textColor = [UIColor lightGrayColor];
     [view addSubview:l1];
     [l1 setCenter:CGPointMake(40.0/320 * SCREEN_WIDTH, view.center.y)];
+    _priceLabel = l1;
     
     UILabel* l2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80/320.f*SCREEN_WIDTH, 18)];
     l2.text = @"03-04 11:08";
     l2.textColor = TABLE_TEXT_COLOR;
     l2.adjustsFontSizeToFitWidth = YES;
     l2.textAlignment = NSTextAlignmentCenter;
+    l2.textColor = [UIColor lightGrayColor];
     [view addSubview:l2];
     [l2 setCenter:CGPointMake(120.0/320 * SCREEN_WIDTH, view.center.y)];
+    _timeLabel = l2;
     
     UILabel* l3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80/320.f*SCREEN_WIDTH, 18)];
     l3.text = @"zeusghj@163.com";
     l3.textColor = TABLE_TEXT_COLOR;
     l3.adjustsFontSizeToFitWidth = YES;
     l3.textAlignment = NSTextAlignmentCenter;
+    l3.textColor = [UIColor lightGrayColor];
     [view addSubview:l3];
     [l3 setCenter:CGPointMake(200.0/320 * SCREEN_WIDTH, view.center.y)];
+    _accountLabel = l3;
     
     UILabel* l4= [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80/320.f*SCREEN_WIDTH, 18)];
     l4.text = @"成功";
     l4.textColor = TABLE_TEXT_COLOR;
     l4.adjustsFontSizeToFitWidth = YES;
     l4.textAlignment = NSTextAlignmentCenter;
+    l4.textColor = [UIColor lightGrayColor];
+    l4.font = [UIFont systemFontOfSize:15];
     [view addSubview:l4];
     [l4 setCenter:CGPointMake(280.0/320 * SCREEN_WIDTH, view.center.y)];
+    _stateLabel = l4;
     
     [self.contentView addSubview:view];
 }

@@ -10,12 +10,78 @@
 #import "CommonDefine.h"
 #import "Masonry.h"
 #import "TaskListCell.h"
+#import "MJRefresh.h"
+#import "UIWindow+YzdHUD.h"
+#import "LoginManager.h"
 
 @interface TaskHistoryViewController ()
+
+@property(strong, nonatomic)id taskRecordObserver;
+@property(strong, nonatomic)NSMutableArray* taskRecords;
 
 @end
 
 @implementation TaskHistoryViewController
+
+- (NSMutableArray*)taskRecords
+{
+    if (!_taskRecords) {
+        _taskRecords = [NSMutableArray array];
+    }
+    return _taskRecords;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.taskRecordObserver];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue* mainQueue = [NSOperationQueue mainQueue];
+    
+    self.taskRecordObserver = [center addObserverForName:NSUserTaskRecordNotification object:nil queue:mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        
+        NSDictionary* dict = note.userInfo;
+        
+        NSArray* arr = dict[@"getMoneyDetailList"];
+        
+        if (self.taskRecords.count > 0) {
+            [_taskRecords removeAllObjects];
+        }
+        
+        for (NSInteger i = 0; i < arr.count; ++i) {
+            //            NSDictionary* dic1 = arr[i];
+            //
+            //            TiXianListCellModel* model = [[TiXianListCellModel alloc]init];
+            //            model.tiAccount = dic1[@"zhiFuBaoZhangHao"];
+            //            model.tiPrice = [NSString stringWithFormat:@"%@元",dic1[@"money"]];
+            //
+            //            NSDate* confromTimeSp = [NSDate dateWithTimeIntervalSince1970:[dic1[@"createDate"]longValue] / 1000];
+            //            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            //            [formatter setDateFormat:@"MM-dd HH:mm:ss"];
+            //            NSString* selectedStr = [formatter stringFromDate:confromTimeSp];
+            //
+            //            model.tiTime = selectedStr;
+            //            int cheng = [dic1[@"isZhuanZhang"] intValue];
+            //            if (cheng == 0) {
+            //                model.tiState = @"未转账";
+            //            }else
+            //            {
+            //                model.tiState = @"已转账";
+            //            }
+            //
+            //            [self.records addObject:model];
+        }
+        
+        [self.tableView reloadData];
+        
+        [self.tableView.header endRefreshing];
+        
+        [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +101,26 @@
     UIView* tableHeader = [self createTableHeader];
     self.tableView.tableHeaderView = tableHeader;
     
+    if (!NO_NETWORK) {
+        [self setupRefresh];
+    }
+    
+}
+
+- (void)setupRefresh
+{
+    // 下拉刷新
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        //进行登录操作
+        
+        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
+        
+        LoginManager* manager = [LoginManager getInstance];
+        
+        [manager requestTaskRecord];
+    }];
+    
+    [self.tableView.header beginRefreshing];
 }
 
 - (UIView*)createTableHeader
@@ -66,26 +152,25 @@
     l1.text = @"任务类型";
     l1.textAlignment = NSTextAlignmentCenter;
     l1.textColor = [UIColor blackColor];
+//    l1.font = [UIFont systemFontOfSize:15];
     [view addSubview:l1];
     [l1 setCenter:CGPointMake(74.0/320 * SCREEN_WIDTH, view.center.y)];
     
     UILabel* l2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 18)];
     l2.text = @"完成时间";
     l2.textAlignment = NSTextAlignmentCenter;
+//    l2.font = [UIFont systemFontOfSize:15];
     [view addSubview:l2];
     [l2 setCenter:CGPointMake(186.0/320 * SCREEN_WIDTH, view.center.y)];
     
     UILabel* l3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 18)];
     l3.text = @"收入";
     l3.textAlignment = NSTextAlignmentCenter;
+//    l3.font = [UIFont systemFontOfSize:15];
     [view addSubview:l3];
     [l3 setCenter:CGPointMake(274.0/320 * SCREEN_WIDTH, view.center.y)];
    
     return view;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - UITableViewDelegate

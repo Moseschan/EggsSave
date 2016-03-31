@@ -10,14 +10,9 @@
 #import "Masonry.h"
 #import "RechargeViewController.h"
 #import "CommonDefine.h"
-#import "LoginManager.h"
-#import "MJRefresh.h"
-#import "UIWindow+YzdHUD.h"
-#import "DataManager.h"
+#import "User.h"
 
 @interface GetCashViewController ()
-
-@property (strong, nonatomic) id priceSetObserver;
 
 @end
 
@@ -28,32 +23,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
-    self.priceSetObserver = [center addObserverForName:NSUserGetMyMoneyNotification object:nil
-                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
-                                                     
-                                                     NSDictionary* dict = note.userInfo;
-                                                     
-                                                     float price = [dict[@"price"] floatValue];
-                                                     
-                                                     _priceLabel.text = [NSString stringWithFormat:@"%.2f", price];
-                                                     
-                                                     [self.tableView.header endRefreshing];
-                                                     
-                                                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
-                                                     
-                                                     self.tableView.header = nil;
-                                                     
-                                                 }];
-    
-    _priceLabel.text = [NSString stringWithFormat:@"%.2f",[[DataManager getInstance] getMyMoney]] ;
-    
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self.priceSetObserver];
+    User* u = [User getInstance];
+    float price = u.money;
+    _priceLabel.text = [NSString stringWithFormat:@"%.2f",price] ;
 }
 
 - (void)viewDidLoad {
@@ -65,31 +37,9 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:242.f/255 green:242.f/255 blue:242.f/255 alpha:1];
     
-    if (!NO_NETWORK) {
-        [self setupRefresh];
-    }
-}
-
-- (void)setupRefresh
-{
-    // 下拉刷新
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        //进行登录操作
-        
-        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
-        
-        [[LoginManager getInstance] requestPricessSet];
-    }];
-    
-    [self.tableView.header beginRefreshing];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
@@ -130,6 +80,9 @@
         bLa.textColor = [UIColor redColor];
         [cell.contentView addSubview:bLa];
         _priceLabel = bLa;
+        User* u = [User getInstance];
+        float price = u.money;
+        _priceLabel.text = [NSString stringWithFormat:@"%.2f",price] ;
         [bLa mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(bbLb);
             make.left.equalTo(bbLb.mas_right).with.offset(8);
@@ -164,19 +117,10 @@
     }else if (1 == indexPath.section)
     {
         if (0 == indexPath.row) {
-//            UILabel* bbLb = [[UILabel alloc]init];
-//            bbLb.text = @"支付宝提现";
-//            [cell.contentView addSubview:bbLb];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
             cell.imageView.image = [UIImage imageNamed:@"zhi_icon"];
             cell.textLabel.text = @"支付宝提现";
-            
-//            [bbLb mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.centerY.mas_equalTo(cell.contentView);
-//                make.left.mas_equalTo(cell.contentView).with.offset(10);
-//            }];
             
             UIView* thLine = [[UIView alloc]init];
             [thLine setBackgroundColor:[UIColor colorWithRed:185.f/255.f green:185.f/255.f blue:185.f/255.f alpha:0.6]];

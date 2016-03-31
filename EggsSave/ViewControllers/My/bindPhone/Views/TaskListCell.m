@@ -10,6 +10,11 @@
 #import "CommonDefine.h"
 
 @implementation TaskListCell
+{
+    UILabel* _taskTypeLabel;
+    UILabel* _finishTimeLabel;
+    UILabel* _incomeLabel;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,6 +25,15 @@
     }
     
     return self;
+}
+
+- (void)setModel:(TaskListCellModel *)model
+{
+    _model = model;
+    
+    _taskTypeLabel.text = model.taskType;
+    _finishTimeLabel.text = model.finishTime;
+    _incomeLabel.text = model.income;
 }
 
 - (void)setup
@@ -47,22 +61,31 @@
 //    l1.font = [UIFont systemFontOfSize:15];
     l1.textAlignment = NSTextAlignmentCenter;
     l1.textColor = [UIColor blackColor];
+    l1.font = [UIFont systemFontOfSize:15];
+    l1.textColor = [UIColor lightGrayColor];
     [view addSubview:l1];
     [l1 setCenter:CGPointMake(74.0/320 * SCREEN_WIDTH, view.center.y)];
+    _taskTypeLabel = l1;
     
     UILabel* l2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 75/320.f*SCREEN_WIDTH, 18)];
     l2.text = @"03-04 11:08";
     l2.adjustsFontSizeToFitWidth = YES;
     l2.textAlignment = NSTextAlignmentCenter;
+    l2.font = [UIFont systemFontOfSize:15];
+    l2.textColor = [UIColor lightGrayColor];
     [view addSubview:l2];
     [l2 setCenter:CGPointMake(186.0/320 * SCREEN_WIDTH, view.center.y)];
+    _finishTimeLabel = l2;
     
     UILabel* l3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 95/320.f*SCREEN_WIDTH, 18)];
     l3.text = @"0.04元";
     l2.adjustsFontSizeToFitWidth = YES;
     l3.textAlignment = NSTextAlignmentCenter;
+    l3.font = [UIFont systemFontOfSize:15];
+    l3.textColor = [UIColor lightGrayColor];
     [view addSubview:l3];
     [l3 setCenter:CGPointMake(274.0/320 * SCREEN_WIDTH, view.center.y)];
+    _incomeLabel = l3;
     
     [self.contentView addSubview:view];
 }
