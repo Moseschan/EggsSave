@@ -66,7 +66,7 @@
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务抢到了，请尽快完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQx-Ui-H3G">
                         <rect key="frame" x="4" y="85" width="311" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="311" id="4br-cJ-Pgk"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="311" id="4br-cJ-Pgk"/>
                             <constraint firstAttribute="height" constant="45" id="m7y-rV-T9s"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>

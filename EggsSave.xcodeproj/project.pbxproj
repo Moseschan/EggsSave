@@ -67,6 +67,7 @@
 		B9A18F0A1C2A6FAE002C9248 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A18EF51C2A6FAE002C9248 /* UIView+MJExtension.m */; };
 		B9A3A6961C280DCC00AA219C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A3A6951C280DCC00AA219C /* Login.storyboard */; };
 		B9A3A6991C2810B500AA219C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A3A6981C2810B500AA219C /* LoginViewController.m */; };
+		B9A50A081CB659B800FBE1DB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A50A071CB659B800FBE1DB /* MobileCoreServices.framework */; };
 		B9A9B5511C88377300181C87 /* FTDHeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5501C88377300181C87 /* FTDHeadModel.m */; };
 		B9A9B5541C8846D500181C87 /* FTDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5531C8846D500181C87 /* FTDetailCell.m */; };
 		B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A9B5571C8985D800181C87 /* EggsHome.storyboard */; };
@@ -122,6 +123,11 @@
 		B9EEA8571C8988F800C3B7B5 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA8561C8988F800C3B7B5 /* HomeModel.m */; };
 		B9EEA85A1C8AC8C200C3B7B5 /* TodayAttendanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA8591C8AC8C200C3B7B5 /* TodayAttendanceCell.m */; };
 		B9EEA85D1C8AE88500C3B7B5 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EEA85C1C8AE88500C3B7B5 /* HomeCell.m */; };
+		B9EF12721CB378D80089C860 /* ELLIOKitDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EF126F1CB378D80089C860 /* ELLIOKitDumper.m */; };
+		B9EF12731CB378D80089C860 /* ELLIOKitNodeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EF12711CB378D80089C860 /* ELLIOKitNodeInfo.m */; };
+		B9EF12791CB37A950089C860 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9EF12781CB37A950089C860 /* IOKit.framework */; };
+		B9EF12811CB38B8C0089C860 /* TimeHeart.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EF12801CB38B8C0089C860 /* TimeHeart.m */; };
+		B9EF12841CB391E10089C860 /* ProcessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EF12831CB391E10089C860 /* ProcessManager.m */; };
 		B9F395011CA158F3001ABF94 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F395001CA158F3001ABF94 /* GroupCell.m */; };
 		B9F395041CA23649001ABF94 /* QuestionGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F395031CA23649001ABF94 /* QuestionGroup.m */; };
 		B9F3950A1CA236CB001ABF94 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F395091CA236CB001ABF94 /* Answer.m */; };
@@ -262,6 +268,7 @@
 		B9A3A6951C280DCC00AA219C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		B9A3A6971C2810B500AA219C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B9A3A6981C2810B500AA219C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B9A50A071CB659B800FBE1DB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B9A9B54F1C88377300181C87 /* FTDHeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDHeadModel.h; sourceTree = "<group>"; };
 		B9A9B5501C88377300181C87 /* FTDHeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDHeadModel.m; sourceTree = "<group>"; };
 		B9A9B5521C8846D500181C87 /* FTDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDetailCell.h; sourceTree = "<group>"; };
@@ -372,6 +379,16 @@
 		B9EEA8591C8AC8C200C3B7B5 /* TodayAttendanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayAttendanceCell.m; sourceTree = "<group>"; };
 		B9EEA85B1C8AE88500C3B7B5 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		B9EEA85C1C8AE88500C3B7B5 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
+		B9EF126E1CB378D80089C860 /* ELLIOKitDumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLIOKitDumper.h; sourceTree = "<group>"; };
+		B9EF126F1CB378D80089C860 /* ELLIOKitDumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLIOKitDumper.m; sourceTree = "<group>"; };
+		B9EF12701CB378D80089C860 /* ELLIOKitNodeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELLIOKitNodeInfo.h; sourceTree = "<group>"; };
+		B9EF12711CB378D80089C860 /* ELLIOKitNodeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELLIOKitNodeInfo.m; sourceTree = "<group>"; };
+		B9EF12781CB37A950089C860 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = ../iPhoneOS.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		B9EF127F1CB38B8C0089C860 /* TimeHeart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHeart.h; sourceTree = "<group>"; };
+		B9EF12801CB38B8C0089C860 /* TimeHeart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeHeart.m; sourceTree = "<group>"; };
+		B9EF12821CB391E10089C860 /* ProcessManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessManager.h; sourceTree = "<group>"; };
+		B9EF12831CB391E10089C860 /* ProcessManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessManager.m; sourceTree = "<group>"; };
+		B9EF12891CB4C3F60089C860 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		B9F394FF1CA158F3001ABF94 /* GroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
 		B9F395001CA158F3001ABF94 /* GroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		B9F395021CA23649001ABF94 /* QuestionGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionGroup.h; sourceTree = "<group>"; };
@@ -389,11 +406,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A50A081CB659B800FBE1DB /* MobileCoreServices.framework in Frameworks */,
 				B9D320191C3BD0570051AC25 /* CoreMedia.framework in Frameworks */,
 				B9D320171C3BCDCF0051AC25 /* CoreGraphics.framework in Frameworks */,
 				B9D320151C3BCDAF0051AC25 /* AVFoundation.framework in Frameworks */,
 				B9D320131C3BCD0E0051AC25 /* libiconv.tbd in Frameworks */,
 				B9D320041C3BC85F0051AC25 /* libzbar.a in Frameworks */,
+				B9EF12791CB37A950089C860 /* IOKit.framework in Frameworks */,
 				12654ED84499F8B7F0AB5F88 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +541,7 @@
 		B99049151C17FB0A00DE369D /* EggsSave */ = {
 			isa = PBXGroup;
 			children = (
+				B9EF126D1CB378B90089C860 /* IOKitBrowser */,
 				B9A18EC31C2A6FAE002C9248 /* TheThirdEffect */,
 				B9A18E711C2A4863002C9248 /* Hash */,
 				B9A18E671C294730002C9248 /* Modals */,
@@ -581,6 +601,10 @@
 				B90042731C2C01870017D263 /* LoginManager.m */,
 				B905376E1C8EDB4700553E64 /* DataManager.h */,
 				B905376F1C8EDB4700553E64 /* DataManager.m */,
+				B9EF127F1CB38B8C0089C860 /* TimeHeart.h */,
+				B9EF12801CB38B8C0089C860 /* TimeHeart.m */,
+				B9EF12821CB391E10089C860 /* ProcessManager.h */,
+				B9EF12831CB391E10089C860 /* ProcessManager.m */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -1068,9 +1092,23 @@
 			path = ShareTask;
 			sourceTree = "<group>";
 		};
+		B9EF126D1CB378B90089C860 /* IOKitBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				B9EF126E1CB378D80089C860 /* ELLIOKitDumper.h */,
+				B9EF126F1CB378D80089C860 /* ELLIOKitDumper.m */,
+				B9EF12701CB378D80089C860 /* ELLIOKitNodeInfo.h */,
+				B9EF12711CB378D80089C860 /* ELLIOKitNodeInfo.m */,
+			);
+			path = IOKitBrowser;
+			sourceTree = "<group>";
+		};
 		F581F1F18D3F669034C13230 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9A50A071CB659B800FBE1DB /* MobileCoreServices.framework */,
+				B9EF12891CB4C3F60089C860 /* libicucore.tbd */,
+				B9EF12781CB37A950089C860 /* IOKit.framework */,
 				B9D320181C3BD0570051AC25 /* CoreMedia.framework */,
 				B9D320161C3BCDCF0051AC25 /* CoreGraphics.framework */,
 				B9D320141C3BCDAF0051AC25 /* AVFoundation.framework */,
@@ -1150,6 +1188,11 @@
 				TargetAttributes = {
 					B99049121C17FB0A00DE369D = {
 						CreatedOnToolsVersion = 7.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					B990492B1C17FB0B00DE369D = {
 						CreatedOnToolsVersion = 7.1;
@@ -1289,12 +1332,14 @@
 				B9755B811C5877D700F8B05F /* CommonMethods.m in Sources */,
 				B92A2FEA1C35160400FB1E08 /* MyTableViewHeader.m in Sources */,
 				B9850CF51C3E396A0013454B /* CHPViewController.m in Sources */,
+				B9EF12811CB38B8C0089C860 /* TimeHeart.m in Sources */,
 				B9A18F081C2A6FAE002C9248 /* UIScrollView+MJExtension.m in Sources */,
 				B9A18F071C2A6FAE002C9248 /* MJRefreshConst.m in Sources */,
 				B9D31F9D1C3A7F6A0051AC25 /* PersonalMessageViewController.m in Sources */,
 				B9A18E7A1C2A489A002C9248 /* User.m in Sources */,
 				B9A18EFD1C2A6FAE002C9248 /* MJRefreshAutoGifFooter.m in Sources */,
 				B9A18F091C2A6FAE002C9248 /* UIScrollView+MJRefresh.m in Sources */,
+				B9EF12841CB391E10089C860 /* ProcessManager.m in Sources */,
 				B900426A1C2BF7970017D263 /* UIWindow+YzdHUD.m in Sources */,
 				B9A18EF91C2A6FAE002C9248 /* MJRefreshBackFooter.m in Sources */,
 				B9EEA85D1C8AE88500C3B7B5 /* HomeCell.m in Sources */,
@@ -1318,6 +1363,8 @@
 				B9F395111CA23D12001ABF94 /* SectionGroup.m in Sources */,
 				B90537671C8D29CE00553E64 /* ZDProgressView.m in Sources */,
 				B900426B1C2BF7970017D263 /* YzdHUDBackgroundView.m in Sources */,
+				B9EF12721CB378D80089C860 /* ELLIOKitDumper.m in Sources */,
+				B9EF12731CB378D80089C860 /* ELLIOKitNodeInfo.m in Sources */,
 				B99944CE1C72CA9B00A72605 /* ShiTuViewController.m in Sources */,
 				B9D31FF41C3BC85F0051AC25 /* QRCodeGenerator.m in Sources */,
 				B9BCB4EB1C9FC90900D50702 /* TiXianListCell.m in Sources */,
@@ -1511,6 +1558,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/EggsSave/PrefixHeader.pch";
 				INFOPLIST_FILE = EggsSave/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1543,6 +1594,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/EggsSave/PrefixHeader.pch";
 				INFOPLIST_FILE = EggsSave/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

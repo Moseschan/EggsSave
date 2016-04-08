@@ -26,4 +26,7 @@ typedef void(^SubmitTaskClicked)(void);
 - (void)setGetTaskSucceed;
 - (void)doTaskFailed;
 
+- (void)setGettedTaskWithTime:(NSUInteger)time;
+- (void)updateTimeWithLeftTime:(NSUInteger)time;
+
 @end

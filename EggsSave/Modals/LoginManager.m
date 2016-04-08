@@ -100,6 +100,8 @@
         }
         
         NSDictionary* dict = [self getDataFromEncryptData:data];
+        
+        DLog(@"dict = %@", dict);
                 
         [[NSNotificationCenter defaultCenter] postNotificationName:NSUserDidLoginedNotification object:nil userInfo:dict];
     }];
@@ -214,7 +216,10 @@
         
         if (result == -1) {
             DLog(@"审核任务失败");
-            [[NSNotificationCenter defaultCenter]postNotificationName:NSUserDoTaskFailedNotification object:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:NSUserDoTaskCompletedNotification object:nil];
+        }else if(result == 0)
+        {
+            DLog(@"做任务成功");
         }else
         {
             DLog(@"做任务失败");

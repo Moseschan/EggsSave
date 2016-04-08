@@ -65,6 +65,21 @@
     _taskisgetLabel.hidden = NO;
 }
 
+- (void)setGettedTaskWithTime:(NSUInteger)time
+{
+    _startTaskButton.hidden = YES;
+    
+    _taskisgetImageView.hidden = NO;
+    _taskisgetLabel.hidden = NO;
+    
+    _taskisgetLabel.text = [NSString stringWithFormat:@"任务抢到了，请在%lu分钟内完成任务", (unsigned long)time];
+}
+
+- (void)updateTimeWithLeftTime:(NSUInteger)time
+{
+    _taskisgetLabel.text = [NSString stringWithFormat:@"任务抢到了，请在%lu分钟内完成任务", (unsigned long)time];
+}
+
 - (void)doTaskFailed
 {
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"傻逼" message:@"请先去完成任务，好吧！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

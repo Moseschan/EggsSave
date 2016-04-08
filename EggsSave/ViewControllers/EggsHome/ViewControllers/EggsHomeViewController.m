@@ -37,7 +37,7 @@ NSString* const NSUserSignUpNotification           = @"NSUserSignUpNotification"
 NSString* const NSUserSignUpFailedNotification     = @"NSUserSignUpFailedNotification";
 NSString* const NSUserLoginFailedNotification      = @"NSUserLoginFailedNotification";
 NSString* const NSUserGetTaskSucceedNotification   = @"NSUserGetTaskSucceedNotification";  //接任务成功
-NSString* const NSUserDoTaskFailedNotification     = @"NSUserDoTaskFailedNotification";  //审核任务失败
+NSString* const NSUserDoTaskCompletedNotification  = @"NSUserDoTaskCompletedNotification";  //审核任务成功与否
 NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
 NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
 NSString* const NSUserGetDetailInfoNotification    = @"NSUserGetDetailInfoNotification"; //获取用户详细信息
@@ -289,7 +289,7 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
         }
     }
     
-    DLog(@"section.row = %ld", indexPath.row);
+    DLog(@"section.row = %ld", (long)indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
