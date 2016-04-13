@@ -45,34 +45,27 @@
         
         NSDictionary* dict = note.userInfo;
         
-        NSArray* arr = dict[@"getMoneyDetailList"];
+        NSArray* arr = dict[@"userSuccessTaskReturnList"];
         
         if (self.taskRecords.count > 0) {
             [_taskRecords removeAllObjects];
         }
         
         for (NSInteger i = 0; i < arr.count; ++i) {
-            //            NSDictionary* dic1 = arr[i];
-            //
-            //            TiXianListCellModel* model = [[TiXianListCellModel alloc]init];
-            //            model.tiAccount = dic1[@"zhiFuBaoZhangHao"];
-            //            model.tiPrice = [NSString stringWithFormat:@"%@元",dic1[@"money"]];
-            //
-            //            NSDate* confromTimeSp = [NSDate dateWithTimeIntervalSince1970:[dic1[@"createDate"]longValue] / 1000];
-            //            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            //            [formatter setDateFormat:@"MM-dd HH:mm:ss"];
-            //            NSString* selectedStr = [formatter stringFromDate:confromTimeSp];
-            //
-            //            model.tiTime = selectedStr;
-            //            int cheng = [dic1[@"isZhuanZhang"] intValue];
-            //            if (cheng == 0) {
-            //                model.tiState = @"未转账";
-            //            }else
-            //            {
-            //                model.tiState = @"已转账";
-            //            }
-            //
-            //            [self.records addObject:model];
+            NSDictionary* dic1 = arr[i];
+
+            TaskListCellModel* model = [[TaskListCellModel alloc]init];
+            model.taskName = dic1[@"taskName"];
+            model.income = [NSString stringWithFormat:@"%.2f元",[dic1[@"price"] intValue] / 100.f];
+
+            NSDate* confromTimeSp = [NSDate dateWithTimeIntervalSince1970:[dic1[@"createDate"]longValue] / 1000];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MM-dd HH:mm"];
+            NSString* selectedStr = [formatter stringFromDate:confromTimeSp];
+
+            model.finishTime = selectedStr;
+
+            [self.taskRecords addObject:model];
         }
         
         [self.tableView reloadData];
@@ -149,7 +142,7 @@
     [hLine2 setFrame:CGRectMake(0, view.frame.size.height - 1, view.frame.size.width, 1)];
     
     UILabel* l1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 18)];
-    l1.text = @"任务类型";
+    l1.text = @"任务名";
     l1.textAlignment = NSTextAlignmentCenter;
     l1.textColor = [UIColor blackColor];
 //    l1.font = [UIFont systemFontOfSize:15];
@@ -182,7 +175,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.taskRecords.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -195,6 +188,8 @@
         cell = [[TaskListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reusedCellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    cell.model = self.taskRecords[indexPath.row];
     
     return cell;
 }

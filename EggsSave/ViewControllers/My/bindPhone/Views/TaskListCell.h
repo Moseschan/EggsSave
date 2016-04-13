@@ -10,7 +10,7 @@
 
 @interface TaskListCellModel : NSObject
 
-@property (copy, nonatomic)NSString* taskType;
+@property (copy, nonatomic)NSString* taskName;
 @property (copy, nonatomic)NSString* finishTime;
 @property (copy, nonatomic)NSString* income;
 

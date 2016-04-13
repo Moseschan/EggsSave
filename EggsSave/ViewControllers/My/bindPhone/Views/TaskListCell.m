@@ -9,6 +9,11 @@
 #import "TaskListCell.h"
 #import "CommonDefine.h"
 
+@implementation TaskListCellModel
+
+
+@end
+
 @implementation TaskListCell
 {
     UILabel* _taskTypeLabel;
@@ -31,7 +36,7 @@
 {
     _model = model;
     
-    _taskTypeLabel.text = model.taskType;
+    _taskTypeLabel.text = model.taskName;
     _finishTimeLabel.text = model.finishTime;
     _incomeLabel.text = model.income;
 }
