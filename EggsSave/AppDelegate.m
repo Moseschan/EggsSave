@@ -13,6 +13,7 @@
 #import "UIWindow+YzdHUD.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AudioManager.h"
+#import "User.h"
 
 @interface AppDelegate ()
 {
@@ -34,6 +35,9 @@
     
 //    [KeychainIDFA deleteUSERID];
     NSString* userId = [KeychainIDFA getUserId];
+    
+    User* u = [User getInstance];
+    u.userID = userId;
     
     if (!userId) {
         [self showLoginScreen:NO];

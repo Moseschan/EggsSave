@@ -136,6 +136,12 @@
                                                            }
                                                            
                                                        }];
+    
+    if (_ftdintroCell) {
+        if (self.mTask.pState == 1) {
+            _ftdintroCell.taskisgetLabel.text = @"任务已完成";    //此时可以提交了
+        }
+    }
 }
 
 - (void)checkRunningProcess
@@ -173,6 +179,7 @@
         //此时，需要记录下已经完成的任务
         [[NSUserDefaults standardUserDefaults] setObject:self.mTask.pId forKey:FINISHED_TASK_ID_KEY];
         
+#warning mark -  在后台貌似不能改变UI
         _ftdintroCell.taskisgetLabel.text = @"任务已完成";
         //将此任务标记为已抢到，完成任务
         self.mTask.pState = 1;
@@ -307,6 +314,7 @@
             
             //领取了任务但是未完成
             if (self.mTask.pState == 0) {
+                [_ftdintroCell setGetTaskSucceed];
                 [self getTaskRunTime];
             }
         }else

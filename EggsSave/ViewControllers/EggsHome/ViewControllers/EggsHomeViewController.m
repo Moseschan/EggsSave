@@ -263,7 +263,7 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
         LoginManager* manager = [LoginManager getInstance];
         
         [manager login];
-        
+#warning mark  -  此处请求应该有问题，稍后得祥看
         [manager requestUserDetailMessages];
         
         [manager requestSigninState];  //请求签到状态

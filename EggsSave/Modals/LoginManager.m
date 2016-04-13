@@ -87,7 +87,9 @@
     if (NO_NETWORK) {
         return;
     }
-    NSString* usid = [KeychainIDFA getUserId];    
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
+        
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -164,8 +166,8 @@
     if (NO_NETWORK) {
         return;
     }
-    
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSString* taid = taskId;
     NSDictionary *t1 = @{@"userId":usid,@"taskId":taid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\"}",@"taskId",taid,@"userId",usid];
@@ -189,7 +191,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSString* taid = taskId;
     NSDictionary *t1 = @{@"userId":usid,@"taskId":taid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\"}",@"taskId",taid,@"userId",usid];
@@ -237,7 +240,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -263,7 +267,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSString* phone = phoneNum;
     NSDictionary *t1 = @{@"userId":usid,@"phone":phone,@"osVersion":osver,@"password":pass,@"ip":ip,@"cityName":city} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"cityName",city,@"ip",ip,@"osVersion",osver,@"password",pass,@"phone",phone,@"userId",usid];
@@ -296,7 +301,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid,@"newpassword":newPass,@"oldpassword":oldPass} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"newpassword",newPass,@"oldpassword",oldPass,@"userId",usid];
     
@@ -329,7 +335,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -357,7 +364,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -403,7 +411,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -427,7 +436,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid,@"zhiFuBaoZhangHao":zhiAccount,@"zhiFuName":name,@"price":price} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"price",price,@"userId",usid,@"zhiFuBaoZhangHao",zhiAccount,@"zhiFuName",name];
     
@@ -450,7 +460,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid,@"osVersion":osVersion,@"ipAddress":ip,@"cityName":city,@"userName":nick,@"sex":sex,@"birthDay":birth,@"career":work} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"birthDay",birth,@"career",work,@"cityName",city,@"ipAddress",ip,@"osVersion",osVersion,@"sex",sex,@"userId",usid,@"userName",nick];
     
@@ -472,7 +483,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -490,7 +502,6 @@
         NSDictionary* responseDict = dict[@"response"];
         u.todayPrice = [responseDict[@"todayPrice"] floatValue];
         NSDictionary* userInfo = responseDict[@"userInfo"];
-        u.userID        = userInfo[@"userId"];
         u.userIDFA      = userInfo[@"idfa"];
         u.birthDay      = userInfo[@"birthDay"];
         u.carrier       = userInfo[@"carrier"];
@@ -510,7 +521,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid,@"feedBackQuestion":questions} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\"}",@"feedBackQuestion",questions,@"userId",usid];
     
@@ -533,7 +545,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -560,7 +573,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\"}",@"userId",usid];
     
@@ -586,7 +600,8 @@
         return;
     }
     
-    NSString* usid = [KeychainIDFA getUserId];
+    User* user = [User getInstance];
+    NSString* usid = user.userID;
     NSDictionary *t1 = @{@"userId":usid,@"taskId":taskid,@"successState":@"0"} ;
     NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"successState",@"0",@"taskId",taskid,@"userId",usid];
     

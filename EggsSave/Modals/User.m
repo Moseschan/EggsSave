@@ -17,6 +17,7 @@
     static dispatch_once_t once_token;
     dispatch_once(&once_token, ^{
         sharedUser = [[User alloc]init];
+        sharedUser.userID = nil;
         sharedUser.money = 0;
         sharedUser.todayPrice = 0;
         sharedUser.studentsPrice = 0.0f;
