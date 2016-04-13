@@ -53,6 +53,7 @@
         
         //数据
         self.fastTasks = [[TasksManager getInstance]getTasks] ;
+        
         if (!NO_NETWORK) {
             [self setupRefresh];
         }
@@ -97,6 +98,9 @@
 
 - (void)refreshData
 {
+    //数据
+    self.fastTasks = [[TasksManager getInstance]getTasks] ;
+    
     [self.tableView reloadData];
     
     [self.tableView.header endRefreshing];
@@ -138,9 +142,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.ftdCellSelected) {
-        self.ftdCellSelected(indexPath.row);
+    
+    //判断留存任务，还是下载试玩任务
+    Task* task =  [[TasksManager getInstance] getTasks][indexPath.row];
+    
+    if (task.pTaskType == 1) {
+        //下载任务
+        if (self.ftdCellSelected) {
+            self.ftdCellSelected(indexPath.row);
+        }
+    }else
+    {
+        //留存
+        NSURL* url = [NSURL URLWithString:task.pUrlScheme] ;
+        
+        [[UIApplication sharedApplication]openURL:url];
     }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

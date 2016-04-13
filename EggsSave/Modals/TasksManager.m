@@ -8,6 +8,7 @@
 
 #import "TasksManager.h"
 #import "Task.h"
+#import "ProcessManager.h"
 
 @interface TasksManager()
 
@@ -85,6 +86,14 @@
         
     NSMutableArray* taskarray = [[NSMutableArray alloc]initWithCapacity:[putArr count]];
     
+    //此处需要扫描手机已经安装的应用，如果已经安装，就不再显示
+    NSArray* installedAppBundles = [[ProcessManager getInstance] getAllAppsInstalled];
+    
+    NSArray* appWhiteList = [[ProcessManager getInstance]getWhiteList];
+    DLog(@"installedAppBundles = %@", installedAppBundles);
+    
+    DLog(@"appWhiteList = %@", appWhiteList);
+    
     for (int i=0; i<[putArr count]; i++) {
         NSDictionary* tempDict = putArr[i];
         
@@ -103,19 +112,42 @@
         float     t_bonus = [tempDict[@"prizeMoney"] floatValue];
         NSArray *t_returnDetailArray = tempDict[@"returnDetailArray"];
         NSUInteger t_taskLimit = [tempDict[@"taskLimit"] integerValue];
-        NSUInteger t_shiwantime = [self getTimeFromDetailString:t_detailexplain] ;
-        NSString*  t_urlscheme = tempDict[@"isXiaZaiUrl"];
+//        NSUInteger t_shiwantime = [self getTimeFromDetailString:t_detailexplain] ;
+        NSUInteger t_shiwantime = [tempDict[@"demoGameMinute"] integerValue] ;
+        NSLog(@"shiwanTime = %lu", t_shiwantime);
+        NSString*  t_bundleId = tempDict[@"isXiaZaiUrl"];
         NSString*  t_processNum = tempDict[@"progressNum"];
+        NSUInteger t_taskType  = [tempDict[@"taskStyle"]integerValue];
         
-        Task* t = TaskMake([NSString stringWithFormat:@"%ld",t_id], t_title, t_subtitle, t_starturl, t_endurl, t_notifyurl, t_iconurl, t_detailexplain, t_fastplain, t_taskkeyword, t_packageSize, t_state, t_bonus, t_returnDetailArray, t_taskLimit, t_shiwantime, t_processNum, t_urlscheme);
+        Task* t = TaskMake([NSString stringWithFormat:@"%ld",t_id], t_title, t_subtitle, t_starturl, t_endurl, t_notifyurl, t_iconurl, t_detailexplain, t_fastplain, t_taskkeyword, t_packageSize, t_state, t_bonus, t_returnDetailArray, t_taskLimit, t_shiwantime, t_processNum, t_bundleId, t_taskType);
         
-        [taskarray addObject:t];
+        BOOL isExist = NO;
+        for (NSUInteger j = 0; j<installedAppBundles.count; ++j) {
+            if ([installedAppBundles[j] isEqualToString:t.pBundleIdentify]) {
+                
+                //手机已安装
+                isExist = YES;
+                
+                //判断是否在白名单里边
+                for (NSUInteger k = 0; k < appWhiteList.count; ++k) {
+                    if ([appWhiteList[k] isEqualToString:t.pBundleIdentify]) {
+                        isExist = NO;
+                    }
+                }
+            }
+        }
+        if (!isExist) {
+            [taskarray addObject:t];
+        }
+    }
+    
+    if (self.mTasks.count > 0) {
+        self.mTasks  = nil;
     }
     
     self.mTasks = taskarray;
     
     DLog(@"self.mTasks = %@", self.mTasks);
-    
 }
 
 @end

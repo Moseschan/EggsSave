@@ -12,10 +12,10 @@
 
 @property(copy, nonatomic)NSString*   userID;
 @property(copy, nonatomic)NSString*   userIDFA;
-@property(assign, nonatomic)float     todayPrice;   //今日收入
+@property(assign, nonatomic)int       todayPrice;   //今日收入   （单位：分）
 @property(copy, nonatomic)NSString*   birthDay;     //生日
 @property(copy, nonatomic)NSString*   carrier;      //职业
-@property(assign, nonatomic)float     money;        //余额
+@property(assign, nonatomic)int       money;        //余额       （单位：分）
 @property(copy, nonatomic)NSString*   sex;          //性别
 @property(copy, nonatomic)NSString*   nickName;     //昵称
 @property(assign, nonatomic)float     studentsPrice;//徒弟收入

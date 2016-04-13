@@ -15,7 +15,7 @@ typedef void(^SubmitTaskClicked)(void);
 
 @property(nonatomic, copy)DoTaskDidClicked doTaskDidClicked;
 @property(nonatomic, copy)SubmitTaskClicked submitTaskClicked;
-@property (weak, nonatomic) IBOutlet UITextView *taskKeyWord;
+@property (weak, nonatomic) IBOutlet UILabel *taskKeyWord;
 @property (weak, nonatomic) IBOutlet UILabel *taskisgetLabel;
 
 - (IBAction)startTask:(id)sender;

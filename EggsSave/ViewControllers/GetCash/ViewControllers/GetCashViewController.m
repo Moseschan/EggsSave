@@ -25,7 +25,7 @@
 {
     User* u = [User getInstance];
     float price = u.money;
-    _priceLabel.text = [NSString stringWithFormat:@"%.2f",price] ;
+    _priceLabel.text = [NSString stringWithFormat:@"%.2f",price / 100.f] ;
 }
 
 - (void)viewDidLoad {
@@ -82,7 +82,7 @@
         _priceLabel = bLa;
         User* u = [User getInstance];
         float price = u.money;
-        _priceLabel.text = [NSString stringWithFormat:@"%.2f",price] ;
+        _priceLabel.text = [NSString stringWithFormat:@"%.2f",price/100.f] ;
         [bLa mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(bbLb);
             make.left.equalTo(bbLb.mas_right).with.offset(8);

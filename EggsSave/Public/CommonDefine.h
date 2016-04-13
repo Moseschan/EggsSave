@@ -18,6 +18,9 @@
 
 #define DOMAIN_URL @"123.57.85.254:8080"
 
+//已完成的任务的ID
+#define FINISHED_TASK_ID_KEY   @"finishtaskidkey"
+
 /**
  * 随机色
  */

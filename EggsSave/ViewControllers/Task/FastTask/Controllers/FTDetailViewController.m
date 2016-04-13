@@ -18,6 +18,7 @@
 #import "TimeHeart.h"
 #import "ProcessManager.h"
 #import "TasksManager.h"
+#import "User.h"
 
 #define PROCESS_REFRESH_TIME 15
 
@@ -66,16 +67,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //先移除剪贴板的值
-    [[UIPasteboard generalPasteboard] setString:@""];
-    
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
     self.getTaskSucceedObserver = [center addObserverForName:NSUserGetTaskSucceedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
-                                                    
-                                                    //将此任务标记为已抢到，未完成任务
-                                                    self.mTask.pState = 0;
                                                     
                                                     NSDictionary* dict = note.userInfo;
                                                     NSDictionary* responseDict = dict[@"response"];
@@ -83,78 +78,104 @@
                                                     NSString* message = responseDict[@"message"];
                                                     
                                                     if (result == 0) {
-                                                        DLog(@"接受任务成功");
+                                                        //将此任务标记为已抢到，未完成任务
+                                                        self.mTask.pState = 0;
+                                                        
+                                                        //改变按钮状态，（此时为显示任务已经领取，不能点击状态）
                                                         [_ftdintroCell setGetTaskSucceed];
+                                                        
+                                                        //将此任务app加入到白名单
+                                                        [[ProcessManager getInstance] writeToWhiteList:self.mTask.pBundleIdentify];
+                                                        
+                                                        //在这里开一定时器进行计时(判定在时间限制内是否完成了任务)
+                                                        _timeLimitTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(getTaskRunTime) userInfo:nil repeats:YES];
+                                                        
+                                                        //标记有任务正在进行
+                                                        [TimeHeart getInstance].isRunning = YES;
+                                                        
+                                                        //监测做任务的情况
+                                                        _processTimer = [NSTimer scheduledTimerWithTimeInterval:PROCESS_REFRESH_TIME target:self selector:@selector(checkRunningProcess) userInfo:nil repeats:YES];
+                                                        [_processTimer fire];
+                                                        
+                                                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.mTask.pAppStoreURL]];
+                                                        
                                                     }else
                                                     {
-                                                        DLog(@"接受任务失败，失败原因 : %@", message);
+                                                        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"请注意" message:[NSString stringWithFormat:@"接收任务失败，失败原因 : %@", message] delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                                                        
+                                                        [alert show];
                                                     }
-                                                    
-                                                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                                                    NSString *str = [NSString stringWithFormat:
-                                                                     @"https://itunes.apple.com/WebObjects/MZStore.woa/wa/search?mt=8&submit=edit&term=%@#software",
-                                                                     [pasteboard.string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ];
-                                                    
-                                                    //在这里开一定时器进行计时
-                                                    _timeLimitTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(getTaskRunTime) userInfo:nil repeats:YES];
-                                                    [TimeHeart getInstance].isRunning = YES;
-                                                    
-                                                    //监测做任务的情况
-                                                    _processTimer = [NSTimer scheduledTimerWithTimeInterval:PROCESS_REFRESH_TIME target:self selector:@selector(checkRunningProcess) userInfo:nil repeats:YES];
-                                                    [_processTimer fire];
-                                                    
-                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-                                                    DLog(@"%@",pasteboard.string);
-                                                    //相应的接任务接口变化
-                                                    
+                                                   
                                                 }];
     
     self.doTaskSuccessFailedObserver = [center addObserverForName:NSUserDoTaskCompletedNotification object:nil
                                                        queue:mainQueue usingBlock:^(NSNotification *note) {
                                                            
-//                                                           NSDictionary* dict = note.userInfo;
+                                                           NSDictionary* dict = note.userInfo;
                                                            
-                                                           [_ftdintroCell doTaskFailed];
+                                                           int result = [dict[@"result"] intValue]; //0, 成功。1，失败
                                                            
-                                                           DLog(@"The user do task failed!");
-                                                           
-                                                           //相应的接任务接口变化
+                                                           if (result == 0) {
+                                                               //提交完成任务成功
+                                                               //服务器返回成功后，做下面操作
+                                                               int todayPrice = [dict[@"todayPrice"] intValue];  //今日收入 (单位分)
+                                                               int totalPrice = [dict[@"totalPrice"] intValue];  //总金额   (单位分)
+                                                               
+                                                               User* user = [User getInstance];
+                                                               user.todayPrice = todayPrice;
+                                                               user.money = totalPrice;
+                                                               
+                                                               [[NSUserDefaults standardUserDefaults] setObject:nil forKey:FINISHED_TASK_ID_KEY];
+                                                               
+                                                               _ftdintroCell.taskisgetLabel.text = @"任务已完成";
+                                                           }else
+                                                           {
+                                                               //提交完成任务失败
+                                                               [_ftdintroCell doTaskFailed];
+//                                                               NSString* message = dict[@"message"];
+                                                           }
                                                            
                                                        }];
 }
 
 - (void)checkRunningProcess
 {
+    //扫描手机内正在运行的进程
     [[ProcessManager getInstance] loadIOKit];
     
-    BOOL iscunzai = [[ProcessManager getInstance]processIsRunning:self.mTask.pProcessNum];  //discover要换成当前任务应用的进程号.
+    //判断任务进程是否开启，开启开始计时，否则不计时
+    BOOL iscunzai = [[ProcessManager getInstance]processIsRunning:self.mTask.pProcessNum];
     
     if (iscunzai) {
-        NSLog(@"应用正在运行");
-        [TimeHeart getInstance].isDownloading = YES;
+        DLog(@"应用正在运行");
+        [TimeHeart getInstance].isDownloaded = YES;
     }else
     {
-        NSLog(@"应用尚未运行");
-        [TimeHeart getInstance].isDownloading = NO;
+        DLog(@"应用未运行");
+        [TimeHeart getInstance].isDownloaded = NO;
     }
     
-    if ([TimeHeart getInstance].isDownloading) {
-        [TimeHeart getInstance].swTime += PROCESS_REFRESH_TIME ;
+    if ([TimeHeart getInstance].isDownloaded) {
+        [TimeHeart getInstance].swTime += PROCESS_REFRESH_TIME ;   //累计试玩时间
     }else
     {
-        [TimeHeart getInstance].swTime = 0;
+        [TimeHeart getInstance].swTime = 0;    //中途，如果退出了任务进程，则计时归零，重新来
     }
     
+    //判断试玩时间是否达到了任务要求的时间
     if ([TimeHeart getInstance].swTime >= self.mTask.pShiwanTime * 60) {
-        //任务完成 向服务器发送任务完成的请求
+        //任务完成 无需再进行监控
         [_timeLimitTimer invalidate];
         [_processTimer invalidate];
         
-        //请求
+        [TimeHeart getInstance].isRunning = NO;
+        [TimeHeart getInstance].time = 0;
+        //此时，需要记录下已经完成的任务
+        [[NSUserDefaults standardUserDefaults] setObject:self.mTask.pId forKey:FINISHED_TASK_ID_KEY];
+        
         _ftdintroCell.taskisgetLabel.text = @"任务已完成";
-//        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"恭喜您" message:@"此任务您已经完成" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
-//        
-//        [alert show];
+        //将此任务标记为已抢到，完成任务
+        self.mTask.pState = 1;
     }
 }
 
@@ -177,9 +198,9 @@
                 //判断任务完成与否
                 [_timeLimitTimer invalidate];
                 [_processTimer invalidate];
+                
                 [TimeHeart getInstance].isRunning = NO;
                 [TimeHeart getInstance].time = 0;
-                [TimeHeart getInstance].lastTime = 0;
             }
             
         }
@@ -284,6 +305,7 @@
         
         if ([TimeHeart getInstance].isRunning) {
             
+            //领取了任务但是未完成
             if (self.mTask.pState == 0) {
                 [self getTaskRunTime];
             }
@@ -311,29 +333,43 @@
             int appState = [weakSelf isTaskCanAccept:weakSelf.mTask];
             
             if (0 == appState) {
-                //没有进程正在运行，但是已经安装应用了
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"对不起" message:@"您不能做此任务，因为你已经安装过应用" delegate:weakSelf cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                //没有进程正在运行
+                [[LoginManager getInstance] doTaskWithTaskId:weakSelf.mTask.pId];
                 
-                [alert show];
-                
-                //此时我需要通知服务器，下次不能给这个用户返这个任务了
             }else if (1 == appState)
             {
                 //进程正在运行
                 UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"别着急" message:@"心急吃不了热豆腐，还是先去完成已抢到的其他任务吧!" delegate:weakSelf cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
                 
                 [alert show];
-            }else
-            {
-                //没有进程正在运行，并且未安装应用
-                [[LoginManager getInstance] doTaskWithTaskId:weakSelf.mTask.pId];
             }
             
         };
         
         _ftdintroCell.submitTaskClicked = ^(){
-            //提交审核任务接口
-            [[LoginManager getInstance] submitTaskWithTaskId:weakSelf.mTask.pId];
+            NSString* task_id = [[NSUserDefaults standardUserDefaults]objectForKey:FINISHED_TASK_ID_KEY];
+            if (![task_id isEqual:weakSelf.mTask.pId]) {
+                
+                //如果没有，首先应判断任务是否已经完成了
+                if (weakSelf.mTask.pState == 1) {
+                    //任务已经完成，并且提交过了
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"请注意" message:@"任务已经完成并且提交过了，请勿重复提交!" delegate:weakSelf cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                    
+                    [alert show];
+                }else
+                {
+                    //任务未完成，提示先完成任务
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"别着急" message:@"心急吃不了热豆腐，还是先去完成任务吧!" delegate:weakSelf cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                    
+                    [alert show];
+                }
+            }else
+            {
+                //请求 提交任务已经完成, 之后将已完成id置空
+                [[LoginManager getInstance]requestTaskFinishedWithTaskID:weakSelf.mTask.pId];
+                
+            }
+            
         };
         
         return cell;
@@ -357,19 +393,7 @@
         }
     }
     
-    if (bRet != 1) {
-
-        NSArray* arr = [[ProcessManager getInstance] getAllAppsInstalled];
-        bRet = 2 ;
-        NSString* bundleId = self.mTask.pUrlScheme;
-        for (NSUInteger j = 0; j < arr.count; ++j) {
-            if ([bundleId isEqual:arr[j]]) {
-                bRet = 0;
-            }
-        }
-    }
-    
-    return bRet;  //0，没有进程正在运行，但是已经安装应用了  1, 进程正在运行  2, 没有进程正在运行，并且未安装应用
+    return bRet;  //0，没有进程正在运行  1, 进程正在运行
 }
 
 @end

@@ -548,7 +548,7 @@
         
         NSDictionary *dict = [self getDataFromEncryptData:data];
         NSDictionary* responseDict = dict[@"response"];
-        NSLog(@"tixianRecord Dict = %@", dict);
+        DLog(@"tixianRecord Dict = %@", dict);
         
         [[NSNotificationCenter defaultCenter] postNotificationName:NSUserTiXianRecordNotification object:nil userInfo:responseDict];
     }];
@@ -575,9 +575,40 @@
         
         NSDictionary *dict = [self getDataFromEncryptData:data];
         NSDictionary* responseDict = dict[@"response"];
-        NSLog(@"tixianRecord Dict = %@", dict);
+        DLog(@"tixianRecord Dict = %@", dict);
         
         [[NSNotificationCenter defaultCenter] postNotificationName:NSUserTaskRecordNotification object:nil userInfo:responseDict];
+    }];
+}
+
+- (void)requestTaskFinishedWithTaskID:(NSString*)taskid
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+    NSString* usid = [KeychainIDFA getUserId];
+    NSDictionary *t1 = @{@"userId":usid,@"taskId":taskid,@"successState":@"0"} ;
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"successState",@"0",@"taskId",taskid,@"userId",usid];
+    
+    NSURLRequest* request = [self requestWithInterface:@"128" Data:t1 UncalData:uncal];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        if (!data) {
+            DLog(@"未获取到数据");
+            return ;
+        }
+        NSDictionary* dict = [self getDataFromEncryptData:data];
+        
+        NSLog(@"dict = %@", dict);
+        
+        NSDictionary* responseDict = dict[@"response"];
+        
+        NSString* message = responseDict[@"message"];
+        
+        NSLog(@"message = %@", message);
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserDoTaskCompletedNotification object:responseDict];
     }];
 }
 

@@ -98,9 +98,9 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
             _incomeModel = [HomeIncomeModel new];
         }
         
-        _incomeModel.myLeftMoney = [NSString stringWithFormat:@"%.2f", price];
+        _incomeModel.myLeftMoney = [NSString stringWithFormat:@"%.2f", price/100.f];
         _incomeModel.todayStudents = @"0";
-        _incomeModel.todayIncome = [NSString stringWithFormat:@"%.2f", todayPrice];
+        _incomeModel.todayIncome = [NSString stringWithFormat:@"%.2f", todayPrice/100.f];
         
         [self.tableView.header endRefreshing];
         
@@ -108,6 +108,21 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
         
         [self.tableView reloadData];
     }];
+    
+    if (_tableView) {
+        User* u = [User getInstance];
+        
+        float total_Price = u.money;
+        float today_Price = u.todayPrice;
+        
+        if (_incomeModel) {
+            _incomeModel.myLeftMoney = [NSString stringWithFormat:@"%.2f", total_Price/100.f];
+            _incomeModel.todayStudents = @"0";
+            _incomeModel.todayIncome = [NSString stringWithFormat:@"%.2f", today_Price/100.f];
+            
+            [self.tableView reloadData];
+        }
+    }
     
 }
 
@@ -283,7 +298,7 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
     if (2 == indexPath.section) {
         if (2 == indexPath.row) {
             [self.tabBarController setSelectedIndex:1];
-        }else if (3 == indexPath.row)
+        }else if (3 == indexPath.row || 0 == indexPath.row)
         {
             [self.tabBarController setSelectedIndex:2];
         }

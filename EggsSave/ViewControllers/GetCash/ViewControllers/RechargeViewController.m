@@ -52,7 +52,7 @@
                                                     
                                                     self.price = [dict[@"price"] floatValue];
                                                     
-                                                    NSLog(@"self.price = %f", self.price);
+                                                    DLog(@"self.price = %f", self.price);
                                                     _moneyLabel.text = [NSString stringWithFormat:@"%.2f",self.price];
                                                     
                                                     NSArray* array = dict[@"priceLimit"];

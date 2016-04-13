@@ -68,6 +68,8 @@
 		B9A3A6961C280DCC00AA219C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A3A6951C280DCC00AA219C /* Login.storyboard */; };
 		B9A3A6991C2810B500AA219C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A3A6981C2810B500AA219C /* LoginViewController.m */; };
 		B9A50A081CB659B800FBE1DB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A50A071CB659B800FBE1DB /* MobileCoreServices.framework */; };
+		B9A50A0C1CBC8C2E00FBE1DB /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A50A0B1CBC8C2E00FBE1DB /* AudioManager.m */; };
+		B9A50A101CBCD0B900FBE1DB /* silent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9A50A0F1CBCD0B900FBE1DB /* silent.mp3 */; };
 		B9A9B5511C88377300181C87 /* FTDHeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5501C88377300181C87 /* FTDHeadModel.m */; };
 		B9A9B5541C8846D500181C87 /* FTDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5531C8846D500181C87 /* FTDetailCell.m */; };
 		B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A9B5571C8985D800181C87 /* EggsHome.storyboard */; };
@@ -269,6 +271,9 @@
 		B9A3A6971C2810B500AA219C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B9A3A6981C2810B500AA219C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B9A50A071CB659B800FBE1DB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B9A50A0A1CBC8C2E00FBE1DB /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		B9A50A0B1CBC8C2E00FBE1DB /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
+		B9A50A0F1CBCD0B900FBE1DB /* silent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silent.mp3; sourceTree = "<group>"; };
 		B9A9B54F1C88377300181C87 /* FTDHeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDHeadModel.h; sourceTree = "<group>"; };
 		B9A9B5501C88377300181C87 /* FTDHeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDHeadModel.m; sourceTree = "<group>"; };
 		B9A9B5521C8846D500181C87 /* FTDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDetailCell.h; sourceTree = "<group>"; };
@@ -565,6 +570,7 @@
 		B99049161C17FB0A00DE369D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B9A50A0F1CBCD0B900FBE1DB /* silent.mp3 */,
 				B99049171C17FB0A00DE369D /* main.m */,
 			);
 			name = "Supporting Files";
@@ -599,6 +605,8 @@
 				B900425D1C2BE09B0017D263 /* TasksManager.m */,
 				B90042721C2C01870017D263 /* LoginManager.h */,
 				B90042731C2C01870017D263 /* LoginManager.m */,
+				B9A50A0A1CBC8C2E00FBE1DB /* AudioManager.h */,
+				B9A50A0B1CBC8C2E00FBE1DB /* AudioManager.m */,
 				B905376E1C8EDB4700553E64 /* DataManager.h */,
 				B905376F1C8EDB4700553E64 /* DataManager.m */,
 				B9EF127F1CB38B8C0089C860 /* TimeHeart.h */,
@@ -1248,6 +1256,7 @@
 				B9D320071C3BC85F0051AC25 /* zbar-helpicons.png in Resources */,
 				B9D31F9F1C3A7F7A0051AC25 /* PersonalMessageViewController.storyboard in Resources */,
 				B9E069FA1C1967F600D7A1AC /* Task.storyboard in Resources */,
+				B9A50A101CBCD0B900FBE1DB /* silent.mp3 in Resources */,
 				B99049261C17FB0A00DE369D /* LaunchScreen.storyboard in Resources */,
 				B9EAE3E11C313E6E0078A81D /* FTDIntroCell.xib in Resources */,
 				B99049231C17FB0A00DE369D /* Assets.xcassets in Resources */,
@@ -1346,6 +1355,7 @@
 				B9D31FA21C3B9BF90051AC25 /* ZHPickView.m in Sources */,
 				B900425E1C2BE09B0017D263 /* TasksManager.m in Sources */,
 				B9A18F031C2A6FAE002C9248 /* MJRefreshGifHeader.m in Sources */,
+				B9A50A0C1CBC8C2E00FBE1DB /* AudioManager.m in Sources */,
 				B9EAE3D71C313DCC0078A81D /* FTDHeadCell.m in Sources */,
 				B9A18F001C2A6FAE002C9248 /* MJRefreshBackGifFooter.m in Sources */,
 				B9A18F051C2A6FAE002C9248 /* MJRefreshStateHeader.m in Sources */,

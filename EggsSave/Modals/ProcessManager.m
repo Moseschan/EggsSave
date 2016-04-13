@@ -11,6 +11,8 @@
 #import "ELLIOKitDumper.h"
 #include <objc/runtime.h>
 
+#define WHITE_LIST_KEY   @"whiteListKey"
+
 @interface ProcessManager ()
 
 @property(nonatomic, strong) ELLIOKitNodeInfo *root;
@@ -101,10 +103,43 @@
         NSObject *app = arr[i];
         NSString *identifier = [app performSelector:@selector(applicationIdentifier)];
         
-        [apps addObject:identifier];
+        if (![identifier hasPrefix:@"com.apple"]) {
+            [apps addObject:identifier];
+        }
     }
     
     return apps;
+}
+
+- (NSArray *)getWhiteList
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSArray* whiteList = [userDefaults objectForKey:WHITE_LIST_KEY];
+    
+    return whiteList;
+}
+
+- (void)writeToWhiteList:(NSString *)bundleId
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableArray *whiteList = [NSMutableArray arrayWithArray:[userDefaults objectForKey:WHITE_LIST_KEY]];
+    
+    BOOL isExist = NO;
+    for (NSUInteger i = 0; i<whiteList.count; ++i) {
+        if ([whiteList[i] isEqualToString:bundleId]) {
+            isExist = YES;
+        }
+    }
+    
+    if (!isExist) {
+        [whiteList addObject:bundleId];
+    }
+
+    NSMutableArray* newWhiteList = whiteList;
+    
+    [userDefaults setObject:newWhiteList forKey:WHITE_LIST_KEY];
 }
 
 - (void)applicationIdentifier

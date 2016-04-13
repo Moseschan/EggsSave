@@ -12,6 +12,7 @@
 #import "LoginManager.h"
 #import "UIWindow+YzdHUD.h"
 #import <AVFoundation/AVFoundation.h>
+#import "AudioManager.h"
 
 @interface AppDelegate ()
 {
@@ -40,6 +41,11 @@
     {
         [self showTabScreen:NO];
     }
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    [[AudioManager getInstance]play];
+
    
     return YES;
 }

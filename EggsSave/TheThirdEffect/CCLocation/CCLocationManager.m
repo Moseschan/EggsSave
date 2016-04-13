@@ -94,9 +94,9 @@
              CLPlacemark *placemark = [placemarks objectAtIndex:0];
              _lastCity = placemark.administrativeArea;
              [standard setObject:_lastCity forKey:CCLastCity];//省市地址
-             NSLog(@"______%@",_lastCity);
+             DLog(@"______%@",_lastCity);
              _lastAddress = placemark.locality;
-             NSLog(@"______%@",_lastAddress);
+             DLog(@"______%@",_lastAddress);
          }
          if (_cityBlock) {
              _cityBlock(_lastCity);
@@ -117,7 +117,7 @@
         _locationBlock = nil;
     }
 
-    NSLog(@"%f--%f",marsLoction.coordinate.latitude,marsLoction.coordinate.longitude);
+    DLog(@"%f--%f",marsLoction.coordinate.latitude,marsLoction.coordinate.longitude);
     [standard setObject:@(marsLoction.coordinate.latitude) forKey:CCLastLatitude];
     [standard setObject:@(marsLoction.coordinate.longitude) forKey:CCLastLongitude];
 

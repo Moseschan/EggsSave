@@ -22,11 +22,21 @@
                             <constraint firstAttribute="width" constant="125" id="yGr-NL-Nqi"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长安拷贝,自动开始" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3V-1x-xKa">
-                        <rect key="frame" x="83" y="56" width="153" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="棋牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yn-AA-wD3">
+                        <rect key="frame" x="103" y="10" width="113" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="soB-ty-AyG"/>
+                            <constraint firstAttribute="height" constant="35" id="yxI-9g-g2G"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击开始任务，自动开始" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3V-1x-xKa">
+                        <rect key="frame" x="82.5" y="56" width="154" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="1mo-Ql-bK6"/>
-                            <constraint firstAttribute="width" constant="153" id="NoB-hE-d1V"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="153" id="NoB-hE-d1V"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,16 +56,6 @@
                             <action selector="commitVerify:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kub-D1-e1D"/>
                         </connections>
                     </button>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="棋牌" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QMw-CP-WX8">
-                        <rect key="frame" x="103.5" y="6" width="113" height="45"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="SkJ-Vi-52O"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="zj5-4V-RuU"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskisget" translatesAutoresizingMaskIntoConstraints="NO" id="DoS-iH-Vbp">
                         <rect key="frame" x="4" y="85" width="311" height="45"/>
                         <constraints>
@@ -77,14 +77,14 @@
                 <constraints>
                     <constraint firstItem="DoS-iH-Vbp" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="00h-eE-SLF"/>
                     <constraint firstItem="iwU-7E-iiO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="125" id="2FM-6d-vMc"/>
-                    <constraint firstItem="QMw-CP-WX8" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="2IC-1q-eKX"/>
                     <constraint firstItem="C19-Hw-Czh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ATF-jm-AzJ"/>
                     <constraint firstItem="pQx-Ui-H3G" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AgA-fI-Tx1"/>
                     <constraint firstItem="8cn-Hz-WdA" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="Anz-B6-pr3"/>
+                    <constraint firstItem="5yn-AA-wD3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Bzc-4f-IMi"/>
                     <constraint firstItem="pQx-Ui-H3G" firstAttribute="top" secondItem="a3V-1x-xKa" secondAttribute="bottom" constant="8" id="HOT-Gj-bn2"/>
                     <constraint firstItem="C19-Hw-Czh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="K1S-3Y-sqr"/>
-                    <constraint firstItem="QMw-CP-WX8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="M5B-aE-kkR"/>
                     <constraint firstItem="DoS-iH-Vbp" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dMu-Be-lAL"/>
+                    <constraint firstItem="5yn-AA-wD3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dyc-Dq-9J3"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iwU-7E-iiO" secondAttribute="bottom" constant="12.5" id="mwG-ru-Pwz"/>
                     <constraint firstItem="8cn-Hz-WdA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="odl-yB-paK"/>
                     <constraint firstItem="iwU-7E-iiO" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sF4-h1-cPM"/>
@@ -94,7 +94,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="startTaskButton" destination="8cn-Hz-WdA" id="dQS-Ac-JFh"/>
-                <outlet property="taskKeyWord" destination="QMw-CP-WX8" id="OfN-zx-nvo"/>
+                <outlet property="taskKeyWord" destination="5yn-AA-wD3" id="5eT-X0-X4v"/>
                 <outlet property="taskisgetImageView" destination="DoS-iH-Vbp" id="Vfj-rV-vP7"/>
                 <outlet property="taskisgetLabel" destination="pQx-Ui-H3G" id="aQM-zs-T5e"/>
             </connections>

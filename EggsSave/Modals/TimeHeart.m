@@ -19,9 +19,8 @@
     dispatch_once(&onceToken, ^{
         sharedHeart = [[self alloc]init];
         sharedHeart.time = 0;
-        sharedHeart.lastTime = 0;
         sharedHeart.isRunning = NO;
-        sharedHeart.isDownloading = NO;
+        sharedHeart.isDownloaded = NO;
         sharedHeart.swTime = 0;
     });
     

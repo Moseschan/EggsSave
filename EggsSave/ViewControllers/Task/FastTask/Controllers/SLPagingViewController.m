@@ -130,7 +130,21 @@
     self.loginedObserver = [center addObserverForName:NSUserDidLoginedNotification object:nil
                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
                                                     
-                                                    DLog(@"The user's did logined");
+                                                    NSDictionary* dict = note.userInfo;
+                                                    
+                                                    [[TasksManager getInstance] parseLoginData:dict];
+                                                    
+                                                    NSDictionary* response = dict[@"response"];
+                                                    int result = [response[@"result"] intValue];
+                                                    
+                                                    if (result == 1) {
+                                                        //登录成功
+                                                        DLog(@"登录成功");
+                                                    }else
+                                                    {
+                                                        //登录失败
+                                                        DLog(@"登录失败");
+                                                    }
                                                     
                                                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
                                                     

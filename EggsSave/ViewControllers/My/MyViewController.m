@@ -76,7 +76,7 @@
     }
     
     if (u.money > 0) {
-        model.userMoney = [NSString stringWithFormat:@"%.2f", u.money];
+        model.userMoney = [NSString stringWithFormat:@"%.2f", u.money / 100.f];
     }
     
     [mHeadView setModel:model];
@@ -87,6 +87,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [mHeadView showAvatar];
+    
+    MyTableViewHeaderModel* model = [[MyTableViewHeaderModel alloc]init];
+    User* u = [User getInstance];
+    if (u.money > 0) {
+        model.userMoney = [NSString stringWithFormat:@"%.2f", u.money / 100.f];
+    }
+    [mHeadView setModel:model];
 }
 
 - (void)didReceiveMemoryWarning {

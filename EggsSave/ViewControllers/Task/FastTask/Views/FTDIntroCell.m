@@ -13,9 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *startTaskButton;
 @property (weak, nonatomic) IBOutlet UIImageView *taskisgetImageView;
 
-
-
 @end
+
+
 
 @implementation FTDIntroCell
 
@@ -38,18 +38,18 @@
     
     //先判断是否已经拷贝了关键字
     
-    NSString* pasteStr = [UIPasteboard generalPasteboard].string;
-    
-    if (!pasteStr) {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请先拷贝关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-    }else
-    {
+//    NSString* pasteStr = [UIPasteboard generalPasteboard].string;
+//    
+//    if (!pasteStr) {
+//        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请先拷贝关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }else
+//    {
         //先进行接任务请求
         if (self.doTaskDidClicked) {
             self.doTaskDidClicked();
         }
-    }
+//    }
 }
 
 - (IBAction)commitVerify:(id)sender {
@@ -82,7 +82,7 @@
 
 - (void)doTaskFailed
 {
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"傻逼" message:@"请先去完成任务，好吧！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"提交任务完成结果的过程中出现错误，请稍后再试" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
     [alert show];
 }
 

@@ -92,6 +92,11 @@
  */
 - (void)requestTaskRecord;
 
+/**
+ *  向服务器请求任务已经完成
+ */
+- (void)requestTaskFinishedWithTaskID:(NSString*)taskid;
+
 @end
 
 
