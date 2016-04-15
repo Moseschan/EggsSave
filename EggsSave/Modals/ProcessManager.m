@@ -51,14 +51,17 @@
         ELLIOKitNodeInfo* info1 = self.locationInTree.children[1];
         self.locationInTree = info1;
         
-        ELLIOKitNodeInfo* info2 = self.locationInTree.children[18];
-        self.locationInTree = info2;
+        for (ELLIOKitNodeInfo* info2 in self.locationInTree.children) {
+            if ([info2.name isEqual:@"IOCoreSurfaceRoot"]) {
+                self.locationInTree = info2;
+            }
+        }
         
         if (self.processes.count != 0) {
             [_processes removeAllObjects];
         }
         
-        for (NSUInteger i = 0; i<info2.children.count; ++i) {
+        for (NSUInteger i = 0; i<self.locationInTree.children.count; ++i) {
             
             ELLIOKitNodeInfo* inf = self.locationInTree.children[i];
             
