@@ -13,8 +13,8 @@
 #import "Task.h"
 #import "MJRefresh.h"
 #import "LoginManager.h"
-#import "UIWindow+YzdHUD.h"
 #import "CommonDefine.h"
+#import "WKProgressHUD.h"
 
 @interface FastTaskView()
 
@@ -23,6 +23,9 @@
 @end
 
 @implementation FastTaskView
+{
+    WKProgressHUD* _hud;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -88,7 +91,10 @@
     // 下拉刷新
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //进行登录操作
-        [self.window showHUDWithText:@"刷新中" Type:ShowLoading Enabled:YES];
+#warning mark - 此处之后显示没有消失，请注意
+        if (!_hud) {
+            _hud = [WKProgressHUD showInView:self withText:@"加载中" animated:YES];
+        }
         
         LoginManager* manager = [LoginManager getInstance];
         [manager login];

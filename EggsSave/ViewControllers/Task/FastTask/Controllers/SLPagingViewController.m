@@ -12,8 +12,8 @@
 #import "FastTaskView.h"
 #import "ShareTaskView.h"
 #import "FTDetailViewController.h"
-#import "UIWindow+YzdHUD.h"
 #import "CommonDefine.h"
+#import "WKProgressHUD.h"
 
 #define SCREEN_SIZE [[UIScreen mainScreen] bounds].size
 
@@ -35,6 +35,9 @@
 @end
 
 @implementation SLPagingViewController
+{
+    WKProgressHUD*   _hud;
+}
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
@@ -146,7 +149,10 @@
                                                         DLog(@"登录失败");
                                                     }
                                                     
-                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                    if (_hud) {
+                                                        [_hud dismiss:YES];
+                                                        _hud = nil;
+                                                    }
                                                     
                                                     [_ftView refreshData];
                                                 }];
@@ -156,7 +162,10 @@
                                                          
                                                          DLog(@"The user sign up failed");
                                                          
-                                                         [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                         if (_hud) {
+                                                             [_hud dismiss:YES];
+                                                             _hud = nil;
+                                                         }
                                                          //登录失败
                                                          
                                                          [_ftView refreshData];

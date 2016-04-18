@@ -11,7 +11,7 @@
 #import "CommonDefine.h"
 #import "LoginManager.h"
 #import "MJRefresh.h"
-#import "UIWindow+YzdHUD.h"
+#import "WKProgressHUD.h"
 
 @interface RechargeViewController ()
 
@@ -39,6 +39,8 @@
     
     UIView*        _globalView;
     UIButton*      _selectedBtn;
+    
+    WKProgressHUD* _hud;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,7 +55,7 @@
                                                     self.price = [dict[@"price"] floatValue];
                                                     
                                                     DLog(@"self.price = %f", self.price);
-                                                    _moneyLabel.text = [NSString stringWithFormat:@"%.2f",self.price];
+                                                    _moneyLabel.text = [NSString stringWithFormat:@"%.2f",self.price/100];
                                                     
                                                     NSArray* array = dict[@"priceLimit"];
                                                     
@@ -65,7 +67,10 @@
                                                     
                                                     [self.tableView.header endRefreshing];
                                                     
-                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                    if (_hud) {
+                                                        [_hud dismiss:YES];
+                                                        _hud = nil;
+                                                    }
                                                     
                                                     self.tableView.header = nil;
                                                     
@@ -113,8 +118,9 @@
     // 下拉刷新
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //进行登录操作
-        
-        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
+        if (_hud) {
+            _hud = [WKProgressHUD showInView:self.view withText:@"加载中" animated:YES];
+        }
         
         [[LoginManager getInstance] requestPricessSet];
     }];

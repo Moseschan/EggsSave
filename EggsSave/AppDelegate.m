@@ -10,7 +10,6 @@
 #import "CommonDefine.h"
 #import "KeychainIDFA.h"
 #import "LoginManager.h"
-#import "UIWindow+YzdHUD.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AudioManager.h"
 #import "User.h"
