@@ -47,6 +47,11 @@
     NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"selfPhoto.jpg"];
     DLog(@"imageFile->>%@",imageFilePath);
     UIImage *selfPhoto = [UIImage imageWithContentsOfFile:imageFilePath];//
+    
+    if (!selfPhoto) {
+        selfPhoto = [UIImage imageNamed:@"icon_myheadr"];
+    }
+    
     self.avatarImageView.image = selfPhoto;
     [self.avatarImageView.layer setCornerRadius:CGRectGetHeight([self.avatarImageView bounds]) / 2];
     self.avatarImageView.layer.masksToBounds = YES;

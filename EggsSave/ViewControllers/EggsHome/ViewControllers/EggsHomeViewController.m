@@ -10,7 +10,6 @@
 #import "CommonDefine.h"
 #import "MJRefresh.h"
 #import "LoginManager.h"
-#import "UIWindow+YzdHUD.h"
 #import "Masonry.h"
 #import "HomeIncomeCell.h"
 #import "TodayAttendanceCell.h"
@@ -19,6 +18,7 @@
 #import "CommonMethods.h"
 #import "TasksManager.h"
 #import "User.h"
+#import "WKProgressHUD.h"
 
 @interface EggsHomeViewController ()
 
@@ -49,6 +49,7 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
     NSMutableArray*  _models;
     NSMutableArray*  _messages;
     HomeIncomeModel* _incomeModel;
+    WKProgressHUD *  _hud;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -76,7 +77,8 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
                                                     
                                                     [self.tableView.header endRefreshing];
                                                     
-                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                    [_hud dismiss:YES];
+                                                    _hud = nil;
                                                     
                                                 }];
     
@@ -104,7 +106,8 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
         
         [self.tableView.header endRefreshing];
         
-        [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+        [_hud dismiss:YES];
+        _hud = nil;
         
         [self.tableView reloadData];
     }];
@@ -137,6 +140,8 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithRed:235.f/255 green:235.f/255 blue:235.f/255 alpha:1];
+    
+    
     
     [self initializationTableView];
     
@@ -258,12 +263,14 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //进行登录操作
         
-        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
+        if (!_hud) {
+            _hud = [WKProgressHUD showInView:self.view withText:@"加载中" animated:YES];
+        }
         
         LoginManager* manager = [LoginManager getInstance];
         
         [manager login];
-#warning mark  -  此处请求应该有问题，稍后得祥看
+
         [manager requestUserDetailMessages];
         
         [manager requestSigninState];  //请求签到状态
@@ -394,8 +401,4 @@ NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotificat
     DLog(@"taped ad!!!");
 }
 
-- (IBAction)goTask:(id)sender {
-    //跳转到任务界面
-    [self.tabBarController setSelectedIndex:2];
-}
 @end

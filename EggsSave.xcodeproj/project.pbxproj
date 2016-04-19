@@ -10,11 +10,6 @@
 		12654ED84499F8B7F0AB5F88 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E76ECEB1D461B0359F42A6B2 /* libPods.a */; };
 		B900425B1C2BDD030017D263 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B900425A1C2BDD030017D263 /* Task.m */; };
 		B900425E1C2BE09B0017D263 /* TasksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B900425D1C2BE09B0017D263 /* TasksManager.m */; };
-		B900426A1C2BF7970017D263 /* UIWindow+YzdHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042611C2BF7970017D263 /* UIWindow+YzdHUD.m */; };
-		B900426B1C2BF7970017D263 /* YzdHUDBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042631C2BF7970017D263 /* YzdHUDBackgroundView.m */; };
-		B900426C1C2BF7970017D263 /* YzdHUDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042651C2BF7970017D263 /* YzdHUDImageView.m */; };
-		B900426D1C2BF7970017D263 /* YzdHUDIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042671C2BF7970017D263 /* YzdHUDIndicator.m */; };
-		B900426E1C2BF7970017D263 /* YzdHUDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042691C2BF7970017D263 /* YzdHUDLabel.m */; };
 		B90042741C2C01870017D263 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B90042731C2C01870017D263 /* LoginManager.m */; };
 		B90537671C8D29CE00553E64 /* ZDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90537661C8D29CE00553E64 /* ZDProgressView.m */; };
 		B905376A1C8D803600553E64 /* TixianMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B90537691C8D803600553E64 /* TixianMessageCell.m */; };
@@ -74,6 +69,7 @@
 		B9A9B5541C8846D500181C87 /* FTDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5531C8846D500181C87 /* FTDetailCell.m */; };
 		B9A9B55B1C8985D800181C87 /* EggsHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A9B5571C8985D800181C87 /* EggsHome.storyboard */; };
 		B9A9B55C1C8985D800181C87 /* EggsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */; };
+		B9B073151CC4A263007E4987 /* BindedPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B073141CC4A263007E4987 /* BindedPhoneViewController.m */; };
 		B9BCB4E51C9FB34B00D50702 /* TaskListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4E41C9FB34B00D50702 /* TaskListCell.m */; };
 		B9BCB4E81C9FC8C600D50702 /* TiXianHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4E71C9FC8C600D50702 /* TiXianHistoryViewController.m */; };
 		B9BCB4EB1C9FC90900D50702 /* TiXianListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BCB4EA1C9FC90900D50702 /* TiXianListCell.m */; };
@@ -161,16 +157,6 @@
 		B900425A1C2BDD030017D263 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		B900425C1C2BE09B0017D263 /* TasksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksManager.h; sourceTree = "<group>"; };
 		B900425D1C2BE09B0017D263 /* TasksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksManager.m; sourceTree = "<group>"; };
-		B90042601C2BF7970017D263 /* UIWindow+YzdHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+YzdHUD.h"; sourceTree = "<group>"; };
-		B90042611C2BF7970017D263 /* UIWindow+YzdHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+YzdHUD.m"; sourceTree = "<group>"; };
-		B90042621C2BF7970017D263 /* YzdHUDBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YzdHUDBackgroundView.h; sourceTree = "<group>"; };
-		B90042631C2BF7970017D263 /* YzdHUDBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YzdHUDBackgroundView.m; sourceTree = "<group>"; };
-		B90042641C2BF7970017D263 /* YzdHUDImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YzdHUDImageView.h; sourceTree = "<group>"; };
-		B90042651C2BF7970017D263 /* YzdHUDImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YzdHUDImageView.m; sourceTree = "<group>"; };
-		B90042661C2BF7970017D263 /* YzdHUDIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YzdHUDIndicator.h; sourceTree = "<group>"; };
-		B90042671C2BF7970017D263 /* YzdHUDIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YzdHUDIndicator.m; sourceTree = "<group>"; };
-		B90042681C2BF7970017D263 /* YzdHUDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YzdHUDLabel.h; sourceTree = "<group>"; };
-		B90042691C2BF7970017D263 /* YzdHUDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YzdHUDLabel.m; sourceTree = "<group>"; };
 		B90042721C2C01870017D263 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		B90042731C2C01870017D263 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		B90537651C8D29CE00553E64 /* ZDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDProgressView.h; sourceTree = "<group>"; };
@@ -281,6 +267,8 @@
 		B9A9B5571C8985D800181C87 /* EggsHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EggsHome.storyboard; sourceTree = "<group>"; };
 		B9A9B5581C8985D800181C87 /* EggsHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EggsHomeViewController.h; sourceTree = "<group>"; };
 		B9A9B5591C8985D800181C87 /* EggsHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EggsHomeViewController.m; sourceTree = "<group>"; };
+		B9B073131CC4A263007E4987 /* BindedPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindedPhoneViewController.h; sourceTree = "<group>"; };
+		B9B073141CC4A263007E4987 /* BindedPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindedPhoneViewController.m; sourceTree = "<group>"; };
 		B9BCB4E31C9FB34B00D50702 /* TaskListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListCell.h; sourceTree = "<group>"; };
 		B9BCB4E41C9FB34B00D50702 /* TaskListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListCell.m; sourceTree = "<group>"; };
 		B9BCB4E61C9FC8C600D50702 /* TiXianHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiXianHistoryViewController.h; sourceTree = "<group>"; };
@@ -446,23 +434,6 @@
 				70539E07637FBA29B396DF4B /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		B900425F1C2BF7970017D263 /* YzdHUD */ = {
-			isa = PBXGroup;
-			children = (
-				B90042601C2BF7970017D263 /* UIWindow+YzdHUD.h */,
-				B90042611C2BF7970017D263 /* UIWindow+YzdHUD.m */,
-				B90042621C2BF7970017D263 /* YzdHUDBackgroundView.h */,
-				B90042631C2BF7970017D263 /* YzdHUDBackgroundView.m */,
-				B90042641C2BF7970017D263 /* YzdHUDImageView.h */,
-				B90042651C2BF7970017D263 /* YzdHUDImageView.m */,
-				B90042661C2BF7970017D263 /* YzdHUDIndicator.h */,
-				B90042671C2BF7970017D263 /* YzdHUDIndicator.m */,
-				B90042681C2BF7970017D263 /* YzdHUDLabel.h */,
-				B90042691C2BF7970017D263 /* YzdHUDLabel.m */,
-			);
-			path = YzdHUD;
 			sourceTree = "<group>";
 		};
 		B90537641C8D29CE00553E64 /* ZDProgressView */ = {
@@ -633,7 +604,6 @@
 			children = (
 				B9850CC41C3CA4660013454B /* CCLocation */,
 				B9D31FA81C3BC85F0051AC25 /* Vendor */,
-				B900425F1C2BF7970017D263 /* YzdHUD */,
 				B9A18EC41C2A6FAE002C9248 /* KeychainIDFA */,
 				B9A18EC91C2A6FAE002C9248 /* MJRefresh */,
 			);
@@ -844,6 +814,8 @@
 				B9BCB5141CA011E400D50702 /* FeedBackViewController.m */,
 				B9BCB4EC1C9FD46B00D50702 /* AboutViewController.h */,
 				B9BCB4ED1C9FD46B00D50702 /* AboutViewController.m */,
+				B9B073131CC4A263007E4987 /* BindedPhoneViewController.h */,
+				B9B073141CC4A263007E4987 /* BindedPhoneViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1196,7 +1168,6 @@
 				TargetAttributes = {
 					B99049121C17FB0A00DE369D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 9BZ5GWWR6P;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1350,7 +1321,6 @@
 				B9A18EFD1C2A6FAE002C9248 /* MJRefreshAutoGifFooter.m in Sources */,
 				B9A18F091C2A6FAE002C9248 /* UIScrollView+MJRefresh.m in Sources */,
 				B9EF12841CB391E10089C860 /* ProcessManager.m in Sources */,
-				B900426A1C2BF7970017D263 /* UIWindow+YzdHUD.m in Sources */,
 				B9A18EF91C2A6FAE002C9248 /* MJRefreshBackFooter.m in Sources */,
 				B9EEA85D1C8AE88500C3B7B5 /* HomeCell.m in Sources */,
 				B9D31FA21C3B9BF90051AC25 /* ZHPickView.m in Sources */,
@@ -1365,7 +1335,6 @@
 				B9BCB50F1C9FF4EF00D50702 /* QuestionViewController.m in Sources */,
 				B9A3A6991C2810B500AA219C /* LoginViewController.m in Sources */,
 				B9850CCA1C3CA4660013454B /* CLLocation+YCLocation.m in Sources */,
-				B900426C1C2BF7970017D263 /* YzdHUDImageView.m in Sources */,
 				B900425B1C2BDD030017D263 /* Task.m in Sources */,
 				B9EAE3D31C313DCC0078A81D /* SLPagingViewController.m in Sources */,
 				B9F395041CA23649001ABF94 /* QuestionGroup.m in Sources */,
@@ -1373,7 +1342,6 @@
 				B9A18EFE1C2A6FAE002C9248 /* MJRefreshAutoNormalFooter.m in Sources */,
 				B9F395111CA23D12001ABF94 /* SectionGroup.m in Sources */,
 				B90537671C8D29CE00553E64 /* ZDProgressView.m in Sources */,
-				B900426B1C2BF7970017D263 /* YzdHUDBackgroundView.m in Sources */,
 				B9EF12721CB378D80089C860 /* ELLIOKitDumper.m in Sources */,
 				B9EF12731CB378D80089C860 /* ELLIOKitNodeInfo.m in Sources */,
 				B99944CE1C72CA9B00A72605 /* ShiTuViewController.m in Sources */,
@@ -1404,16 +1372,15 @@
 				B9A18F011C2A6FAE002C9248 /* MJRefreshBackNormalFooter.m in Sources */,
 				B92A2FEF1C3526E300FB1E08 /* MyTableViewCell.m in Sources */,
 				B9D31FF31C3BC85F0051AC25 /* mask.c in Sources */,
-				B900426E1C2BF7970017D263 /* YzdHUDLabel.m in Sources */,
 				B9BCB4E51C9FB34B00D50702 /* TaskListCell.m in Sources */,
 				B905377B1C8FFA4000553E64 /* RechargeViewController.m in Sources */,
 				B9EAE3E01C313E6E0078A81D /* FTDIntroCell.m in Sources */,
+				B9B073151CC4A263007E4987 /* BindedPhoneViewController.m in Sources */,
 				B9D31FF51C3BC85F0051AC25 /* qrencode.c in Sources */,
 				B90537701C8EDB4700553E64 /* DataManager.m in Sources */,
 				B9D31FA51C3BB3600051AC25 /* QrCodeView.m in Sources */,
 				B9A18F041C2A6FAE002C9248 /* MJRefreshNormalHeader.m in Sources */,
 				B9BCB4EE1C9FD46B00D50702 /* AboutViewController.m in Sources */,
-				B900426D1C2BF7970017D263 /* YzdHUDIndicator.m in Sources */,
 				B9A18EFF1C2A6FAE002C9248 /* MJRefreshAutoStateFooter.m in Sources */,
 				B92A2FE71C35140400FB1E08 /* MyViewController.m in Sources */,
 				B9BCB4E81C9FC8C600D50702 /* TiXianHistoryViewController.m in Sources */,

@@ -21,21 +21,24 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Masonry (0.6.4)
-  - SDAutoLayout (1.31)
+  - SDAutoLayout (1.52)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - WKProgressHUD (1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
   - Masonry (~> 0.6.3)
   - SDAutoLayout (~> 1.31)
   - SDWebImage (~> 3.7.3)
+  - WKProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  SDAutoLayout: 79b8977f863ba4722bb8f8f6f92981d0b8ae932a
+  SDAutoLayout: 7c92e8f149059e80010507e471e1b4b6c85a62bb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  WKProgressHUD: 9f581d5422f11777525f57aa0187c45f6d83e70d
 
 COCOAPODS: 0.39.0

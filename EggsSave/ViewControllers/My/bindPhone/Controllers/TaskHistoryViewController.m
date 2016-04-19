@@ -11,8 +11,8 @@
 #import "Masonry.h"
 #import "TaskListCell.h"
 #import "MJRefresh.h"
-#import "UIWindow+YzdHUD.h"
 #import "LoginManager.h"
+#import "WKProgressHUD.h"
 
 @interface TaskHistoryViewController ()
 
@@ -22,6 +22,9 @@
 @end
 
 @implementation TaskHistoryViewController
+{
+    WKProgressHUD* _hud;
+}
 
 - (NSMutableArray*)taskRecords
 {
@@ -72,7 +75,10 @@
         
         [self.tableView.header endRefreshing];
         
-        [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+        if (_hud) {
+            [_hud dismiss:YES];
+            _hud = nil;
+        }
     }];
 }
 
@@ -106,8 +112,10 @@
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //进行登录操作
         
-        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
-        
+        if (_hud) {
+            _hud = [WKProgressHUD showInView:self.view withText:@"加载中" animated:YES];
+        }
+                
         LoginManager* manager = [LoginManager getInstance];
         
         [manager requestTaskRecord];

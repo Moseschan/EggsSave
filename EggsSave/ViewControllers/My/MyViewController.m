@@ -19,6 +19,7 @@
 #import "QuestionViewController.h"
 #import "FeedBackViewController.h"
 #import "User.h"
+#import "BindedPhoneViewController.h"
 
 @interface MyViewController ()
 {
@@ -59,6 +60,11 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"selfPhoto.jpg"];
         UIImage *selfPhoto = [UIImage imageWithContentsOfFile:imageFilePath];//
+        
+        if (!selfPhoto) {
+            selfPhoto = [UIImage imageNamed:@"icon_myheadw"];
+        }
+        
         weakHeadView.avatarImageView.image = selfPhoto;
         [weakHeadView.avatarImageView.layer setCornerRadius:CGRectGetHeight([weakHeadView.avatarImageView bounds]) / 2];
         weakHeadView.avatarImageView.layer.masksToBounds = YES;
@@ -180,8 +186,10 @@
     if (0 == indexPath.section) {
         if (0 == indexPath.row) {
             //绑定手机
-            BindPhoneViewController* bpvc = InstFirstVC(@"BindPhoneViewController");
-            
+//            BindPhoneViewController* bpvc = InstFirstVC(@"BindPhoneViewController");
+            BindedPhoneViewController* bpvc = [[BindedPhoneViewController alloc]init];
+#warning mark - getPhoneNum of this member
+            bpvc.phoneNum = @"13240458485";
             UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
             
             temporaryBarButtonItem.title=@"返回";

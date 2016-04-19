@@ -12,6 +12,4 @@
 
 @property(strong, nonatomic)UITableView* tableView;
 
-- (IBAction)goTask:(id)sender;
-
 @end

@@ -10,7 +10,7 @@
 #import "Masonry.h"
 #import "CommonDefine.h"
 #import "LoginManager.h"
-#import "UIWindow+YzdHUD.h"
+#import "WKProgressHUD.h"
 
 
 @interface FeedBackViewController ()
@@ -25,6 +25,7 @@
     UITextView* _fankuiView;
     UILabel*    _detailLabel;
     UIButton*   _sendButton;
+    WKProgressHUD*   _hud;
 }
 
 - (void)viewDidLoad {
@@ -41,7 +42,10 @@
                                                     
                                                     int result = [dict[@"result"] intValue];
                                                     
-                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                    if (_hud) {
+                                                        [_hud dismiss:YES];
+                                                        _hud = nil;
+                                                    }
                                                     
                                                     if (0 == result)
                                                     {
@@ -193,7 +197,9 @@
     DLog(@"sendAction");
     [[LoginManager getInstance]requestCommitQuestions:_fankuiView.text];
     
-    [self.view.window showHUDWithText:@"提交中" Type:ShowDismiss Enabled:YES];
+    if (!_hud) {
+        _hud = [WKProgressHUD showInView:self.view withText:@"加载中" animated:YES];
+    }
 }
 
 - (void)cancelAction

@@ -17,7 +17,7 @@
 #import <string.h>
 #import "TasksManager.h"
 #import "LoginManager.h"
-#import "UIWindow+YzdHUD.h"
+#import "WKProgressHUD.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -28,6 +28,9 @@
 @end
 
 @implementation LoginViewController
+{
+    WKProgressHUD* _hud;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +48,10 @@
                                                     
                                                     DLog(@"The user's did logined");
                                                     
-                                                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                    if (_hud) {
+                                                        [_hud dismiss:YES];
+                                                        _hud = nil;
+                                                    }
                                                     //注册成功
                                                     AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
                                                     UITabBarController* viewController = InstFirstVC(@"Main");
@@ -59,7 +65,10 @@
                                                    
                                                    DLog(@"The user sign up succeed");
                                                    
-                                                   [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                   if (_hud) {
+                                                       [_hud dismiss:YES];
+                                                       _hud = nil;
+                                                   }
                                                    //注册成功
                                                    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
                                                    UITabBarController* viewController = InstFirstVC(@"Main");
@@ -73,7 +82,10 @@
                                                    
                                                    DLog(@"The user sign up failed");
                                                    
-                                                   [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                                                   if (_hud) {
+                                                       [_hud dismiss:YES];
+                                                       _hud = nil;
+                                                   }
                                                    //注册失败
                                                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"注册期间出现问题，请再次尝试注册" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                                                    [alert show];
@@ -115,7 +127,9 @@
         [alert show];
     }else
     {
-        [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
+        if (_hud) {
+            _hud = [WKProgressHUD showInView:self.view withText:@"加载中" animated:YES];
+        }
         
         LoginManager* manager = [LoginManager getInstance];
         [manager login];
@@ -147,7 +161,10 @@
 }
 
 - (IBAction)signUp:(id)sender {
-    [self.view.window showHUDWithText:@"加载中" Type:ShowLoading Enabled:YES];
+    
+    if (_hud) {
+        _hud = [WKProgressHUD showInView:self.view withText:@"加载中" animated:YES];
+    }
     
     [[LoginManager getInstance] signUp];
 }
