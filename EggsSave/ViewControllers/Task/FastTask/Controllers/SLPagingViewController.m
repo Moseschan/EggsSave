@@ -149,10 +149,7 @@
                                                         DLog(@"登录失败");
                                                     }
                                                     
-                                                    if (_hud) {
-                                                        [_hud dismiss:YES];
-                                                        _hud = nil;
-                                                    }
+                                                    [_ftView dataLoaded];
                                                     
                                                     [_ftView refreshData];
                                                 }];
@@ -162,10 +159,7 @@
                                                          
                                                          DLog(@"The user sign up failed");
                                                          
-                                                         if (_hud) {
-                                                             [_hud dismiss:YES];
-                                                             _hud = nil;
-                                                         }
+                                                         [_ftView dataLoaded];
                                                          //登录失败
                                                          
                                                          [_ftView refreshData];

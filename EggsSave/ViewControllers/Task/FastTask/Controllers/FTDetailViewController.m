@@ -179,7 +179,6 @@
         //此时，需要记录下已经完成的任务
         [[NSUserDefaults standardUserDefaults] setObject:self.mTask.pId forKey:FINISHED_TASK_ID_KEY];
         
-#warning mark -  在后台貌似不能改变UI
         _ftdintroCell.taskisgetLabel.text = @"任务已完成";
         //将此任务标记为已抢到，完成任务
         self.mTask.pState = 1;

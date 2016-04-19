@@ -91,7 +91,6 @@
     // 下拉刷新
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //进行登录操作
-#warning mark - 此处之后显示没有消失，请注意
         if (!_hud) {
             _hud = [WKProgressHUD showInView:self withText:@"加载中" animated:YES];
         }
@@ -99,7 +98,6 @@
         LoginManager* manager = [LoginManager getInstance];
         [manager login];
     }];
-    
 }
 
 - (void)refreshData
@@ -110,6 +108,14 @@
     [self.tableView reloadData];
     
     [self.tableView.header endRefreshing];
+}
+
+- (void)dataLoaded
+{
+    if (_hud) {
+        [_hud dismiss:YES];
+        _hud = nil;
+    }
 }
 
 #pragma mark - UITableViewDelegate and datasource.

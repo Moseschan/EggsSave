@@ -100,6 +100,10 @@
         model.userMoney = [NSString stringWithFormat:@"%.2f", u.money / 100.f];
     }
     [mHeadView setModel:model];
+    
+    if (u.phoneNum) {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -139,7 +143,18 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.titleLabel.text = @"手机绑定";
-            cell.bindLabel.hidden = NO;
+            User* user = [User getInstance];
+            if (![user.phoneNum isEqualToString:@""]) {
+                //手机号已经绑定
+                cell.bindLabel.hidden = NO;
+                cell.bindLabel.text = @"已绑定";
+            }else
+            {
+                //手机号未绑定
+                cell.bindLabel.hidden = NO;
+                cell.bindLabel.text = @"未绑定";
+            }
+            
         }else if (indexPath.row == 1)
         {
             cell.titleLabel.text = @"任务记录";
@@ -186,18 +201,24 @@
     if (0 == indexPath.section) {
         if (0 == indexPath.row) {
             //绑定手机
-//            BindPhoneViewController* bpvc = InstFirstVC(@"BindPhoneViewController");
-            BindedPhoneViewController* bpvc = [[BindedPhoneViewController alloc]init];
-#warning mark - getPhoneNum of this member
-            bpvc.phoneNum = @"13240458485";
-            UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+            User* user = [User getInstance];
+            if (![user.phoneNum isEqualToString:@""]) {
+                //手机号已经绑定
+                BindedPhoneViewController* bpvc = [[BindedPhoneViewController alloc]init];
+                bpvc.phoneNum = user.phoneNum;
+                UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+                temporaryBarButtonItem.title=@"返回";
+                self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+                [self.navigationController pushViewController:bpvc animated:YES];
+            }else
+            {
+                BindPhoneViewController* bpvc = InstFirstVC(@"BindPhoneViewController");
+                UIBarButtonItem *temporaryBarButtonItem=[[UIBarButtonItem alloc] init];
+                temporaryBarButtonItem.title=@"返回";
+                self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+                [self.navigationController pushViewController:bpvc animated:YES];
+            }
             
-            temporaryBarButtonItem.title=@"返回";
-            
-            self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
-            
-//            bpvc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:bpvc animated:YES];
         }else if (1 == indexPath.row)
         {
             //任务记录

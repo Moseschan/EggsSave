@@ -52,10 +52,10 @@
                                                     
                                                     NSDictionary* dict = note.userInfo;
                                                     
-                                                    self.price = [dict[@"price"] floatValue];
+                                                    self.price = [dict[@"price"] floatValue] / 100;
                                                     
                                                     DLog(@"self.price = %f", self.price);
-                                                    _moneyLabel.text = [NSString stringWithFormat:@"%.2f",self.price/100];
+                                                    _moneyLabel.text = [NSString stringWithFormat:@"%.2f",self.price];
                                                     
                                                     NSArray* array = dict[@"priceLimit"];
                                                     

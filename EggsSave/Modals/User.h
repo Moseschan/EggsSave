@@ -19,6 +19,7 @@
 @property(copy, nonatomic)NSString*   sex;          //性别
 @property(copy, nonatomic)NSString*   nickName;     //昵称
 @property(assign, nonatomic)float     studentsPrice;//徒弟收入
+@property(copy, nonatomic)NSString*   phoneNum;     //手机号
 
 
 + (id)getInstance;

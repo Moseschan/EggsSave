@@ -8,12 +8,56 @@
 
 #import "CHPViewController.h"
 #import "LoginManager.h"
+#import "CommonDefine.h"
 
 @interface CHPViewController ()
+
+@property (strong, nonatomic) id changepwdObserver;
 
 @end
 
 @implementation CHPViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    self.changepwdObserver = [center addObserverForName:NSUserChangePasswordNotification object:nil
+                                                 queue:mainQueue usingBlock:^(NSNotification *note) {
+                                                     
+                                                     NSDictionary* dict = note.userInfo;
+                                                     
+                                                     NSLog(@"change password response dict = %@", dict);
+                                                     
+                                                     int result = [dict[@"result"] intValue];
+                                                     
+                                                     if (0 == result) {
+                                                         //密码修改成功
+                                                         
+                                                         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"密码修改成功" message:@"密码修改成功，现在你可以用新密码登录" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+                                                         alert.tag = 201;
+                                                         [alert show];
+                                                     }else if (-1 == result)
+                                                     {
+                                                        //密码修改失败
+                                                         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"密码修改失败" message:@"可能由于网络原因，密码修改失败，请稍后再试" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+                                                         alert.tag = 202;
+                                                         [alert show];
+                                                     }else if(-4 == result)
+                                                     {
+                                                         //旧密码错误
+                                                         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"旧密码有误" message:@"旧密码输入错误，请重新输入" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+                                                         alert.tag = 203;
+                                                         [alert show];
+                                                     }
+                                                     
+                                                 }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.changepwdObserver];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -160,6 +204,21 @@
     }else if (alertView.tag == 103)
     {
         [self.confirmPassTextField becomeFirstResponder];
+    }else if (alertView.tag == 201)
+    {
+        //密码更改成功
+        [self.oldPassTextField becomeFirstResponder];
+        [self.firstPassTextField becomeFirstResponder];
+        [self.confirmPassTextField becomeFirstResponder];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else if (alertView.tag == 202)
+    {
+        //密码更改失败, 重新输入
+    }else if(alertView.tag == 203)
+    {
+        //旧密码错误, 重新输入
     }
 }
 

@@ -281,14 +281,10 @@
             DLog(@"未获取到数据");
             return ;
         }
-        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
-        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        NSDictionary *dict = [self getDataFromEncryptData:data];
+        NSDictionary* responseDict = dict[@"response"];
         
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
-        
-        DLog(@"dict = %@",dict);
-        
-        free(decryptByte);
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserBindPhoneNotification object:nil userInfo:responseDict];
         
     }];
      
@@ -314,17 +310,13 @@
             DLog(@"未获取到数据");
             return ;
         }
+        NSDictionary *dict = [self getDataFromEncryptData:data];
         
-        DLog(@"data = %@", data);
+        NSLog(@"change password dict = %@", dict);
         
-        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
-        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
+        NSDictionary* responseDict = dict[@"response"];
         
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
-        
-        DLog(@"修改密码: dict = %@",dict);
-        
-        free(decryptByte);
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserChangePasswordNotification object:nil userInfo:responseDict];
         
     }];
 }
@@ -509,6 +501,7 @@
         u.sex           = userInfo[@"sex"];
         u.studentsPrice = [userInfo[@"studentPrice"] floatValue];
         u.nickName      = userInfo[@"userName"];
+        u.phoneNum      = userInfo[@"mobile"];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:NSUserGetDetailInfoNotification object:nil];
         

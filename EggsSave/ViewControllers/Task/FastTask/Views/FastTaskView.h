@@ -23,4 +23,9 @@ typedef void(^FTDetailCellSelected)(NSInteger index);
  */
 - (void)refreshData;
 
+/**
+ *  数据加载完成，loading消失
+ */
+- (void)dataLoaded;
+
 @end

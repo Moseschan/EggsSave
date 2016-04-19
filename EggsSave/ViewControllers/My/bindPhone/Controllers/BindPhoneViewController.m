@@ -11,6 +11,7 @@
 #import "LoginManager.h"
 #import "CommonMethods.h"
 #import "CCLocationManager.h"
+#import "User.h"
 
 #include <dlfcn.h>
 
@@ -34,6 +35,8 @@
 @property (copy, nonatomic) NSString* cityName;
 - (IBAction)signUpConfirm:(id)sender;
 
+@property (strong, nonatomic) id bindPhoneObserver;
+
 @end
 
 @implementation BindPhoneViewController
@@ -53,11 +56,34 @@
                                                     [self.authCodeLabel setText:random];
                                                     
                                                 }];
+    
+    self.bindPhoneObserver = [center addObserverForName:NSUserBindPhoneNotification object:nil queue:mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary* dict = note.userInfo;
+        
+        int result = [dict[@"result"] intValue];
+        
+        if (result == 1) {
+            //绑定手机成功
+            NSLog(@"绑定手机成功");
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"手机绑定成功" message:@"您的手机号已经成功绑定，可以用手机号登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            alert.tag = 601;
+            [alert show];
+            
+        }else
+        {
+            //绑定手机失败
+            NSLog(@"绑定手机失败, 手机号已经存在");
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"手机绑定失败" message:@"您输入的手机号已经存在，请换个手机号再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            alert.tag = 602;
+            [alert show];
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self.authcodeObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.bindPhoneObserver];
 }
 
 - (void)viewDidLoad {
@@ -90,11 +116,20 @@
 
 -(void)getAddress
 {
+    self.cityName = @"北京市";
+    
     if (IS_IOS8) {
         
         [[CCLocationManager shareLocation]getAddress:^(NSString *addressString) {
             DLog(@"市：%@",addressString);
-            self.cityName = addressString;
+            
+            if (addressString) {
+                self.cityName = addressString;
+            }else
+            {
+                self.cityName = @"北京市";
+            }
+            
         }] ;
         
     }
@@ -132,33 +167,10 @@
     self.tableView.tableHeaderView = headView;
 }
 
-//- (void)textFieldDidBeginEditing:(UITextField *)textField
-//{
-//    if (textField == _comfirmPasswordTextField) {
-//        if ([_passwordTextField.text length] < 6 || ![self isPassword:self.passwordTextField.text]) {
-//            //密码不满足要求
-//            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"密码输入不满足要求,请重新输入" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
-//        }
-//    }
-//}
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     activeField = textField;
 }
-
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    if(textField == _passwordTextField)
-//    {
-//        if ([_passwordTextField.text length] < 6 || ![self isPassword:self.passwordTextField.text]) {
-//            //密码不满足要求
-//            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"密码输入不满足要求,请重新输入" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
-//        }
-//    }
-//}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *checkString;
@@ -273,6 +285,21 @@
         self.passwordTextField.text = @"";
         self.comfirmPasswordTextField.text = @"";
         [self.comfirmPasswordTextField resignFirstResponder];
+    }else if (alertView.tag == 601)
+    {
+        User* u = [User getInstance];
+        u.phoneNum = _phonenumTextField.text;
+        
+        [self.phonenumTextField resignFirstResponder];
+        [self.passwordTextField resignFirstResponder];
+        [self.phoneAuthCodeTextField resignFirstResponder];
+        [self.comfirmPasswordTextField resignFirstResponder];
+        [self.myAuthCodeTextField resignFirstResponder];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (alertView.tag == 602)
+    {
+        //因为绑定手机号失败了 ，所以不做任何操作
     }
 }
 
@@ -383,32 +410,6 @@
     //先判定验证码是否输入正确
 //    [BindPhoneViewController getPhoneNumber];
 }
-
-//+ (NSString*)getPhoneNumber
-//{
-//    NSString *num = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
-//    DLog(@"Phone Number: %@", num);
-//    return num;
-//}
-
-//- (void)getImsi{
-//    
-//#if !TARGET_IPHONE_SIMULATOR
-//    void *kit = dlopen(PRIVATE_PATH,RTLD_LAZY);
-//    NSString *imsi = nil;
-//    int (*CTSIMSupportCopyMobileSubscriberIdentity)() = dlsym(kit, "CTSIMSupportCopyMobileSubscriberIdentity");
-//    imsi = (NSString*)CTSIMSupportCopyMobileSubscriberIdentity(nil);
-//    dlclose(kit);
-//    
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"IMSI"
-//                                                    message:imsi
-//                                                   delegate:self
-//                                          cancelButtonTitle:@"OK"
-//                                          otherButtonTitles:nil];
-//    [alert show];
-//#endif
-//}
 
 - (IBAction)signUpConfirm:(id)sender {
     

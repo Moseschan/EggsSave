@@ -41,8 +41,10 @@ NSString* const NSUserDoTaskCompletedNotification  = @"NSUserDoTaskCompletedNoti
 NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
 NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
 NSString* const NSUserGetDetailInfoNotification    = @"NSUserGetDetailInfoNotification"; //获取用户详细信息
-NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotification";//提现记录几口
+NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotification";//提现记录接口
 NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotification"; //任务记录
+NSString* const NSUserBindPhoneNotification        = @"NSUserBindPhoneNotification";  //绑定手机号
+NSString* const NSUserChangePasswordNotification   = @"NSUserChangePasswordNotification"; //修改密码接口
 
 @implementation EggsHomeViewController
 {

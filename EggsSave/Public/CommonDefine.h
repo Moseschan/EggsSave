@@ -48,6 +48,8 @@ extern NSString* const NSUserFeedCommitedNotification ;
 extern NSString* const NSUserGetDetailInfoNotification;
 extern NSString* const NSUserTiXianRecordNotification;
 extern NSString* const NSUserTaskRecordNotification ;
+extern NSString* const NSUserBindPhoneNotification  ;   //绑定手机号
+extern NSString* const NSUserChangePasswordNotification;  //修改密码
 
 #define NO_NETWORK   0
 
