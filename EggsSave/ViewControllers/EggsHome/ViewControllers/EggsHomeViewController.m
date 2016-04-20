@@ -29,23 +29,6 @@
 
 @end
 
-NSString* const NSUserDidLoginedNotification       = @"NSUserDidLoginedNotification" ;
-NSString* const NSUserSigninStateNotification      = @"NSUserSigninStateNotification";
-NSString* const NSUserSigninNotification           = @"NSUserSigninNotification" ;      //签到
-NSString* const NSUserGetMyMoneyNotification       = @"NSUserGetMyMoneyNotification";   //剩余金额
-NSString* const NSUserSignUpNotification           = @"NSUserSignUpNotification";
-NSString* const NSUserSignUpFailedNotification     = @"NSUserSignUpFailedNotification";
-NSString* const NSUserLoginFailedNotification      = @"NSUserLoginFailedNotification";
-NSString* const NSUserGetTaskSucceedNotification   = @"NSUserGetTaskSucceedNotification";  //接任务成功
-NSString* const NSUserDoTaskCompletedNotification  = @"NSUserDoTaskCompletedNotification";  //审核任务成功与否
-NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
-NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
-NSString* const NSUserGetDetailInfoNotification    = @"NSUserGetDetailInfoNotification"; //获取用户详细信息
-NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotification";//提现记录接口
-NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotification"; //任务记录
-NSString* const NSUserBindPhoneNotification        = @"NSUserBindPhoneNotification";  //绑定手机号
-NSString* const NSUserChangePasswordNotification   = @"NSUserChangePasswordNotification"; //修改密码接口
-
 @implementation EggsHomeViewController
 {
     NSMutableArray*  _models;

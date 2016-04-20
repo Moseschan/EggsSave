@@ -27,8 +27,6 @@
                                                      
                                                      NSDictionary* dict = note.userInfo;
                                                      
-                                                     NSLog(@"change password response dict = %@", dict);
-                                                     
                                                      int result = [dict[@"result"] intValue];
                                                      
                                                      if (0 == result) {

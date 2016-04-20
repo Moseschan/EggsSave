@@ -948,9 +948,9 @@
 		B9E069ED1C1929A600D7A1AC /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				B9E069EE1C1929D300D7A1AC /* CommonDefine.h */,
 				B9755B7F1C5877D700F8B05F /* CommonMethods.h */,
 				B9755B801C5877D700F8B05F /* CommonMethods.m */,
-				B9E069EE1C1929D300D7A1AC /* CommonDefine.h */,
 			);
 			path = Public;
 			sourceTree = "<group>";

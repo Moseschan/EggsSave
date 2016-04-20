@@ -63,16 +63,12 @@
         int result = [dict[@"result"] intValue];
         
         if (result == 1) {
-            //绑定手机成功
-            NSLog(@"绑定手机成功");
             UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"手机绑定成功" message:@"您的手机号已经成功绑定，可以用手机号登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             alert.tag = 601;
             [alert show];
             
         }else
         {
-            //绑定手机失败
-            NSLog(@"绑定手机失败, 手机号已经存在");
             UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"手机绑定失败" message:@"您输入的手机号已经存在，请换个手机号再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             alert.tag = 602;
             [alert show];
@@ -408,7 +404,17 @@
 
 - (IBAction)getSMSAuthCode:(id)sender {
     //先判定验证码是否输入正确
-//    [BindPhoneViewController getPhoneNumber];
+    if ([self.authCodeLabel.text isEqualToString:self.myAuthCodeTextField.text]) {
+        //验证码输入正确
+        
+        //向服务器发送请求，请求短信验证码
+        [[LoginManager getInstance]requestSmsAuthCodeWithPhoneNum:self.phonenumTextField.text IpAddress:[CommonMethods deviceIPAdress]];
+    }else
+    {
+        //验证码输入错误
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"验证码错误" message:@"很抱歉，验证码输入错误,请重新输入" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 - (IBAction)signUpConfirm:(id)sender {
@@ -436,7 +442,7 @@
         [alert show];
     }else
     {
-        [[LoginManager getInstance]signUpPhoneNum:self.phonenumTextField.text osVersion:[NSString stringWithFormat:@"%f",[CommonMethods getIOSVersion]] password:self.comfirmPasswordTextField.text ip:[CommonMethods deviceIPAdress] city:self.cityName];
+        [[LoginManager getInstance]signUpPhoneNum:self.phonenumTextField.text osVersion:[NSString stringWithFormat:@"%f",[CommonMethods getIOSVersion]] password:self.comfirmPasswordTextField.text ip:[CommonMethods deviceIPAdress] city:self.cityName Smscode:self.phoneAuthCodeTextField.text];
     }
     
     

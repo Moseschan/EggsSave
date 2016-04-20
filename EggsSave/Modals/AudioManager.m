@@ -36,16 +36,6 @@
     [self.audioPlayer play];
 }
 
-- (void)pause
-{
-    
-}
-
-- (void)stop
-{
-    
-}
-
 -(void)loadMusic:(NSString*)name {
     NSString *musicFilePath = [[NSBundle mainBundle] pathForResource:name ofType:@"mp3"]; //创建音乐文件路径
     

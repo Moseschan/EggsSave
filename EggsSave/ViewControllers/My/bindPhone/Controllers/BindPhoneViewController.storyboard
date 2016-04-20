@@ -130,7 +130,7 @@
                                                         <action selector="getSMSAuthCode:" destination="yeB-xZ-cSe" eventType="touchUpInside" id="ZhH-4D-6BQ"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="5位手机短信验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGw-VQ-0s4">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="4位手机短信验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGw-VQ-0s4">
                                                     <rect key="frame" x="73" y="10" width="142" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>

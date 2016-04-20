@@ -114,7 +114,6 @@
         NSUInteger t_taskLimit = [tempDict[@"taskLimit"] integerValue];
 //        NSUInteger t_shiwantime = [self getTimeFromDetailString:t_detailexplain] ;
         NSUInteger t_shiwantime = [tempDict[@"demoGameMinute"] integerValue] ;
-        NSLog(@"shiwanTime = %lu", t_shiwantime);
         NSString*  t_bundleId = tempDict[@"isXiaZaiUrl"];
         NSString*  t_processNum = tempDict[@"progressNum"];
         NSUInteger t_taskType  = [tempDict[@"taskStyle"]integerValue];

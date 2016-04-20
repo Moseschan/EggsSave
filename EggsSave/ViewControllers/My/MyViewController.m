@@ -101,7 +101,7 @@
     }
     [mHeadView setModel:model];
     
-    if (u.phoneNum) {
+    if (u.phoneNum.length > 1) {
         [self.tableView reloadData];
     }
 }
@@ -144,7 +144,7 @@
         if (indexPath.row == 0) {
             cell.titleLabel.text = @"手机绑定";
             User* user = [User getInstance];
-            if (![user.phoneNum isEqualToString:@""]) {
+            if (user.phoneNum.length > 1) {
                 //手机号已经绑定
                 cell.bindLabel.hidden = NO;
                 cell.bindLabel.text = @"已绑定";
@@ -202,7 +202,7 @@
         if (0 == indexPath.row) {
             //绑定手机
             User* user = [User getInstance];
-            if (![user.phoneNum isEqualToString:@""]) {
+            if (user.phoneNum.length > 1) {
                 //手机号已经绑定
                 BindedPhoneViewController* bpvc = [[BindedPhoneViewController alloc]init];
                 bpvc.phoneNum = user.phoneNum;

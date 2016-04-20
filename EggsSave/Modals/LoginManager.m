@@ -185,55 +185,6 @@
     }];
 }
 
-- (void)submitTaskWithTaskId:(NSString *)taskId
-{
-    if (NO_NETWORK) {
-        return;
-    }
-    
-    User* user = [User getInstance];
-    NSString* usid = user.userID;
-    NSString* taid = taskId;
-    NSDictionary *t1 = @{@"userId":usid,@"taskId":taid} ;
-    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\"}",@"taskId",taid,@"userId",usid];
-    
-    NSURLRequest* request = [self requestWithInterface:@"104" Data:t1 UncalData:uncal];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
-        
-        if (!data) {
-            
-            DLog(@"未获取到数据");
-            
-            return ;
-        }
-        unsigned char* decryptByte = [EncryptUtils xorString:(Byte *)[data bytes] len:(int)[data length]];
-        NSData* dataData = [[NSData alloc]initWithBytes:decryptByte length:[data length]];
-        
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:dataData options:NSJSONReadingMutableLeaves error:nil];
-        
-        DLog(@"dict = %@",dict);
-        NSDictionary* responseDict = dict[@"response"];
-        
-        int result = [responseDict[@"result"] intValue];
-        
-        if (result == -1) {
-            DLog(@"审核任务失败");
-            [[NSNotificationCenter defaultCenter]postNotificationName:NSUserDoTaskCompletedNotification object:nil];
-        }else if(result == 0)
-        {
-            DLog(@"做任务成功");
-        }else
-        {
-            DLog(@"做任务失败");
-        }
-        
-        free(decryptByte);
-        
-        
-    }];
-}
-
 - (void)getAuthCode
 {
     if (NO_NETWORK) {
@@ -261,7 +212,7 @@
     }];
 }
 
-- (void)signUpPhoneNum:(NSString *)phoneNum osVersion:(NSString*)osver password:(NSString*)pass ip:(NSString*)ip city:(NSString*)city
+- (void)signUpPhoneNum:(NSString *)phoneNum osVersion:(NSString*)osver password:(NSString*)pass ip:(NSString*)ip city:(NSString*)city Smscode:(NSString*)smscode
 {
     if (NO_NETWORK) {
         return;
@@ -270,8 +221,8 @@
     User* user = [User getInstance];
     NSString* usid = user.userID;
     NSString* phone = phoneNum;
-    NSDictionary *t1 = @{@"userId":usid,@"phone":phone,@"osVersion":osver,@"password":pass,@"ip":ip,@"cityName":city} ;
-    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"cityName",city,@"ip",ip,@"osVersion",osver,@"password",pass,@"phone",phone,@"userId",usid];
+    NSDictionary *t1 = @{@"userId":usid,@"phone":phone,@"osVersion":osver,@"password":pass,@"ip":ip,@"cityName":city,@"yanZhengMa":smscode} ;
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"cityName",city,@"ip",ip,@"osVersion",osver,@"password",pass,@"phone",phone,@"userId",usid,@"yanZhengMa",smscode];
     
     NSURLRequest* request = [self requestWithInterface:@"107" Data:t1 UncalData:uncal];
     
@@ -311,8 +262,6 @@
             return ;
         }
         NSDictionary *dict = [self getDataFromEncryptData:data];
-        
-        NSLog(@"change password dict = %@", dict);
         
         NSDictionary* responseDict = dict[@"response"];
         
@@ -607,15 +556,36 @@
         }
         NSDictionary* dict = [self getDataFromEncryptData:data];
         
-        NSLog(@"dict = %@", dict);
-        
         NSDictionary* responseDict = dict[@"response"];
         
-        NSString* message = responseDict[@"message"];
-        
-        NSLog(@"message = %@", message);
+//        NSString* message = responseDict[@"message"];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:NSUserDoTaskCompletedNotification object:responseDict];
+    }];
+}
+
+- (void)requestSmsAuthCodeWithPhoneNum:(NSString*)phoneNum IpAddress:(NSString*)ip
+{
+    if (NO_NETWORK) {
+        return;
+    }
+    
+    NSDictionary *t1 = @{@"phone":phoneNum,@"ip":ip} ;
+    NSString* uncal = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\"}",@"ip",ip,@"phone",phoneNum];
+    
+    NSURLRequest* request = [self requestWithInterface:@"131" Data:t1 UncalData:uncal];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError) {
+        if (!data) {
+            DLog(@"未获取到数据");
+            return ;
+        }
+//        NSDictionary* dict = [self getDataFromEncryptData:data];
+//        NSDictionary* responseDict = dict[@"response"];
+//        
+//        NSLog(@"smsauthcode dict = %@", dict);
+        
+//        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserFeedCommitedNotification object:responseDict];
     }];
 }
 

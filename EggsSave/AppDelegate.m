@@ -14,6 +14,23 @@
 #import "AudioManager.h"
 #import "User.h"
 
+NSString* const NSUserDidLoginedNotification       = @"NSUserDidLoginedNotification" ;
+NSString* const NSUserSigninStateNotification      = @"NSUserSigninStateNotification";
+NSString* const NSUserSigninNotification           = @"NSUserSigninNotification" ;      //签到
+NSString* const NSUserGetMyMoneyNotification       = @"NSUserGetMyMoneyNotification";   //剩余金额
+NSString* const NSUserSignUpNotification           = @"NSUserSignUpNotification";
+NSString* const NSUserSignUpFailedNotification     = @"NSUserSignUpFailedNotification";
+NSString* const NSUserLoginFailedNotification      = @"NSUserLoginFailedNotification";
+NSString* const NSUserGetTaskSucceedNotification   = @"NSUserGetTaskSucceedNotification";  //接任务成功
+NSString* const NSUserDoTaskCompletedNotification  = @"NSUserDoTaskCompletedNotification";  //审核任务成功与否
+NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
+NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
+NSString* const NSUserGetDetailInfoNotification    = @"NSUserGetDetailInfoNotification"; //获取用户详细信息
+NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotification";//提现记录接口
+NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotification"; //任务记录
+NSString* const NSUserBindPhoneNotification        = @"NSUserBindPhoneNotification";  //绑定手机号
+NSString* const NSUserChangePasswordNotification   = @"NSUserChangePasswordNotification"; //修改密码接口
+
 @interface AppDelegate ()
 {
 }
@@ -53,21 +70,6 @@
     return YES;
 }
 
-//- (void)application:(UIApplication *)application
-//didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-//
-//{
-//    
-//    NSLog(@"DeviceToken: {%@}",deviceToken);
-//    
-//    //这里进行的操作，是将Device Token发送到服务端
-//    
-//    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"DeviceToken:%@",deviceToken] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//    
-//    [alert show];
-//    
-//}
-
 - (void)showTabScreen:(BOOL)animated
 {
     UITabBarController* viewController = InstFirstVC(@"Main");
@@ -83,8 +85,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
 }
 
 
@@ -112,15 +113,15 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+   
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+ 
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  
 }
 
 @end

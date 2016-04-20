@@ -28,11 +28,6 @@
 - (void)doTaskWithTaskId:(NSString *)taskId;
 
 /**
- *  提交审核任务接口
- */
-- (void)submitTaskWithTaskId:(NSString *)taskId;
-
-/**
  *  获取验证吗
  */
 - (void)getAuthCode;
@@ -40,7 +35,7 @@
 /**
  *  注册手机号
  */
-- (void)signUpPhoneNum:(NSString *)phoneNum osVersion:(NSString*)osver password:(NSString*)pass ip:(NSString*)ip city:(NSString*)city;
+- (void)signUpPhoneNum:(NSString *)phoneNum osVersion:(NSString*)osver password:(NSString*)pass ip:(NSString*)ip city:(NSString*)city Smscode:(NSString*)smscode;
 
 /**
  *  修改密码接口
@@ -96,6 +91,11 @@
  *  向服务器请求任务已经完成
  */
 - (void)requestTaskFinishedWithTaskID:(NSString*)taskid;
+
+/**
+ *  获取短信验证码接口
+ */
+- (void)requestSmsAuthCodeWithPhoneNum:(NSString*)phoneNum IpAddress:(NSString*)ip;
 
 @end
 
