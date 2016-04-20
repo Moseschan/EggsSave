@@ -96,9 +96,19 @@
     
     MyTableViewHeaderModel* model = [[MyTableViewHeaderModel alloc]init];
     User* u = [User getInstance];
+    
+    if (u.userID) {
+        model.userID = u.userID;
+    }
+    
+    if (u.nickName) {
+        model.userNick = u.nickName;
+    }
+    
     if (u.money > 0) {
         model.userMoney = [NSString stringWithFormat:@"%.2f", u.money / 100.f];
     }
+    
     [mHeadView setModel:model];
     
     if (u.phoneNum.length > 1) {

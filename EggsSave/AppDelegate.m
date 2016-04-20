@@ -30,6 +30,7 @@ NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotific
 NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotification"; //任务记录
 NSString* const NSUserBindPhoneNotification        = @"NSUserBindPhoneNotification";  //绑定手机号
 NSString* const NSUserChangePasswordNotification   = @"NSUserChangePasswordNotification"; //修改密码接口
+NSString* const NSUserCommitUserDetailNotification = @"NSUserCommitUserDetailNotification"; //提交用户详细信息
 
 @interface AppDelegate ()
 {

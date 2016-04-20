@@ -415,6 +415,8 @@
         }
         NSDictionary *dict = [self getDataFromEncryptData:data];
         DLog(@"dict = %@",dict);
+        NSDictionary* responseDict = dict[@"response"];
+        [[NSNotificationCenter defaultCenter]postNotificationName:NSUserCommitUserDetailNotification object:responseDict];
     }];
 }
 

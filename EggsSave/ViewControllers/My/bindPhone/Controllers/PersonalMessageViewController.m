@@ -24,12 +24,36 @@
 
 - (IBAction)changeUserDetails:(id)sender;
 
+@property (strong, nonatomic) id   userDetailCommitedObserver;
 
 @end
 
 @implementation PersonalMessageViewController
 {
     NSString*       _city;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    self.userDetailCommitedObserver = [center addObserverForName:NSUserCommitUserDetailNotification object:nil queue:mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        NSDictionary* dict = note.userInfo;
+        
+        int result = [dict[@"result"] intValue];
+        
+        if (result == 0) {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提交成功" message:@"您的用户信息已经提交成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            alert.tag = 601;
+            [alert show];
+            
+        }else
+        {
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提交失败" message:@"您的用户信息已经提交失败，请稍后再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            alert.tag = 602;
+            [alert show];
+        }
+    }];
 }
 
 - (void)viewDidLoad {
@@ -95,6 +119,8 @@
 
 -(void)getAddress
 {
+    _city = @"北京市";
+    
     if (IS_IOS8) {
         
         [[CCLocationManager shareLocation]getAddress:^(NSString *addressString) {
@@ -118,6 +144,24 @@
 //            [wself setLabelText:cityString];
             
         }];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 601)
+    {
+        User* u = [User getInstance];
+        
+        u.nickName = _nickNameTextField.text ;
+        u.sex = _sexLabel.text ;
+        u.birthDay = _birthdayLabel.text;
+        u.carrier = _workLabel.text;
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (alertView.tag == 602)
+    {
+        //
     }
 }
 

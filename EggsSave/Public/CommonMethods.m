@@ -45,6 +45,11 @@
     freeifaddrs(interfaces);
     
     DLog(@"手机的IP是：%@", address);
+    
+    if (!address) {
+        address = @"192.168.1.11";
+    }
+    
     return address;
 }
 
