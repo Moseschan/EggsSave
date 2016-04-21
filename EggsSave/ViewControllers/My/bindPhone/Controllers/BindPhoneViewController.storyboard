@@ -122,7 +122,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMU-VW-ppv">
                                                     <rect key="frame" x="214" y="4" width="105" height="39"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="105" id="G0H-7J-9yD"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="G0H-7J-9yD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <state key="normal" title="获取验证码"/>
@@ -135,11 +135,23 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60秒后重新获取" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ST1-I4-gQN">
+                                                    <rect key="frame" x="188" y="14.5" width="116" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="116" id="ADZ-IO-hsn"/>
+                                                        <constraint firstAttribute="height" constant="21" id="u6r-Xv-ADf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="qMU-VW-ppv" secondAttribute="trailing" constant="1" id="MhT-58-6eh"/>
                                                 <constraint firstAttribute="bottom" secondItem="qMU-VW-ppv" secondAttribute="bottom" constant="6.5" id="OXD-Iv-xKB"/>
+                                                <constraint firstAttribute="trailing" secondItem="ST1-I4-gQN" secondAttribute="trailing" constant="16" id="RDL-un-4zu"/>
                                                 <constraint firstItem="qMU-VW-ppv" firstAttribute="top" secondItem="tIZ-ge-7ng" secondAttribute="top" constant="4" id="hN4-d4-eu0"/>
+                                                <constraint firstItem="ST1-I4-gQN" firstAttribute="centerY" secondItem="tIZ-ge-7ng" secondAttribute="centerY" id="xgA-96-lvh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -201,6 +213,7 @@
                         <outlet property="authCodeLabel" destination="o70-j9-qf1" id="iP6-iG-i6b"/>
                         <outlet property="comfirmPasswordTextField" destination="Btf-Kb-OPI" id="0bZ-6m-fDO"/>
                         <outlet property="getSMSButton" destination="qMU-VW-ppv" id="Czo-Au-aa4"/>
+                        <outlet property="getSMSLabel" destination="ST1-I4-gQN" id="M5S-z5-yQU"/>
                         <outlet property="myAuthCodeTextField" destination="0fg-Mb-CNG" id="2XH-Yi-ApJ"/>
                         <outlet property="passwordTextField" destination="Itm-CI-Xeh" id="MXh-xc-x6C"/>
                         <outlet property="phoneAuthCodeTextField" destination="IGw-VQ-0s4" id="mpB-eJ-Nv3"/>

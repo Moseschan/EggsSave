@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wrP-1z-pHD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wrP-1z-pHD">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--登录蛋蛋赚-->
+        <!--登录外快宝-->
         <scene sceneID="J9v-j1-3aD">
             <objects>
                 <viewController id="DEa-U3-L26" customClass="LoginViewController" sceneMemberID="viewController">
@@ -136,7 +136,7 @@
                             <constraint firstItem="oK7-7p-eFR" firstAttribute="centerX" secondItem="91x-91-Roj" secondAttribute="centerX" id="pg6-Ap-Qiw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="登录蛋蛋赚" id="XFo-MV-6hC"/>
+                    <navigationItem key="navigationItem" title="登录外快宝" id="XFo-MV-6hC"/>
                     <connections>
                         <outlet property="nameTextField" destination="o7E-sU-DBG" id="c6U-QO-fky"/>
                         <outlet property="passwordTextField" destination="5d5-PV-9bl" id="Yyt-xW-4GC"/>

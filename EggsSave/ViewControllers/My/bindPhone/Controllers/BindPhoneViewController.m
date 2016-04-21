@@ -20,6 +20,9 @@
 @interface BindPhoneViewController ()
 {
     UITextField* activeField;
+    NSTimer*     _jishiTimer;
+    
+    int          _daojishiTime;
 }
 @property (weak, nonatomic) IBOutlet UITextField *phonenumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myAuthCodeTextField;
@@ -28,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *comfirmPasswordTextField;
 @property (weak, nonatomic) IBOutlet UILabel *authCodeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *getSMSButton;
+@property (weak, nonatomic) IBOutlet UILabel *getSMSLabel;
 - (IBAction)getSMSAuthCode:(id)sender;
 
 @property (copy, nonatomic) NSString* authCode;
@@ -104,6 +108,9 @@
     _myAuthCodeTextField.delegate = self;
     _passwordTextField.delegate =self;
     _comfirmPasswordTextField.delegate = self;
+    
+    _daojishiTime = 0;
+    _getSMSLabel.hidden = YES;
     
     [self getAddress];
     
@@ -402,6 +409,20 @@
     return 1;
 }
 
+- (void)daojishi
+{
+    _daojishiTime += 1;
+    
+    _getSMSLabel.text = [NSString stringWithFormat:@"%d秒后重新获取", 60-_daojishiTime] ;
+    
+    if (_daojishiTime == 60) {
+        _daojishiTime = 0;
+        [_jishiTimer invalidate];
+        _getSMSButton.hidden = NO;
+        _getSMSLabel.hidden = YES;
+    }
+}
+
 - (IBAction)getSMSAuthCode:(id)sender {
     //先判定验证码是否输入正确
     if ([self.authCodeLabel.text isEqualToString:self.myAuthCodeTextField.text]) {
@@ -409,6 +430,11 @@
         
         //向服务器发送请求，请求短信验证码
         [[LoginManager getInstance]requestSmsAuthCodeWithPhoneNum:self.phonenumTextField.text IpAddress:[CommonMethods deviceIPAdress]];
+        
+        //写一个计时器，1分钟后重新获取
+        _getSMSButton.hidden = YES;
+        _getSMSLabel.hidden = NO;
+        _jishiTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(daojishi) userInfo:nil repeats:YES];
     }else
     {
         //验证码输入错误
