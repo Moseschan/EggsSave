@@ -127,7 +127,10 @@
                                                                
                                                                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:FINISHED_TASK_ID_KEY];
                                                                
-                                                               _ftdintroCell.taskisgetLabel.text = @"任务已完成";
+                                                               UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"恭喜您" message:@"您接收的任务已经完成，您将会获得到相应的奖励" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+                                                               alert.tag = 1001;
+                                                               [alert show];
+                                                               
                                                            }else
                                                            {
                                                                //提交完成任务失败
@@ -141,6 +144,17 @@
         if (self.mTask.pState == 1) {
             _ftdintroCell.taskisgetLabel.text = @"任务已完成";    //此时可以提交了
         }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1001) {
+        [_timeLimitTimer invalidate];
+        [TimeHeart getInstance].time = 0;
+        self.mTask.pState = 1;
+        
+        _ftdintroCell.taskisgetLabel.text = @"任务已完成";
     }
 }
 
@@ -171,17 +185,17 @@
     //判断试玩时间是否达到了任务要求的时间
     if ([TimeHeart getInstance].swTime >= self.mTask.pShiwanTime * 60) {
         //任务完成 无需再进行监控
-        [_timeLimitTimer invalidate];
+//        [_timeLimitTimer invalidate];
         [_processTimer invalidate];
         
         [TimeHeart getInstance].isRunning = NO;
-        [TimeHeart getInstance].time = 0;
+//        [TimeHeart getInstance].time = 0;
         //此时，需要记录下已经完成的任务
         [[NSUserDefaults standardUserDefaults] setObject:self.mTask.pId forKey:FINISHED_TASK_ID_KEY];
         
-        _ftdintroCell.taskisgetLabel.text = @"任务已完成";
+//        _ftdintroCell.taskisgetLabel.text = @"任务已完成";
         //将此任务标记为已抢到，完成任务
-        self.mTask.pState = 1;
+//        self.mTask.pState = 1;
     }
 }
 

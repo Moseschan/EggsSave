@@ -25,6 +25,7 @@
 @property (strong, nonatomic)UITextField   *zhiUser;
 
 @property (strong, nonatomic) id priceSetObserver;
+@property (strong, nonatomic) id tixianObserver;
 
 @end
 
@@ -60,7 +61,7 @@
                                                     NSArray* array = dict[@"priceLimit"];
                                                     
                                                     for (int i=0; i<array.count; ++i) {
-                                                        [self.priceSet addObject:[NSString stringWithFormat:@"%@",array[i]]];
+                                                        [self.priceSet addObject:[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%d",[array[i] intValue]  /100]]];
                                                     }
                                                     //暂时先不进行排序
                                                     [self.tableView reloadData];
@@ -76,6 +77,39 @@
                                                     
                                                 }];
     
+    self.tixianObserver = [center addObserverForName:NSUserTiXianNotification object:nil
+                                               queue:mainQueue usingBlock:^(NSNotification *note) {
+                                                   
+                                                   NSDictionary* dict = note.userInfo;
+                                                   
+                                                   int result = [dict[@"result"] intValue];
+                                                   
+                                                   if (result == 0) {
+                                                       //提现申请提交成功
+                                                       UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提交成功" message:@"您的提现申请已提交成功，请于三个工作日内关注账户状态" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                                       alert.tag = 601;
+                                                       [alert show];
+                                                   }else
+                                                   {
+                                                       //提现申请提交失败
+                                                       UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提交失败" message:@"您的提现申请已提交成功，请稍后再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                                       alert.tag = 602;
+                                                       [alert show];
+                                                   }
+                                                   
+                                               }];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 601)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (alertView.tag == 602)
+    {
+        //因为绑定手机号失败了 ，所以不做任何操作
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -459,11 +493,11 @@
         [alert show];
     }else
     {
-//        NSInteger tag = _selectedBtn.tag;
-//        
-//        NSInteger price = [self.priceSet[tag] integerValue];
-//        
-//        [[LoginManager getInstance] requestTiXianWithAccount:_zhiAccount.text UserName:_zhiUser.text Price:[NSString stringWithFormat:@"%ld",price]];
+        NSInteger tag = _selectedBtn.tag;
+        
+        NSInteger price = [self.priceSet[tag] integerValue];
+        
+        [[LoginManager getInstance] requestTiXianWithAccount:_zhiAccount.text UserName:_zhiUser.text Price:[NSString stringWithFormat:@"%ld",price*100]];
     }
     
 }

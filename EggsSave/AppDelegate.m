@@ -13,24 +13,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AudioManager.h"
 #import "User.h"
+#import "ProcessManager.h"
 
-NSString* const NSUserDidLoginedNotification       = @"NSUserDidLoginedNotification" ;
-NSString* const NSUserSigninStateNotification      = @"NSUserSigninStateNotification";
-NSString* const NSUserSigninNotification           = @"NSUserSigninNotification" ;      //签到
-NSString* const NSUserGetMyMoneyNotification       = @"NSUserGetMyMoneyNotification";   //剩余金额
-NSString* const NSUserSignUpNotification           = @"NSUserSignUpNotification";
-NSString* const NSUserSignUpFailedNotification     = @"NSUserSignUpFailedNotification";
-NSString* const NSUserLoginFailedNotification      = @"NSUserLoginFailedNotification";
-NSString* const NSUserGetTaskSucceedNotification   = @"NSUserGetTaskSucceedNotification";  //接任务成功
-NSString* const NSUserDoTaskCompletedNotification  = @"NSUserDoTaskCompletedNotification";  //审核任务成功与否
-NSString* const NSUserGetAuthCodeNotification      = @"NSUserGetAuthCodeNotification" ; //获取验证码
-NSString* const NSUserFeedCommitedNotification     = @"NSUserFeedCommitedNotification";  //问题反馈提交成功
-NSString* const NSUserGetDetailInfoNotification    = @"NSUserGetDetailInfoNotification"; //获取用户详细信息
-NSString* const NSUserTiXianRecordNotification     = @"NSUserTiXianRecordNotification";//提现记录接口
-NSString* const NSUserTaskRecordNotification       = @"NSUserTaskRecordNotification"; //任务记录
-NSString* const NSUserBindPhoneNotification        = @"NSUserBindPhoneNotification";  //绑定手机号
-NSString* const NSUserChangePasswordNotification   = @"NSUserChangePasswordNotification"; //修改密码接口
-NSString* const NSUserCommitUserDetailNotification = @"NSUserCommitUserDetailNotification"; //提交用户详细信息
 
 @interface AppDelegate ()
 {
@@ -44,7 +28,6 @@ NSString* const NSUserCommitUserDetailNotification = @"NSUserCommitUserDetailNot
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers  error:nil];
-    
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
     
     // Override point for customization after application launch.
@@ -62,12 +45,11 @@ NSString* const NSUserCommitUserDetailNotification = @"NSUserCommitUserDetailNot
     {
         [self showTabScreen:NO];
     }
-    
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    //测试加入白名单
+//    [[ProcessManager getInstance] writeToWhiteList:@"com.husor.beibei"];
     
     [[AudioManager getInstance]play];
-
-   
+    
     return YES;
 }
 
